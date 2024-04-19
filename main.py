@@ -7,26 +7,22 @@ from colorama import Back, Style
 
 
 def menu_gui():
-    main_menu_title = (10 * '*' + Back.CYAN + " 'Network automation of a GNS3 topology using Python' " + Style.RESET_ALL
-                       + 10 * '*' + "\n")
+    main_menu_title = 10 * '*' + Back.CYAN + " 'Network automation of a GNS3 topology using Python' " + Style.RESET_ALL+ 10 * '*' + "\n"
     main_menu_exit = False
     options = ["option1", "option2", "option3", "quit"]  # Define menu options
     menu = TerminalMenu(menu_entries=options, title=main_menu_title)  # Create menu object
 
-    op1_menu_title = (10 * '*' + Back.CYAN + " 'Option 1' " + Style.RESET_ALL
-                      + 10 * '*' + "\n")
+    op1_menu_title = 10 * '*' + Back.CYAN + " 'Option 1' " + Style.RESET_ALL+ 10 * '*' + "\n"
     op1_menu_items = ["option 1", "back"]
     op1_menu_back = False
     op1_menu = TerminalMenu(menu_entries=op1_menu_items, title=op1_menu_title)
 
-    op2_menu_title = (10 * '*' + Back.CYAN + " 'Option 2' " + Style.RESET_ALL
-                      + 10 * '*' + "\n")
+    op2_menu_title = 10 * '*' + Back.CYAN + " 'Option 2' " + Style.RESET_ALL+ 10 * '*' + "\n"
     op2_menu_items = ["option 2", "back"]
     op2_menu_back = False
     op2_menu = TerminalMenu(menu_entries=op2_menu_items, title=op2_menu_title)
 
-    op3_menu_title = (10 * '*' + Back.CYAN + " 'Option 3' " + Style.RESET_ALL
-                      + 10 * '*' + "\n")
+    op3_menu_title = 10 * '*' + Back.CYAN + " 'Option 3' " + Style.RESET_ALL+ 10 * '*' + "\n"
     op3_menu_items = ["option 3", "back"]
     op3_menu_back = False
     op3_menu = TerminalMenu(menu_entries=op3_menu_items, title=op3_menu_title)
