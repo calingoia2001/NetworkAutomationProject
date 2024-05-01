@@ -16,6 +16,6 @@ def send_config(task):
     task.run(task=napalm_configure, filename="config_file.txt")
 
 
-nr_filter = nr.filter(type="coresw")
+nr_filter = nr.filter(type="router")                         # choose "switch or "coresw" or "router"
 results = nr_filter.run(task=send_config)
 print_result(results)

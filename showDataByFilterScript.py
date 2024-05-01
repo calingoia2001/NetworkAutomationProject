@@ -15,6 +15,6 @@ def showdata_byfilter(task):
     task.run(task=netmiko_send_command, command_string="show ip int brief | exc unass")
 
 
-nr_filter = nr.filter(type="switch")             # filter by switch ( another type is "coresw")
+nr_filter = nr.filter(type="switch")             # filter by switch ( "switch" or "coresw" or "router")
 results = nr_filter.run(task=showdata_byfilter)
 print_result(results)
