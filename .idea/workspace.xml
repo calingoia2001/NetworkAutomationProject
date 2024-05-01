@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="fixed Scripts">
-      <change afterPath="$PROJECT_DIR$/NornirScripts/MainGUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add MainGUI.py&#10;modified scripts with absolute path">
+      <change beforePath="$PROJECT_DIR$/NornirScripts/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/MainGUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -295,7 +293,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714581004333</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="add MainGUI.py&#10;modified scripts with absolute path">
+      <option name="closed" value="true" />
+      <created>1714583138082</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1714583138082</updated>
+    </task>
+    <task id="LOCAL-00010" summary="add MainGUI.py&#10;modified scripts with absolute path">
+      <option name="closed" value="true" />
+      <created>1714583148023</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1714583148023</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -317,6 +331,7 @@
     <MESSAGE value="moved scripts to new folder" />
     <MESSAGE value="add Archive Scripts" />
     <MESSAGE value="fixed Scripts" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed Scripts" />
+    <MESSAGE value="add MainGUI.py&#10;modified scripts with absolute path" />
+    <option name="LAST_COMMIT_MESSAGE" value="add MainGUI.py&#10;modified scripts with absolute path" />
   </component>
 </project>

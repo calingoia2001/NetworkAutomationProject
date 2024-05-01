@@ -6,7 +6,7 @@ import subprocess
 def run_script():
     # Call your script here
     result = subprocess.check_output(["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
-                                      "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/textFSM.py", "calin", "cisco"])  # Call Script
+                                      "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/backupConfigScript.py", "calin", "cisco"])  # Call Script
     result_label.config(text=result.decode('utf-8'))  # Display the result in the label
 
 # Create the main window
