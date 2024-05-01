@@ -1,4 +1,4 @@
-# !/usr/bin/env python
+# Basic cli menu for testing purposes
 import os
 
 from simple_term_menu import TerminalMenu
