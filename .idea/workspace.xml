@@ -4,15 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="moved scripts to new folder">
-      <change afterPath="$PROJECT_DIR$/Archive/ScriptsArchive/Jinja2Demo/Jinja2Demo.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Archive/ScriptsArchive/Jinja2Demo/switch-ports.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Archive/ScriptsArchive/Jinja2Demo/switchport-interface-template.j2" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Archive/ScriptsArchive/NapalmScripts/config.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Archive/ScriptsArchive/NapalmScripts/napalmTest.py" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add Archive Scripts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/hosts.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Archive/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/textFSM.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/textFSM.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,6 +44,7 @@
     "Python.backupConfig.executor": "Run",
     "Python.main.executor": "Run",
     "Python.napalmTest.executor": "Run",
+    "Python.netmikoScript.executor": "Run",
     "Python.showDataByFilter.executor": "Run",
     "Python.showDataByFilterScript.executor": "Run",
     "Python.testConnectionWithPing.executor": "Run",
@@ -56,38 +53,19 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject"
+    "last_opened_file_path": "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/Archive/ScriptsArchive/NornirScripts"
   }
 }]]></component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\Archive\ScriptsArchive\NornirScripts" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\NornirScripts" />
       <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\Archive" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.netmikoScript">
-    <configuration name="Jinja2Demo" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="NetworkAutomationProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Archive/ScriptsArchive/Jinja2Demo" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Archive/ScriptsArchive/Jinja2Demo/Jinja2Demo.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
+  <component name="RunManager" selected="Python.testFSM">
     <configuration name="addNewConfig" type="PythonConfigurationType" factoryName="Python">
       <module name="NetworkAutomationProject" />
       <option name="ENV_FILES" value="" />
@@ -125,72 +103,6 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" />
       <option name="PARAMETERS" value="calin cisco" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="main" type="PythonConfigurationType" factoryName="Python" nameIsGenerated="true">
-      <module name="NetworkAutomationProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\Archive\main.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="napalmTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="NetworkAutomationProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Archive/ScriptsArchive/NapalmScripts" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Archive/ScriptsArchive/NapalmScripts/napalmTest.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
-    <configuration name="netmikoScript" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
-      <module name="NetworkAutomationProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Archive/ScriptsArchive/NetmikoScripts" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Archive/ScriptsArchive/NetmikoScripts/netmikoScript.py" />
-      <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -267,21 +179,10 @@
     <list>
       <item itemvalue="Python.backupConfig" />
       <item itemvalue="Python.testConnectionWithPing" />
-      <item itemvalue="Python.main" />
       <item itemvalue="Python.showDataByFilter" />
       <item itemvalue="Python.addNewConfig" />
       <item itemvalue="Python.testFSM" />
-      <item itemvalue="Python.Jinja2Demo" />
-      <item itemvalue="Python.napalmTest" />
-      <item itemvalue="Python.netmikoScript" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Python.netmikoScript" />
-        <item itemvalue="Python.napalmTest" />
-        <item itemvalue="Python.Jinja2Demo" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -339,7 +240,23 @@
       <option name="project" value="LOCAL" />
       <updated>1714567855419</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="add Archive Scripts">
+      <option name="closed" value="true" />
+      <created>1714575199598</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1714575199598</updated>
+    </task>
+    <task id="LOCAL-00007" summary="add Archive Scripts">
+      <option name="closed" value="true" />
+      <created>1714575218008</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1714575218008</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -359,6 +276,7 @@
     <MESSAGE value="add 3 basic scripts" />
     <MESSAGE value="added scripts from Ubuntu Docker" />
     <MESSAGE value="moved scripts to new folder" />
-    <option name="LAST_COMMIT_MESSAGE" value="moved scripts to new folder" />
+    <MESSAGE value="add Archive Scripts" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Archive Scripts" />
   </component>
 </project>

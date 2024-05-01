@@ -20,7 +20,7 @@ def backup_configs(task):
     running_config = result[0].result["get_config"]["running"]  # store the running config
     hostname = task.host.name  # store hostname
 
-    save_path = '/BackupConfigs/'
+    save_path = 'D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/BackupConfigs'
     file_name = hostname + '_running_config.txt' + current_time_formatted  # name of the file
     file = os.path.join(save_path, file_name)  # get full path
 
