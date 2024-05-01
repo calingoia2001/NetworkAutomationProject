@@ -3,9 +3,9 @@
 inventory:
   plugin: SimpleInventory
   options:
-    host_file: "hosts.yaml"
-    group_file: "groups.yaml"
-    defaults_file: "defaults.yaml"
+    host_file: "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/hosts.yaml"
+    group_file: "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/groups.yaml"
+    defaults_file: "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/defaults.yaml"
 
 runner:
   plugin: threaded
