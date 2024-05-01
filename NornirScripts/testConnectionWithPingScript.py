@@ -4,7 +4,7 @@ from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
 from nornir_utils.plugins.functions import print_result
 
-nr = InitNornir(config_file="config.yaml")        # init config.yaml
+nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")        # init config.yaml
 
 commands = []                                     # declare a list to store ping commands
 
