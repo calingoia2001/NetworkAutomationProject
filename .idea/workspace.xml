@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="reformat scripts">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="made a copy of nornir scripts">
+      <change afterPath="$PROJECT_DIR$/Assets/computer.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/hosts.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/textFSM.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/textFSM.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,34 +51,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Python.Jinja2Demo.executor&quot;: &quot;Run&quot;,
-    &quot;Python.MainGUI.executor&quot;: &quot;Run&quot;,
-    &quot;Python.addNewConfig.executor&quot;: &quot;Run&quot;,
-    &quot;Python.backupConfig.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.napalmTest.executor&quot;: &quot;Run&quot;,
-    &quot;Python.netmikoScript.executor&quot;: &quot;Run&quot;,
-    &quot;Python.showDataByFilter.executor&quot;: &quot;Run&quot;,
-    &quot;Python.showDataByFilterScript.executor&quot;: &quot;Run&quot;,
-    &quot;Python.testConnectionWithPing.executor&quot;: &quot;Run&quot;,
-    &quot;Python.testFSM.executor&quot;: &quot;Run&quot;,
-    &quot;Python.testnetmiko.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.Jinja2Demo.executor": "Run",
+    "Python.MainGUI.executor": "Run",
+    "Python.addNewConfig.executor": "Run",
+    "Python.backupConfig.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.napalmTest.executor": "Run",
+    "Python.netmikoScript.executor": "Run",
+    "Python.showDataByFilter.executor": "Run",
+    "Python.showDataByFilterScript.executor": "Run",
+    "Python.testConnectionWithPing.executor": "Run",
+    "Python.testFSM.executor": "Run",
+    "Python.testnetmiko.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/Archive",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\Archive" />
       <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject" />
       <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\Archive\ScriptsArchive\NornirScripts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\Assets" />
+      <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject" />
       <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\NornirScripts" />
       <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\Archive" />
     </key>
@@ -92,7 +100,7 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\NornirScripts\MainGUI.py" />
+      <option name="SCRIPT_NAME" value="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\MainGUI.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -212,12 +220,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.MainGUI" />
       <item itemvalue="Python.addNewConfig" />
       <item itemvalue="Python.backupConfig" />
       <item itemvalue="Python.showDataByFilter" />
       <item itemvalue="Python.testConnectionWithPing" />
       <item itemvalue="Python.testFSM" />
+      <item itemvalue="Python.MainGUI" />
     </list>
     <recent_temporary>
       <list>
@@ -337,7 +345,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714648152835</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="made a copy of nornir scripts">
+      <option name="closed" value="true" />
+      <created>1714669539499</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1714669539499</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -362,6 +378,7 @@
     <MESSAGE value="add MainGUI.py&#10;modified scripts with absolute path" />
     <MESSAGE value="change path for backup script" />
     <MESSAGE value="reformat scripts" />
-    <option name="LAST_COMMIT_MESSAGE" value="reformat scripts" />
+    <MESSAGE value="made a copy of nornir scripts" />
+    <option name="LAST_COMMIT_MESSAGE" value="made a copy of nornir scripts" />
   </component>
 </project>

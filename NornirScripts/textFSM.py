@@ -24,5 +24,5 @@ def nornir_netmiko_textfsm_example(task):
                "is physically ", interface["status"], "and line protocol is", interface["proto"])
 
 
-nr_filter = nr.filter(type="coresw")             # filter by switch ("switch" or "coresw" or "router")
+nr_filter = nr.filter(type="switch")             # filter by switch ("switch" or "coresw" or "router")
 results = nr_filter.run(task=nornir_netmiko_textfsm_example)
