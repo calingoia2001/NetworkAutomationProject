@@ -21,6 +21,6 @@ def test_connection(task):
         task.run(task=netmiko_send_command, command_string=command)
 
 
-nr_filter = nr.filter(type="coresw")             # filter by switch ( "switch" or "coresw" or "router")
+nr_filter = nr.filter(type=sys.argv[3])             # filter by switch ( "switch" or "coresw" or "router")
 results = nr_filter.run(task=test_connection)
 print_result(results)

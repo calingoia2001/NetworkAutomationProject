@@ -15,7 +15,7 @@ root.geometry("400x200")
 def run_script_backupconfig():
 
     result = subprocess.check_output(["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
-                                      "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/backupConfigScript.py", "calin", "cisco"])
+                                      "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/backupConfigScript.py", "calin", "cisco", "router"])
     # result_label_cfg.config(text=result.decode('utf-8'))  # Display the result in the label
     messagebox.showinfo("Backup configuration state", result.decode('utf-8'))
 
@@ -23,7 +23,7 @@ def run_script_backupconfig():
 def run_script_showdata():
 
     result = subprocess.check_output(["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
-                                      "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/showDataByFilterScript.py", "calin", "cisco"])
+                                      "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/showDataByFilterScript.py", "calin", "cisco", "switch"])
     # result_label_cfg.config(text=result.decode('utf-8'))  # Display the result in the label
     messagebox.showinfo("Show data", result.decode('utf-8'))
 
@@ -31,7 +31,7 @@ def run_script_showdata():
 def run_script_testconnection():
 
     result = subprocess.check_output(["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
-                                      "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/testConnectionWithPingScript.py", "calin", "cisco"])
+                                      "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/testConnectionWithPingScript.py", "calin", "cisco", "coresw"])
     # result_label_cfg.config(text=result.decode('utf-8'))  # Display the result in the label
     messagebox.showinfo("Test connection", result.decode('utf-8'))
 
@@ -39,7 +39,7 @@ def run_script_testconnection():
 def run_script_fsmtest():
 
     result = subprocess.check_output(["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
-                                      "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/textFSM.py", "calin", "cisco"])
+                                      "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/textFSM.py", "calin", "cisco", "router"])
     # result_label_cfg.config(text=result.decode('utf-8'))  # Display the result in the label
     messagebox.showinfo("FSM test", result.decode('utf-8'))
 
