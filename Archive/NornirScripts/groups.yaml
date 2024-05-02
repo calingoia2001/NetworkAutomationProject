@@ -1,0 +1,10 @@
+---
+
+cisco:
+  platform: ios
+  data:
+    community: switch_community
+  connection_options:
+    netmiko:
+      extras:
+        conn_timeout: 60

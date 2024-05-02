@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="change path for backup script">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="reformat scripts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/hosts.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -213,12 +212,12 @@
       <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python.MainGUI" />
       <item itemvalue="Python.addNewConfig" />
       <item itemvalue="Python.backupConfig" />
       <item itemvalue="Python.showDataByFilter" />
       <item itemvalue="Python.testConnectionWithPing" />
       <item itemvalue="Python.testFSM" />
-      <item itemvalue="Python.MainGUI" />
     </list>
     <recent_temporary>
       <list>
@@ -330,7 +329,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714583541385</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="reformat scripts">
+      <option name="closed" value="true" />
+      <created>1714648152835</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1714648152835</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -354,6 +361,7 @@
     <MESSAGE value="fixed Scripts" />
     <MESSAGE value="add MainGUI.py&#10;modified scripts with absolute path" />
     <MESSAGE value="change path for backup script" />
-    <option name="LAST_COMMIT_MESSAGE" value="change path for backup script" />
+    <MESSAGE value="reformat scripts" />
+    <option name="LAST_COMMIT_MESSAGE" value="reformat scripts" />
   </component>
 </project>
