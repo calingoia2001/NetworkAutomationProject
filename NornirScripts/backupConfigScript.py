@@ -29,5 +29,5 @@ def backup_configs(task):
         print("Running configuration of " + hostname + " has been saved!")  # print confirmation in cli
 
 
-nr_filter = nr.filter(type="coresw")  # filter by switch ("switch" or "coresw" or "router")
+nr_filter = nr.filter(type="router")  # filter by switch ("switch" or "coresw" or "router")
 results = nr_filter.run(task=backup_configs)

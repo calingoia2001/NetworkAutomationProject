@@ -28,14 +28,14 @@ switches = [switch1, switch2, switch3]
 for devices in switches:
     net_connect = ConnectHandler(**devices)
     net_connect.enable()
-    #net_connect.find_prompt()
+    # net_connect.find_prompt()
 
     config_commands = ['int loop 0', 'ip address 1.1.1.1 255.255.255.0']
     output = net_connect.send_config_set(config_commands)
     print(output)
 
     # for n in range (2,6):
-        # print("Creating VLAN " + str(n))
-        # config_commands = ['vlan ' + str(n), 'name Python_VLAN ' + str(n)]
-        # output = net_connect.send_config_set(config_commands)
-        # print(output)
+    # print("Creating VLAN " + str(n))
+    # config_commands = ['vlan ' + str(n), 'name Python_VLAN ' + str(n)]
+    # output = net_connect.send_config_set(config_commands)
+    # print(output)

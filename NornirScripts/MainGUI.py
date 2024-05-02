@@ -9,9 +9,10 @@ def run_script():
                                       "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/backupConfigScript.py", "calin", "cisco"])  # Call Script
     result_label.config(text=result.decode('utf-8'))  # Display the result in the label
 
+
 # Create the main window
 root = tk.Tk()
-root.title("Network Automation Porject")
+root.title("Network Automation Project")
 
 # Create a label to display the result
 result_label = tk.Label(root, text="")

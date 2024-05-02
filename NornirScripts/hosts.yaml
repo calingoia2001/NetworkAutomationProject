@@ -8,7 +8,7 @@ CoreSW0:
    data:
      type: coresw
 AccessSW1:
-   hostname: "192.168.137.103"
+   hostname: "192.168.137.101"
    port: 22
    platform: ios
    groups:
@@ -24,7 +24,7 @@ AccessSW2:
    data:
      type: switch
 R1:
-   hostname: "192.168.137.157"
+   hostname: "192.168.137.155"
    port: 22
    platform: ios
    groups:
