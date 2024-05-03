@@ -26,7 +26,7 @@ def backup_configs(task):
 
     with open(file, "w") as f:  # open the file
         f.write(running_config)  # write the running config
-        print("Running configuration of " + hostname + " has been saved!")  # print confirmation in cli
+        print("Running configuration of " + hostname + " has been saved at:\n" + file + "\n")  # print confirmation in cli
 
 
 nr_filter = nr.filter(type=sys.argv[3])  # filter by switch ("switch" or "coresw" or "router")
