@@ -2,7 +2,8 @@
 import sys
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
-from nornir_utils.plugins.functions import print_result
+# from nornir_utils.plugins.functions import print_result
+from rich import print as rprint
 
 nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")        # init config.yaml
 
@@ -18,9 +19,17 @@ commands.pop(0)                                  # remove first element of list 
 
 def test_connection(task):
     for command in commands:
-        task.run(task=netmiko_send_command, command_string=command)
+        result = task.run(task=netmiko_send_command, command_string=command, use_textfsm=True)
+        interfaces = result.result
+        for interface in interfaces:
+            rprint("Sending", interface['sent_qty'], ",", interface['sent_type'], "to",
+                   interface['destination'], ",timeout is", interface['timeout'], "seconds ... ")
+            rprint("Success rate is", interface['success_pct'], "percent (", interface['success_qty'], "/",
+                   interface['sent_qty'], "), round-trip min/avg/max =", interface['rtt_min'], "/", interface['rtt_avg'],
+                   "/", interface['rtt_max'], "ms!")
+            rprint("\n\n")
 
 
-nr_filter = nr.filter(type=sys.argv[3])             # filter by switch ( "switch" or "coresw" or "router")
+nr_filter = nr.filter(type="coresw")             # filter by switch ( "switch" or "coresw" or "router")
 results = nr_filter.run(task=test_connection)
-print_result(results)
+# print_result(results)
