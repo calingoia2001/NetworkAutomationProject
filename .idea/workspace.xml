@@ -4,12 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add 4 buttons to call the 4 scripts and show the output">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add third parameter to scripts">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/textFSM.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/textFSM.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/hosts.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,6 +50,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
     "Python.Jinja2Demo.executor": "Run",
     "Python.MainGUI.executor": "Run",
     "Python.addNewConfig.executor": "Run",
@@ -368,7 +367,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714672514261</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="add third parameter to scripts">
+      <option name="closed" value="true" />
+      <created>1714673416543</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1714673416543</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -396,6 +403,7 @@
     <MESSAGE value="made a copy of nornir scripts" />
     <MESSAGE value="add Asssets folder, refactored main gui" />
     <MESSAGE value="add 4 buttons to call the 4 scripts and show the output" />
-    <option name="LAST_COMMIT_MESSAGE" value="add 4 buttons to call the 4 scripts and show the output" />
+    <MESSAGE value="add third parameter to scripts" />
+    <option name="LAST_COMMIT_MESSAGE" value="add third parameter to scripts" />
   </component>
 </project>
