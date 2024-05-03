@@ -4,10 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add textfsm=true to scripts">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="remove fsm test from gui">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -399,7 +398,15 @@
       <option name="project" value="LOCAL" />
       <updated>1714741018939</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="remove fsm test from gui">
+      <option name="closed" value="true" />
+      <created>1714742085397</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1714742085397</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -431,6 +438,7 @@
     <MESSAGE value="add comments to MainGUI.py" />
     <MESSAGE value="add new functionality to backupscript" />
     <MESSAGE value="add textfsm=true to scripts" />
-    <option name="LAST_COMMIT_MESSAGE" value="add textfsm=true to scripts" />
+    <MESSAGE value="remove fsm test from gui" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove fsm test from gui" />
   </component>
 </project>
