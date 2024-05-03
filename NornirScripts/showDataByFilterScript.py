@@ -13,12 +13,13 @@ for host in nr.inventory.hosts.values():          # use sys arg to enter usernam
 
 
 def showdata_byfilter(task):
-    result = task.run(task=netmiko_send_command, command_string="show ip int brief | exc unass", use_textfsm=True)
+    result = task.run(task=netmiko_send_command, command_string="show ip int brief", use_textfsm=True)
     interfaces = result.result
     rprint("Showing up interfaces of " + sys.argv[3])
     for interface in interfaces:
-        rprint("interface", interface["interface"], "with IP address", interface["ip_address"],
-               "is physically ", interface["status"], "and line protocol is", interface["proto"])
+        if interface['status'] == 'up':
+            rprint("interface", interface["interface"], "with IP address", interface["ip_address"],
+                   "is physically ", interface["status"], "and line protocol is", interface["proto"])
 
 
 nr_filter = nr.filter(type=sys.argv[3])             # filter by switch ( "switch" or "coresw" or "router")

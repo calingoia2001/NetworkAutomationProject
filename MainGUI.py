@@ -81,14 +81,6 @@ def run_script_testconnection():
     messagebox.showinfo("Test connection", result.decode('utf-8'))
 
 
-# Call textFSM script and store the output in the variable result then show a message box with the result
-def run_script_fsmtest():
-
-    result = subprocess.check_output(["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
-                                      "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/textFSM.py", "calin", "cisco", "router"])
-    messagebox.showinfo("FSM test", result.decode('utf-8'))
-
-
 # Create a button to display backupConfig window
 button_config_window = Button(root, text="Backup configuration of devices", command=create_backupconfig_window)
 button_config_window.pack(pady=10)
@@ -99,10 +91,6 @@ button_showData.pack(pady=10)
 
 # Create a button for testConnectionWithPing script
 button_showData = Button(root, text="Test connection with ping", command=run_script_testconnection)
-button_showData.pack(pady=10)
-
-# Create a button for textFSM script
-button_showData = Button(root, text="FSM test", command=run_script_fsmtest)
 button_showData.pack(pady=10)
 
 # Run the Tkinter event loop
