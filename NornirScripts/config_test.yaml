@@ -1,0 +1,13 @@
+---
+
+inventory:
+  plugin: SimpleInventory
+  options:
+    host_file: "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/hosts.yaml"
+    group_file: "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/groups.yaml"
+    defaults_file: "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/defaults.yaml"
+
+runner:
+  plugin: threaded
+  options:
+    num_workers: 1
