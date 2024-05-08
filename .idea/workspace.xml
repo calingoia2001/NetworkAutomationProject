@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add show version functionality in script">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="finish show Data for now 2">
+      <change afterPath="$PROJECT_DIR$/NornirScripts/config_test.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +189,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" />
-      <option name="PARAMETERS" value="calin cisco switch" />
+      <option name="PARAMETERS" value="calin cisco router" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -447,7 +449,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715172787593</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="finish show Data for now">
+      <option name="closed" value="true" />
+      <created>1715173354190</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1715173354190</updated>
+    </task>
+    <task id="LOCAL-00027" summary="finish show Data for now 2">
+      <option name="closed" value="true" />
+      <created>1715173368806</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1715173368806</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -485,6 +503,8 @@
     <MESSAGE value="added new functionality to show data button" />
     <MESSAGE value="add show version button" />
     <MESSAGE value="add show version functionality in script" />
-    <option name="LAST_COMMIT_MESSAGE" value="add show version functionality in script" />
+    <MESSAGE value="finish show Data for now" />
+    <MESSAGE value="finish show Data for now 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="finish show Data for now 2" />
   </component>
 </project>

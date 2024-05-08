@@ -6,7 +6,7 @@ from nornir_netmiko.tasks import netmiko_send_command
 from rich import print as rprint
 
 nr = InitNornir(
-    config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")  # init config.yaml
+    config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config_test.yaml")  # init config.yaml
 
 for host in nr.inventory.hosts.values():  # use sys arg to enter username and password
     host.username = sys.argv[1]
@@ -16,7 +16,7 @@ for host in nr.inventory.hosts.values():  # use sys arg to enter username and pa
 def showdata_byfilter(task):
     # possible command_string : shop ip int brief / show version / show vlan / show ip route / show arp
     if sys.argv[4] == "ship":
-        rprint("Showing up running interfaces of " + sys.argv[3])
+        rprint("\nShowing up running interfaces of " + sys.argv[3] + ":")
         result = task.run(task=netmiko_send_command, command_string="show ip int brief", use_textfsm=True)
         interfaces = result.result
         for interface in interfaces:
@@ -29,8 +29,8 @@ def showdata_byfilter(task):
         result = task.run(task=netmiko_send_command, command_string="show version", use_textfsm=True)
         interfaces = result.result
         for interface in interfaces:
-            rprint(interface['hostname'], "details:\n---  version", interface['software_image'],
-                   interface['version'], "\n---  uptime", interface['uptime'])
+            rprint(interface['hostname'], "details:\n---  version:", interface['software_image'],
+                   interface['version'], "\n---  uptime:", interface['uptime'])
 
 
 nr_filter = nr.filter(type=sys.argv[3])  # filter by switch ( "switch" or "coresw" or "router")
