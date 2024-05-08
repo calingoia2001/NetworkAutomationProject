@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add show version button">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add show version functionality in script">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -438,7 +439,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715169754130</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="add show version functionality in script">
+      <option name="closed" value="true" />
+      <created>1715172787593</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1715172787593</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -475,6 +484,7 @@
     <MESSAGE value="modify print statement in backupConfigScript.py 2" />
     <MESSAGE value="added new functionality to show data button" />
     <MESSAGE value="add show version button" />
-    <option name="LAST_COMMIT_MESSAGE" value="add show version button" />
+    <MESSAGE value="add show version functionality in script" />
+    <option name="LAST_COMMIT_MESSAGE" value="add show version functionality in script" />
   </component>
 </project>
