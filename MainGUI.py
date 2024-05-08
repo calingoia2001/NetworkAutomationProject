@@ -117,6 +117,11 @@ def create_showdata_window():
                          command=lambda: run_script_showdata(device_2.get(), "ship"))
     button_ship.pack(pady=10)
 
+    # Create a button to run the showDataByFilter script with shversion parameter
+    button_shversion = Button(showdata_window, text="Show version",
+                              command=lambda: run_script_showdata(device_2.get(), "shversion"))
+    button_shversion.pack(pady=10)
+
     # Create a button to go back to main menu
     button_goback = Button(showdata_window, text="Go back", command=goback_2)
     button_goback.pack(pady=10)
