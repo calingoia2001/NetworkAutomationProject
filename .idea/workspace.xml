@@ -4,12 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="finish show Data for now 2">
-      <change afterPath="$PROJECT_DIR$/NornirScripts/config_test.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add filter and window to testConnectionWithPingScript button">
+      <change beforePath="$PROJECT_DIR$/NornirScripts/textFSM.py" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -465,7 +461,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715173368806</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="add config_test.yaml to fix the show version on acces switches(for now)">
+      <option name="closed" value="true" />
+      <created>1715179703863</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1715179703863</updated>
+    </task>
+    <task id="LOCAL-00029" summary="add filter and window to testConnectionWithPingScript button">
+      <option name="closed" value="true" />
+      <created>1715179780933</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1715179780933</updated>
+    </task>
+    <option name="localTasksCounter" value="30" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -480,8 +492,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="Initial Commit" />
-    <MESSAGE value="created an initial simple menu with 3 options" />
     <MESSAGE value="add 3 basic scripts" />
     <MESSAGE value="added scripts from Ubuntu Docker" />
     <MESSAGE value="moved scripts to new folder" />
@@ -505,6 +515,8 @@
     <MESSAGE value="add show version functionality in script" />
     <MESSAGE value="finish show Data for now" />
     <MESSAGE value="finish show Data for now 2" />
-    <option name="LAST_COMMIT_MESSAGE" value="finish show Data for now 2" />
+    <MESSAGE value="add config_test.yaml to fix the show version on acces switches(for now)" />
+    <MESSAGE value="add filter and window to testConnectionWithPingScript button" />
+    <option name="LAST_COMMIT_MESSAGE" value="add filter and window to testConnectionWithPingScript button" />
   </component>
 </project>
