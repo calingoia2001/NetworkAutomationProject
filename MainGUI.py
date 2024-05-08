@@ -15,7 +15,7 @@ global pingtest_window
 root = Tk()
 root.title("Network Automation Project")  # GUI title
 root.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-root.geometry("400x250")  # GUI size
+root.geometry("400x300")  # GUI size
 
 
 # Function to call backupConfig script and store the output in the variable result then show a message box with the result
@@ -186,16 +186,20 @@ select_button_text = Label(root, text='Select a task', font=50)
 select_button_text.pack(pady=10)
 
 # Create a button to display backupConfig window
-button_config_window = Button(root, text="Backup Configuration of Devices", command=create_backupconfig_window)
-button_config_window.pack(pady=10)
+button_backup = Button(root, text="Backup Configuration of Devices", command=create_backupconfig_window)
+button_backup.pack(pady=10)
 
 # Create a button for showDataByFilter script
 button_showData = Button(root, text="Show Data of Devices", command=create_showdata_window)
 button_showData.pack(pady=10)
 
 # Create a button for testConnectionWithPing script
-button_showData = Button(root, text="Test Connection With Ping", command=create_pingtest_window)
-button_showData.pack(pady=10)
+button_pingtest = Button(root, text="Test Connection With Ping", command=create_pingtest_window)
+button_pingtest.pack(pady=10)
+
+# Create a button for addNewConfig script
+button_configure = Button(root, text="Configure Devices", command=create_pingtest_window)
+button_configure.pack(pady=10)
 
 # Create a button to close the app
 button_exit = Button(root, text="Exit", command=root.destroy)

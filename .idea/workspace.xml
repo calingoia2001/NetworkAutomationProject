@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add filter and window to testConnectionWithPingScript button">
-      <change beforePath="$PROJECT_DIR$/NornirScripts/textFSM.py" beforeDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="delete textFSM.py">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -477,7 +478,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715179780933</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="delete textFSM.py">
+      <option name="closed" value="true" />
+      <created>1715180342840</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1715180342840</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -492,7 +501,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add 3 basic scripts" />
     <MESSAGE value="added scripts from Ubuntu Docker" />
     <MESSAGE value="moved scripts to new folder" />
     <MESSAGE value="add Archive Scripts" />
@@ -517,6 +525,7 @@
     <MESSAGE value="finish show Data for now 2" />
     <MESSAGE value="add config_test.yaml to fix the show version on acces switches(for now)" />
     <MESSAGE value="add filter and window to testConnectionWithPingScript button" />
-    <option name="LAST_COMMIT_MESSAGE" value="add filter and window to testConnectionWithPingScript button" />
+    <MESSAGE value="delete textFSM.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="delete textFSM.py" />
   </component>
 </project>
