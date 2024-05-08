@@ -113,7 +113,7 @@ def create_showdata_window():
         Radiobutton(showdata_window, text=radiobutton_text, variable=device_2, value=value_text).pack()
 
     # Create a button to run the showDataByFilter script with ship parameter
-    button_ship = Button(showdata_window, text="Show interface status",
+    button_ship = Button(showdata_window, text="Show running interfaces",
                          command=lambda: run_script_showdata(device_2.get(), "ship"))
     button_ship.pack(pady=10)
 

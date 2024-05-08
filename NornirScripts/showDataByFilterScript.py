@@ -35,5 +35,3 @@ def showdata_byfilter(task):
 
 nr_filter = nr.filter(type=sys.argv[3])  # filter by switch ( "switch" or "coresw" or "router")
 results = nr_filter.run(task=showdata_byfilter)
-
-
