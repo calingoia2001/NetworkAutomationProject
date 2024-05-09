@@ -188,11 +188,11 @@ def create_pingtest_window():
 
 
 # Call addNewConfig script and show a message with the result
-def run_script_configure(device_type):
+def run_script_configure(device_type, configure_type):
     result = subprocess.check_output(
         ["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
          "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/addNewConfigScript.py",
-         "calin", "cisco", device_type])
+         "calin", "cisco", device_type, configure_type])
     messagebox.showinfo("Configure Device", result.decode('utf-8'))
 
 
@@ -231,9 +231,19 @@ def create_configure_window():
     for radiobutton_text, value_text in devices:
         Radiobutton(configure_window, text=radiobutton_text, variable=device_4, value=value_text).pack()
 
-    # Create a button to run the addNewConfig script
-    button_configuration = Button(configure_window, text="Configure Devices",
-                                  command=lambda: run_script_configure(device_4.get()))
+    # Create a button to run the addNewConfig script with loopback as sys.argv[4]
+    button_configuration = Button(configure_window, text="Create Loopback Interface",
+                                  command=lambda: run_script_configure(device_4.get(), "loopback"))
+    button_configuration.pack(pady=10)
+
+    # Create a button to run the addNewConfig script with vlan as sys.argv[4]
+    button_configuration = Button(configure_window, text="Create VLANs",
+                                  command=lambda: run_script_configure(device_4.get(), "vlan"))
+    button_configuration.pack(pady=10)
+
+    # Create a button to run the addNewConfig script with saveconfig as sys.argv[4]
+    button_configuration = Button(configure_window, text="Save configuration of selected device",
+                                  command=lambda: run_script_configure(device_4.get(), "saveconfig"))
     button_configuration.pack(pady=10)
 
     # Create a button to go back to main menu

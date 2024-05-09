@@ -1,4 +1,4 @@
-# We use this script to add a new configuration to existing devices that is located in config_file.txt
+# We use this script to add a new configuration to existing devices that is located in config_file_loopback.txt
 # ip scp server enable must be enabled on devices !
 import sys
 from nornir import InitNornir
