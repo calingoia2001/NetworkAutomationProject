@@ -4,14 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add configure devices window and functionality">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add new buttons to configure window and changed the functionality of the addNewConfigScript.py">
+      <change afterPath="$PROJECT_DIR$/NornirScripts/jinja2Test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NornirScripts/template.j2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Archive/NornirScripts/addNewConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/Archive/NornirScripts/addNewConfigScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Archive/ScriptsArchive/NetmikoScripts/netmikoScript2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Archive/ScriptsArchive/NetmikoScripts/netmikoScript2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/config_file.txt" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/config_file_loopback.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/hosts.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +56,7 @@
     &quot;Python.MainGUI.executor&quot;: &quot;Run&quot;,
     &quot;Python.addNewConfig.executor&quot;: &quot;Run&quot;,
     &quot;Python.backupConfig.executor&quot;: &quot;Run&quot;,
+    &quot;Python.jinja2Test.executor&quot;: &quot;Run&quot;,
     &quot;Python.main.executor&quot;: &quot;Run&quot;,
     &quot;Python.napalmTest.executor&quot;: &quot;Run&quot;,
     &quot;Python.netmikoScript.executor&quot;: &quot;Run&quot;,
@@ -155,6 +153,28 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <configuration name="jinja2Test" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NetworkAutomationProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NornirScripts" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NornirScripts/jinja2Test.py" />
+      <option name="PARAMETERS" value="calin cisco router" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
     <configuration name="showDataByFilter" type="PythonConfigurationType" factoryName="Python">
       <module name="NetworkAutomationProject" />
       <option name="ENV_FILES" value="" />
@@ -199,39 +219,18 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="testFSM" type="PythonConfigurationType" factoryName="Python">
-      <module name="NetworkAutomationProject" />
-      <option name="ENV_FILES" value="" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NornirScripts" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NornirScripts/textFSM.py" />
-      <option name="PARAMETERS" value="calin cisco router" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <option name="EMULATE_TERMINAL" value="false" />
-      <option name="MODULE_MODE" value="false" />
-      <option name="REDIRECT_INPUT" value="false" />
-      <option name="INPUT_FILE" value="" />
-      <method v="2" />
-    </configuration>
     <list>
       <item itemvalue="Python.addNewConfig" />
       <item itemvalue="Python.backupConfig" />
       <item itemvalue="Python.showDataByFilter" />
       <item itemvalue="Python.testConnectionWithPing" />
-      <item itemvalue="Python.testFSM" />
+      <item itemvalue="Python.jinja2Test" />
       <item itemvalue="Python.MainGUI" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="Python.MainGUI" />
+        <item itemvalue="Python.jinja2Test" />
       </list>
     </recent_temporary>
   </component>
@@ -507,8 +506,19 @@
       <option name="project" value="LOCAL" />
       <updated>1715189082410</updated>
     </task>
-    <option name="localTasksCounter" value="33" />
+    <task id="LOCAL-00033" summary="add new buttons to configure window and changed the functionality of the addNewConfigScript.py">
+      <option name="closed" value="true" />
+      <created>1715254534018</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1715254534018</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.j2" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -522,7 +532,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add Archive Scripts" />
     <MESSAGE value="fixed Scripts" />
     <MESSAGE value="add MainGUI.py&#10;modified scripts with absolute path" />
     <MESSAGE value="change path for backup script" />
@@ -547,6 +556,7 @@
     <MESSAGE value="delete textFSM.py" />
     <MESSAGE value="add configure devices button" />
     <MESSAGE value="add configure devices window and functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="add configure devices window and functionality" />
+    <MESSAGE value="add new buttons to configure window and changed the functionality of the addNewConfigScript.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="add new buttons to configure window and changed the functionality of the addNewConfigScript.py" />
   </component>
 </project>
