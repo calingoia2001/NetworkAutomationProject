@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add new buttons to configure window and changed the functionality of the addNewConfigScript.py">
-      <change afterPath="$PROJECT_DIR$/NornirScripts/jinja2Test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NornirScripts/template.j2" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add BackupConfigs to git">
+      <change afterPath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -514,7 +512,23 @@
       <option name="project" value="LOCAL" />
       <updated>1715254534018</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="add jinja2Test.py for testing purposes">
+      <option name="closed" value="true" />
+      <created>1715268664511</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1715268664511</updated>
+    </task>
+    <task id="LOCAL-00035" summary="add BackupConfigs to git">
+      <option name="closed" value="true" />
+      <created>1715268778094</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1715268778094</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -532,8 +546,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixed Scripts" />
-    <MESSAGE value="add MainGUI.py&#10;modified scripts with absolute path" />
     <MESSAGE value="change path for backup script" />
     <MESSAGE value="reformat scripts" />
     <MESSAGE value="made a copy of nornir scripts" />
@@ -557,6 +569,8 @@
     <MESSAGE value="add configure devices button" />
     <MESSAGE value="add configure devices window and functionality" />
     <MESSAGE value="add new buttons to configure window and changed the functionality of the addNewConfigScript.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="add new buttons to configure window and changed the functionality of the addNewConfigScript.py" />
+    <MESSAGE value="add jinja2Test.py for testing purposes" />
+    <MESSAGE value="add BackupConfigs to git" />
+    <option name="LAST_COMMIT_MESSAGE" value="add BackupConfigs to git" />
   </component>
 </project>
