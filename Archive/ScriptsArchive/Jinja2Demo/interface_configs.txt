@@ -1,0 +1,352 @@
+! Generated Configuration
+interface Ethernet1/13
+  description Link to esxi-01 port nic 0 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/14
+  description Link to esxi-01 port nic 1 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/15
+  description Link to esxi-01 port nic 2 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/16
+  description Link to esxi-01 port nic 3 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/17
+  description Link to esxi-02 port nic 0 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/18
+  description Link to esxi-02 port nic 1 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/19
+  description Link to esxi-02 port nic 2 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/20
+  description Link to esxi-02 port nic 3 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/21
+  description Link to esxi-03 port nic 0 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/22
+  description Link to esxi-03 port nic 1 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/23
+  description Link to esxi-03 port nic 2 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/24
+  description Link to esxi-03 port nic 3 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/25
+  description Link to esxi-04 port nic 0 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/26
+  description Link to esxi-04 port nic 1 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/27
+  description Link to esxi-04 port nic 2 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/28
+  description Link to esxi-04 port nic 3 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/29
+  description Link to esxi-05 port nic 0 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/30
+  description Link to esxi-05 port nic 1 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/31
+  description Link to esxi-05 port nic 2 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/32
+  description Link to esxi-05 port nic 3 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/33
+  description Link to esxi-06 port nic 0 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/34
+  description Link to esxi-06 port nic 1 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/35
+  description Link to esxi-06 port nic 2 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/36
+  description Link to esxi-06 port nic 3 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/37
+  description Link to esxi-07 port nic 0 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/38
+  description Link to esxi-07 port nic 1 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/39
+  description Link to esxi-07 port nic 2 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/40
+  description Link to esxi-07 port nic 3 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/41
+  description Link to esxi-08 port nic 0 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/42
+  description Link to esxi-08 port nic 1 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/43
+  description Link to esxi-08 port nic 2 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/44
+  description Link to esxi-08 port nic 3 for Virtualization Host
+  switchport
+  switchport mode trunk
+  no shutdown
+! Generated Configuration
+interface Ethernet1/45
+  description Link to db-01 port nic 0 for Database Server
+  switchport
+  switchport mode access
+  switchport access vlan 101
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/46
+  description Link to db-01 port nic 1 for Database Server
+  switchport
+  switchport mode access
+  switchport access vlan 101
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/47
+  description Link to db-02 port nic 0 for Database Server
+  switchport
+  switchport mode access
+  switchport access vlan 101
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/48
+  description Link to db-02 port nic 1 for Database Server
+  switchport
+  switchport mode access
+  switchport access vlan 101
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/49
+  description Link to db-03 port nic 0 for Database Server
+  switchport
+  switchport mode access
+  switchport access vlan 101
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/50
+  description Link to db-03 port nic 1 for Database Server
+  switchport
+  switchport mode access
+  switchport access vlan 101
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/51
+  description Link to dev-db-01 port nic 0 for Database Server
+  switchport
+  switchport mode access
+  switchport access vlan 102
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/52
+  description Link to dev-db-01 port nic 1 for Database Server
+  switchport
+  switchport mode access
+  switchport access vlan 102
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/53
+  description Link to dev-db-02 port nic 0 for Database Server
+  switchport
+  switchport mode access
+  switchport access vlan 102
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/54
+  description Link to dev-db-02 port nic 1 for Database Server
+  switchport
+  switchport mode access
+  switchport access vlan 102
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/55
+  description Link to dev-db-03 port nic 0 for Database Server
+  switchport
+  switchport mode access
+  switchport access vlan 102
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/56
+  description Link to dev-db-03 port nic 1 for Database Server
+  switchport
+  switchport mode access
+  switchport access vlan 102
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/57
+  description Link to admin-01 port nic 0 for Admin Server
+  switchport
+  switchport mode access
+  switchport access vlan 100
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/58
+  description Link to admin-01 port nic 2 for Admin Server
+  switchport
+  switchport mode access
+  switchport access vlan 100
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/59
+  description Link to server-01 port nic 0 for App Server
+  switchport
+  switchport mode access
+  switchport access vlan 103
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/60
+  description Link to server-01 port nic 1 for App Server
+  switchport
+  switchport mode access
+  switchport access vlan 103
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/61
+  description Link to server-02 port nic 0 for App Server
+  switchport
+  switchport mode access
+  switchport access vlan 104
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/62
+  description Link to server-02 port nic 1 for App Server
+  switchport
+  switchport mode access
+  switchport access vlan 104
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/63
+  description Link to server-03 port nic 0 for App Server
+  switchport
+  switchport mode access
+  switchport access vlan 105
+  spanning-tree port type edge
+  no shutdown
+! Generated Configuration
+interface Ethernet1/64
+  description Link to server-03 port nic 1 for App Server
+  switchport
+  switchport mode access
+  switchport access vlan 105
+  spanning-tree port type edge
+  no shutdown
