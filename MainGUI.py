@@ -1,6 +1,7 @@
 # The GUI of the Network Automation Project
 from tkinter import *
 from tkinter import messagebox
+from tkinter import filedialog
 import subprocess
 
 # Create global variables
@@ -35,6 +36,19 @@ def goback_1():
     root.deiconify()
 
 
+# Function to handle restoring the most recent backup
+def restore_backup(device_type):
+    # Open a file dialog to select the backup configuration file
+    file_path = filedialog.askopenfilename(
+        initialdir="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/BackupConfigs/",
+        title="Select backup configuration file",
+        filetypes=(("Text files", "*.txt"), ("All files", "*.*")))
+    if not file_path:
+        print("Please select a file!")
+    else:
+        run_script_configure(device_type, "restore", file_path)           # call function to add new config
+
+
 # Display the backup config window
 def create_backupconfig_window():
     # Create backup config window
@@ -67,6 +81,10 @@ def create_backupconfig_window():
     # Create a button to run the backupConfig script
     button_config = Button(backup_window, text="Backup running configuration",
                            command=lambda: run_script_backupconfig(device.get()))
+    button_config.pack(pady=10)
+
+    # Create a button to run the backupConfig script and restore most recent backup
+    button_config = Button(backup_window, text="Restore most recent backup", command=lambda: restore_backup(device.get()))
     button_config.pack(pady=10)
 
     # Create a button to go back to main menu
@@ -188,11 +206,11 @@ def create_pingtest_window():
 
 
 # Call addNewConfig script and show a message with the result
-def run_script_configure(device_type, configure_type):
+def run_script_configure(device_type, configure_type, backup_config):
     result = subprocess.check_output(
         ["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
          "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/addNewConfigScript.py",
-         "calin", "cisco", device_type, configure_type])
+         "calin", "cisco", device_type, configure_type, backup_config])
     messagebox.showinfo("Configure Device", result.decode('utf-8'))
 
 
@@ -233,17 +251,17 @@ def create_configure_window():
 
     # Create a button to run the addNewConfig script with loopback as sys.argv[4]
     button_configuration = Button(configure_window, text="Create Loopback Interface",
-                                  command=lambda: run_script_configure(device_4.get(), "loopback"))
+                                  command=lambda: run_script_configure(device_4.get(), "loopback", ""))
     button_configuration.pack(pady=10)
 
     # Create a button to run the addNewConfig script with vlan as sys.argv[4]
     button_configuration = Button(configure_window, text="Create VLANs",
-                                  command=lambda: run_script_configure(device_4.get(), "vlan"))
+                                  command=lambda: run_script_configure(device_4.get(), "vlan", ""))
     button_configuration.pack(pady=10)
 
     # Create a button to run the addNewConfig script with saveconfig as sys.argv[4]
     button_configuration = Button(configure_window, text="Save configuration of selected device",
-                                  command=lambda: run_script_configure(device_4.get(), "saveconfig"))
+                                  command=lambda: run_script_configure(device_4.get(), "saveconfig", ""))
     button_configuration.pack(pady=10)
 
     # Create a button to go back to main menu

@@ -32,7 +32,7 @@ def backup_configs(task):
         f.write(running_config)  # write the running config
         print("Running configuration of " + hostname + " has been saved at:\n" + file + "\n")  # print confirmation in cli
 
-    client.upload_file(file, bucketName, file_name)               # upload the file to AWS S3 bucket
+    # client.upload_file(file, bucketName, file_name)               # upload the file to AWS S3 bucket | commented for now
 
 
 nr_filter = nr.filter(type=sys.argv[3])                           # filter by switch ("switch" or "coresw" or "router")
