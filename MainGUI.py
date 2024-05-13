@@ -98,7 +98,23 @@ def run_script_showdata(device_type, show_command):
         ["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
          "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/showDataByFilterScript.py",
          "calin", "cisco", device_type, show_command])
-    messagebox.showinfo("Show data", result.decode('utf-8'))
+    # messagebox.showinfo("Show data", result.decode('utf-8'))
+
+    result_str = result.decode('utf-8').strip()         # convert bytes to string and remove leading/trailing whitespace
+
+    # Create a new window to display the result
+    show_result_window = Toplevel()
+    show_result_window.title("Show Data")
+
+    # Create a Text widget to display the result
+    text = Text(show_result_window, wrap="none")                   # no text wrapping
+    text.insert(END, result_str)
+    text.pack(expand=True, fill="both")  # allow to expand both horizontally and vertically to fill any available space
+
+    # Add a scrollbar
+    scrollbar = Scrollbar(show_result_window, command=text.yview)
+    scrollbar.pack(side=RIGHT, fill=Y)                             # pack scrollbar to the right side
+    text.config(yscrollcommand=scrollbar.set)
 
 
 # Function to go back to main menu from the showdata window
