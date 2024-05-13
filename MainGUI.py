@@ -115,7 +115,7 @@ def create_showdata_window():
     showdata_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
     showdata_window.title("Show Data of Devices")  # GUI title
     showdata_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    showdata_window.geometry("400x300")  # GUI size
+    showdata_window.geometry("400x350")  # GUI size
 
     # Create select text
     select_text = Label(showdata_window, text='Select which device you want to show data', font=50)
@@ -144,6 +144,16 @@ def create_showdata_window():
     # Create a button to run the showDataByFilter script with shversion parameter
     button_shversion = Button(showdata_window, text="Show version",
                               command=lambda: run_script_showdata(device_2.get(), "shversion"))
+    button_shversion.pack(pady=10)
+
+    # Create a button to run the showDataByFilter script with shvlan parameter
+    button_shversion = Button(showdata_window, text="Show VLANs",
+                              command=lambda: run_script_showdata(device_2.get(), "shvlan"))
+    button_shversion.pack(pady=10)
+
+    # Create a button to run the showDataByFilter script with sharp parameter
+    button_shversion = Button(showdata_window, text="Show ARP table",
+                              command=lambda: run_script_showdata(device_2.get(), "sharp"))
     button_shversion.pack(pady=10)
 
     # Create a button to go back to main menu

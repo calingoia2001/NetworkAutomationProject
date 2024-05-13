@@ -27,6 +27,17 @@ def showdata_byfilter(task):
         for interface in interfaces:
             rprint(interface['hostname'], "details:\n---  version:", interface['software_image'],
                    interface['version'], "\n---  uptime:", interface['uptime'])
+    elif sys.argv[4] == "shvlan":                       # show VLANs of selected device
+        if sys.argv[3] == "router":
+            rprint("Cannot show VLANs on a router!")
+        else:
+            result = task.run(task=netmiko_send_command, command_string="show vlan", use_textfsm=True)
+            interfaces = result.result
+            print(interfaces)
+    elif sys.argv[4] == "sharp":                        # show arp table of selected device
+        result = task.run(task=netmiko_send_command, command_string="show ip arp", use_textfsm=True)
+        interfaces = result.result
+        print(interfaces)
 
 
 nr_filter = nr.filter(type=sys.argv[3])                   # filter by switch ( "switch" or "coresw" or "router")

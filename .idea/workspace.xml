@@ -4,20 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add feature to restore most recent backup">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add new comments to scripts and .yaml files">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/config.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/config.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/config_test.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/config_test.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/defaults.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/defaults.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/groups.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/groups.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/hosts.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -198,7 +189,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" />
-      <option name="PARAMETERS" value="calin cisco switch shversion" />
+      <option name="PARAMETERS" value="calin cisco coresw shvlan" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -571,7 +562,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715339053052</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="add new comments to scripts and .yaml files">
+      <option name="closed" value="true" />
+      <created>1715591231250</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1715591231250</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -619,7 +618,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add Asssets folder, refactored main gui" />
     <MESSAGE value="add 4 buttons to call the 4 scripts and show the output" />
     <MESSAGE value="add third parameter to scripts" />
     <MESSAGE value="add comments to MainGUI.py" />
@@ -644,6 +642,7 @@
     <MESSAGE value="delete jinja2Test.py" />
     <MESSAGE value="add feature to send backup configs to AWS S3 bucket" />
     <MESSAGE value="add feature to restore most recent backup" />
-    <option name="LAST_COMMIT_MESSAGE" value="add feature to restore most recent backup" />
+    <MESSAGE value="add new comments to scripts and .yaml files" />
+    <option name="LAST_COMMIT_MESSAGE" value="add new comments to scripts and .yaml files" />
   </component>
 </project>
