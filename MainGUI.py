@@ -111,11 +111,6 @@ def run_script_showdata(device_type, show_command):
     text.insert(END, result_str)
     text.pack(expand=True, fill="both")  # allow to expand both horizontally and vertically to fill any available space
 
-    # Add a scrollbar
-    scrollbar = Scrollbar(show_result_window, command=text.yview)
-    scrollbar.pack(side=RIGHT, fill=Y)                             # pack scrollbar to the right side
-    text.config(yscrollcommand=scrollbar.set)
-
 
 # Function to go back to main menu from the showdata window
 def goback_2():
