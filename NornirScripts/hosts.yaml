@@ -1,3 +1,4 @@
+# File to configure the list of devices with their specific properties
 ---
 CoreSW0:
    hostname: "192.168.137.100"
@@ -24,7 +25,7 @@ AccessSW2:
    data:
      type: switch
 R1:
-   hostname: "192.168.137.178"
+   hostname: "192.168.137.48"
    port: 22
    platform: ios
    groups:

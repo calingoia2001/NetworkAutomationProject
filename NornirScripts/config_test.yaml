@@ -1,3 +1,4 @@
+# Test configuration file to fix a bug, we use num_workers: 1 to display data in order
 ---
 
 inventory:

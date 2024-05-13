@@ -1,11 +1,9 @@
-# A script to add a new configuration to existing devices that is located in config_file_loopback.txt
+# A script to add new configuration to existing devices
 # ip scp server enable must be enabled on devices for this to work!
 import sys
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_config                 # without wr
 from nornir_netmiko.tasks import netmiko_save_config                 # save current configuration
-# from nornir_utils.plugins.functions import print_result
-# from nornir_napalm.plugins.tasks import napalm_configure           # with napalm_configure it also wr
 
 nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")  # init the config.yaml
 
@@ -35,6 +33,5 @@ def send_config(task):
         print("The configuration of " + sys.argv[3] + " has been successfully saved!\n")
 
 
-nr_filter = nr.filter(type=sys.argv[3])  # choose between "switch" or "coresw" or "router"
-results = nr_filter.run(task=send_config)
-# print_result(results)
+nr_filter = nr.filter(type=sys.argv[3])       # filter by "switch" or "coresw" or "router"
+results = nr_filter.run(task=send_config)     # run task

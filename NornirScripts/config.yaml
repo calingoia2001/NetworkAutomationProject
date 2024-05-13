@@ -1,13 +1,14 @@
+# Initialize nornir (InitNornir) with this configuration file
 ---
 
 inventory:
-  plugin: SimpleInventory
+  plugin: SimpleInventory                   # Inventory plugin to store all the relevant data in three files
   options:
     host_file: "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/hosts.yaml"
     group_file: "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/groups.yaml"
     defaults_file: "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/defaults.yaml"
 
 runner:
-  plugin: threaded
+  plugin: threaded                         # Nornir script will be run simultaneously over multiple devices
   options:
-    num_workers: 10
+    num_workers: 10                        # Number of concurrent devices

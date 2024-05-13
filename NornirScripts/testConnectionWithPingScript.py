@@ -2,7 +2,6 @@
 import sys
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
-# from nornir_utils.plugins.functions import print_result
 from rich import print as rprint
 
 nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")        # init config.yaml
@@ -29,6 +28,5 @@ def test_connection(task):
         rprint("\n")
 
 
-nr_filter = nr.filter(type=sys.argv[3])             # filter by switch ( "switch" or "coresw" or "router")
-results = nr_filter.run(task=test_connection)
-# print_result(results)
+nr_filter = nr.filter(type=sys.argv[3])                   # filter by switch ( "switch" or "coresw" or "router")
+results = nr_filter.run(task=test_connection)             # run task

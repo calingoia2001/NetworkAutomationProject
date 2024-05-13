@@ -14,11 +14,11 @@ global showdata_window
 global pingtest_window
 global configure_window
 
-# Create the main window of GUI
+# Create the main window of the GUI
 root = Tk()
-root.title("Network Automation Project")  # GUI title
-root.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-root.geometry("400x300")  # GUI size
+root.title("Network Automation Project")     # GUI title
+root.iconbitmap('Assets/gui_icon.ico')       # GUI icon
+root.geometry("400x300")                     # GUI size
 
 
 # Function to call backupConfig script and store the output in the variable result then show a message box with the result
@@ -32,8 +32,8 @@ def run_script_backupconfig(device_type):
 
 # Function to go back to main menu from the backupconfig
 def goback_1():
-    backup_window.destroy()
-    root.deiconify()
+    backup_window.destroy()           # destroy backup window
+    root.deiconify()                  # restore root window
 
 
 # Function to handle restoring the most recent backup
@@ -46,7 +46,7 @@ def restore_backup(device_type):
     if not file_path:
         print("Please select a file!")
     else:
-        run_script_configure(device_type, "restore", file_path)           # call function to add new config
+        run_script_configure(device_type, "restore", file_path)        # call function to add new config
 
 
 # Display the backup config window
@@ -103,8 +103,8 @@ def run_script_showdata(device_type, show_command):
 
 # Function to go back to main menu from the showdata window
 def goback_2():
-    showdata_window.destroy()
-    root.deiconify()
+    showdata_window.destroy()        # destroy showdata window
+    root.deiconify()                 # restore root window
 
 
 # Display the showdata window
@@ -162,8 +162,8 @@ def run_script_testconnection(device_type):
 
 # Function to go back to main menu from the pingtest window
 def goback_3():
-    pingtest_window.destroy()
-    root.deiconify()
+    pingtest_window.destroy()               # destroy pingtest window
+    root.deiconify()                        # restore root window
 
 
 # Display the showdata window
@@ -216,8 +216,8 @@ def run_script_configure(device_type, configure_type, backup_config):
 
 # Function to go back to main menu from the configure window
 def goback_4():
-    configure_window.destroy()
-    root.deiconify()
+    configure_window.destroy()                   # destroy configure window
+    root.deiconify()                             # restore root window
 
 
 # Display the configure window
@@ -269,6 +269,8 @@ def create_configure_window():
     button_goback.pack(pady=10)
 
 
+# Create buttons and text for main menu
+
 # Create select button text
 select_button_text = Label(root, text='Select a task', font=50)
 select_button_text.pack(pady=10)
@@ -277,19 +279,19 @@ select_button_text.pack(pady=10)
 button_backup = Button(root, text="Backup Configuration of Devices", command=create_backupconfig_window)
 button_backup.pack(pady=10)
 
-# Create a button for showDataByFilter script
+# Create a button to display showdata window
 button_showData = Button(root, text="Show Data of Devices", command=create_showdata_window)
 button_showData.pack(pady=10)
 
-# Create a button for testConnectionWithPing script
+# Create a button to display pingtest window
 button_pingtest = Button(root, text="Test Connection With Ping", command=create_pingtest_window)
 button_pingtest.pack(pady=10)
 
-# Create a button for addNewConfig script
+# Create a button to display configure window
 button_configure = Button(root, text="Configure Devices", command=create_configure_window)
 button_configure.pack(pady=10)
 
-# Create a button to close the app
+# Create a button to close the GUI
 button_exit = Button(root, text="Exit", command=root.destroy)
 button_exit.pack(pady=10)
 
