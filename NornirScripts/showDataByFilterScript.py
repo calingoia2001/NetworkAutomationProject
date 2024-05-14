@@ -34,7 +34,7 @@ def showdata_byfilter(task):
             if interface['status'] == 'up':                                        # check if interface is up
                 value_list.append(list(interface.values()))                        # append interface to table content
 
-        print("\nShowing up running interfaces of " + sys.argv[3] + ":")
+        print(f"\nShowing up running interfaces of {sys.argv[3]}:")
         print(tabulate(value_list, headers=hdr, tablefmt='double_outline'))     # print the table
 
         # Writing Version table to a CSV file and send it to AWS S3
@@ -98,7 +98,7 @@ def showdata_byfilter(task):
             for interface in interfaces:
                 value_list.append(list(interface.values()))                          # append interface to table content
 
-            print("\nShowing up VLANs of " + sys.argv[3] + ":")
+            print(f"\nShowing up VLANs of {sys.argv[3]}:")
             print(tabulate(value_list, headers=hdr, tablefmt='double_outline'))      # print the table
 
             # Writing VLAN table to a CSV file and send it to AWS S3
@@ -126,7 +126,7 @@ def showdata_byfilter(task):
         for interface in interfaces:
             value_list.append(list(interface.values()))                        # append interface to table content
 
-        print("\nShowing up ARP table of " + sys.argv[3] + ":")
+        print(f"\nShowing up ARP table of {sys.argv[3]}:")
         print(tabulate(value_list, headers=hdr, tablefmt='double_outline'))                     # print the table
 
         # Writing ARP table to a CSV file and send it to AWS S3

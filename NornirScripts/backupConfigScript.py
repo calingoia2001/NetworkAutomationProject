@@ -30,7 +30,7 @@ def backup_configs(task):
 
     with open(file, "w") as f:                               # open the file
         f.write(running_config)                              # write the running config in the file
-        print("Running configuration of " + hostname + " has been saved at:\n" + file + "\n")  # print confirmation in cli
+        print(f"Running configuration of {hostname} has been saved at:\n{file}\n")  # print confirmation in cli
 
     # client.upload_file(file, bucketName, file_name)               # upload the file to AWS S3 bucket | commented for now
 

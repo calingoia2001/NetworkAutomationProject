@@ -3,8 +3,7 @@ import sys
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
 
-nr = InitNornir(
-    config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")  # init config.yaml
+nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")  # init config.yaml
 
 commands = []  # declare a list to store ping commands
 
@@ -15,7 +14,7 @@ for host in nr.inventory.hosts.values():  # use sys arg to enter username and pa
 
 
 def test_connection(task):
-    print("\nSending ping commands from " + sys.argv[3] + ":")
+    print(f"\nSending ping commands from {sys.argv[3]}:")
     for command in commands:
         result = task.run(task=netmiko_send_command, command_string=command, use_textfsm=True)
         interfaces = result.result

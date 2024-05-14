@@ -15,22 +15,25 @@ for host in nr.inventory.hosts.values():  # use sys arg to enter username and pa
 def send_config(task):
     if sys.argv[4] == "loopback":               # add loopback
         task.run(task=netmiko_send_config, config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config_file_loopback.txt")
-        print("Loopback interface for " + sys.argv[3] + " created successfully!\n")
+        print(f"Loopback interface for {sys.argv[3]} created successfully!\n")
+
     if sys.argv[4] == "vlan":                   # add VLANs
         if sys.argv[3] == "router":
             print("Cannot create VLANs for a router!")
         else:
-            print("Creating VLANs for " + sys.argv[3] + " ... \n")
+            print(f"Creating VLANs for {sys.argv[3]} ... \n")
             for n in range(2, 4):
-                print("Creating VLAN " + str(n))
+                print(f"Creating VLAN {str(n)}")
                 config_commands = ['vlan ' + str(n), 'name Python_VLAN ' + str(n)]
                 task.run(task=netmiko_send_config, config_commands=config_commands)
+
     if sys.argv[4] == "restore":               # restore configuration
         task.run(task=netmiko_send_config, config_file=sys.argv[5], read_timeout=60)
-        print("The configuration of " + sys.argv[3] + " has been successfully restored!\n")
+        print(f"The configuration of {sys.argv[3]} has been successfully restored!\n")
+
     if sys.argv[4] == "saveconfig":            # save configuration
         task.run(task=netmiko_save_config)
-        print("The configuration of " + sys.argv[3] + " has been successfully saved!\n")
+        print(f"The configuration of {sys.argv[3]} has been successfully saved!\n")
 
 
 nr_filter = nr.filter(type=sys.argv[3])       # filter by "switch" or "coresw" or "router"
