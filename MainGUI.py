@@ -16,11 +16,11 @@ global configure_window
 
 # Create the main window of the GUI
 root = Tk()
-root.title("Network Automation Project")     # GUI title
-root.iconbitmap('Assets/gui_icon.ico')       # GUI icon
-root.geometry("400x300")                     # GUI size
+root.title("Network Automation Project")  # GUI title
+root.iconbitmap('Assets/gui_icon.ico')  # GUI icon
+root.geometry("400x300")  # GUI size
 
-font_style = ("Helvetica", 12)               # Define the font size and style
+font_style = ("Helvetica", 12)  # Define the font size and style
 
 
 # Function to call backupConfig script and store the output in the variable result then show a message box with the result
@@ -34,8 +34,8 @@ def run_script_backupconfig(device_type):
 
 # Function to go back to main menu from the backupconfig
 def goback_1():
-    backup_window.destroy()           # destroy backup window
-    root.deiconify()                  # restore root window
+    backup_window.destroy()  # destroy backup window
+    root.deiconify()  # restore root window
 
 
 # Function to handle restoring the most recent backup
@@ -48,7 +48,7 @@ def restore_backup(device_type):
     if not file_path:
         print("Please select a file!")
     else:
-        run_script_configure(device_type, "restore", file_path)        # call function to add new config
+        run_script_configure(device_type, "restore", file_path)  # call function to add new config
 
 
 # Display the backup config window
@@ -86,7 +86,8 @@ def create_backupconfig_window():
     button_config.pack(pady=10)
 
     # Create a button to run the backupConfig script and restore most recent backup
-    button_config = Button(backup_window, text="Restore most recent backup", command=lambda: restore_backup(device.get()))
+    button_config = Button(backup_window, text="Restore most recent backup",
+                           command=lambda: restore_backup(device.get()))
     button_config.pack(pady=10)
 
     # Create a button to go back to main menu
@@ -101,14 +102,14 @@ def run_script_showdata(device_type, show_command):
          "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/showDataByFilterScript.py",
          "calin", "cisco", device_type, show_command])
 
-    result_str = result.decode('utf-8').strip()         # convert bytes to string and remove leading/trailing whitespace
+    result_str = result.decode('utf-8').strip()  # convert bytes to string and remove leading/trailing whitespace
 
     # Create a new window to display the result
     show_result_window = Toplevel()
     show_result_window.title("Show Data")
 
     # Create a Text widget to display the result
-    text = Text(show_result_window, wrap="none")                   # no text wrapping
+    text = Text(show_result_window, wrap="none")  # no text wrapping
     text.insert(END, result_str)
     text.pack(expand=True, fill="both")  # allow to expand both horizontally and vertically to fill any available space
 
@@ -120,8 +121,8 @@ def run_script_showdata(device_type, show_command):
 
 # Function to go back to main menu from the showdata window
 def goback_2():
-    showdata_window.destroy()        # destroy showdata window
-    root.deiconify()                 # restore root window
+    showdata_window.destroy()  # destroy showdata window
+    root.deiconify()  # restore root window
 
 
 # Display the showdata window
@@ -179,18 +180,18 @@ def create_showdata_window():
 
 
 # Call testConnectionWithPing script and store the output in the variable result then show a message box with the result
-def run_script_testconnection(device_type):
+def run_script_testconnection(device_type, ping_type):
     result = subprocess.check_output(
         ["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
          "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/testConnectionWithPingScript.py",
-         "calin", "cisco", device_type])
+         "calin", "cisco", device_type, ping_type])
     messagebox.showinfo("Test connection", result.decode('utf-8'))
 
 
 # Function to go back to main menu from the pingtest window
 def goback_3():
-    pingtest_window.destroy()               # destroy pingtest window
-    root.deiconify()                        # restore root window
+    pingtest_window.destroy()  # destroy pingtest window
+    root.deiconify()  # restore root window
 
 
 # Display the pingtest window
@@ -224,12 +225,21 @@ def create_pingtest_window():
 
     # Create a button to run the testConnectionWithPing script
     button_ping = Button(pingtest_window, text="Ping all devices",
-                         command=lambda: run_script_testconnection(device_3.get()))
+                         command=lambda: run_script_testconnection(device_3.get(), "pingall"))
     button_ping.pack(pady=10)
 
-    # Create enter device to ping text
+    # Create label "enter ipaddr" widget
     enter_text = Label(pingtest_window, text='Please enter the IPaddress/Website you want to ping:', font=font_style)
     enter_text.pack()
+
+    # Create entry widget
+    entry_ip = Entry(pingtest_window, font=font_style)
+    entry_ip.pack()
+
+    # Create ping entry widget
+    button_ping_ip = Button(pingtest_window, text="PING",
+                            command=lambda: run_script_testconnection(device_3.get(), entry_ip.get()))
+    button_ping_ip.pack(pady=10)
 
     # Create a button to go back to main menu
     button_goback = Button(pingtest_window, text="Go back", command=goback_3)
@@ -247,8 +257,8 @@ def run_script_configure(device_type, configure_type, backup_config):
 
 # Function to go back to main menu from the configure window
 def goback_4():
-    configure_window.destroy()                   # destroy configure window
-    root.deiconify()                             # restore root window
+    configure_window.destroy()  # destroy configure window
+    root.deiconify()  # restore root window
 
 
 # Display the configure window
