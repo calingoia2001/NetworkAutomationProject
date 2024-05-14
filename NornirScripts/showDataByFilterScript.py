@@ -3,7 +3,6 @@
 import sys
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
-from rich import print as rprint
 from tabulate import tabulate
 
 nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config_test.yaml")  # init config.yaml
@@ -15,7 +14,7 @@ for host in nr.inventory.hosts.values():  # use sys arg to enter username and pa
 
 def showdata_byfilter(task):
     if sys.argv[4] == "ship":                             # show running interfaces of selected device
-        rprint("\nShowing up running interfaces of " + sys.argv[3] + ":")
+        print("\nShowing up running interfaces of " + sys.argv[3] + ":")
         result = task.run(task=netmiko_send_command, command_string="show ip int brief", use_textfsm=True)
         interfaces = result.result                                             # store result
         hdr = ['interface', 'ip_address', 'status', 'proto']                   # headers of the table
@@ -35,14 +34,14 @@ def showdata_byfilter(task):
             for key in hdr:
                 row.append(interface.get(key, ''))              # append to the row only values that have "header" column
             value_list.append(row)                              # append values to the table content
-            rprint(interface['hostname'], "details:")
+            print(interface['hostname'], "details:")
         print(tabulate(value_list, headers=hdr, tablefmt='double_outline'))              # print the table
 
     elif sys.argv[4] == "shvlan":                       # show VLANs of selected device
         if sys.argv[3] == "router":
-            rprint("Can`t show VLANs on a router!")
+            print("Can`t show VLANs on a router !!!")
         else:
-            rprint("\nShowing up VLANs of " + sys.argv[3] + ":")
+            print("\nShowing up VLANs of " + sys.argv[3] + ":")
             result = task.run(task=netmiko_send_command, command_string="show vlan", use_textfsm=True)
             interfaces = result.result                                         # store result
             hdr = ['vlan_id', 'vlan_name', 'status', 'interfaces']             # headers of the table
@@ -52,7 +51,7 @@ def showdata_byfilter(task):
             print(tabulate(value_list, headers=hdr, tablefmt='double_outline'))      # print the table
 
     elif sys.argv[4] == "sharp":                        # show arp table of selected device
-        rprint("\nShowing up ARP table of " + sys.argv[3] + ":")
+        print("\nShowing up ARP table of " + sys.argv[3] + ":")
         result = task.run(task=netmiko_send_command, command_string="show ip arp", use_textfsm=True)
         interfaces = result.result                                             # store result
         hdr = ['protocol', 'ip_address', 'age', 'mac_address', 'type', 'interface']             # headers of the table
