@@ -10,6 +10,76 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\NornirScripts\ARPtable_router_14_05_2024_135102.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\NornirScripts\ShowDataBackup\ARPtable_router_14_05_2024_135513.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\NornirScripts\ShowDataBackup\AccessSW1VERSIONtable14_05_2024_141416.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\NornirScripts\ShowDataBackup\AccessSW2VLANtable14_05_2024_141214.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\NornirScripts\ShowDataBackup\CoreSW0INTERFACEtable14_05_2024_142100.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\NornirScripts\ShowDataBackup\CoreSW0VERSIONtable14_05_2024_141431.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\NornirScripts\ShowDataBackup\CoreSW0VLANtable14_05_2024_141146.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\NornirScripts\ShowDataBackup\R1ARPtable14_05_2024_140145.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\NornirScripts\ShowDataBackup\R1INTERFACEtable14_05_2024_142109.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
+        <entry key="\NornirScripts\ShowDataBackup\R1VERSIONtable14_05_2024_141437.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

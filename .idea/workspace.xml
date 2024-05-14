@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="remove scrollbar from show_result window">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="remove rprint as it works only on cli">
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +190,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" />
-      <option name="PARAMETERS" value="calin cisco coresw shversion" />
+      <option name="PARAMETERS" value="calin cisco router sharp" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -218,12 +221,12 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python.MainGUI" />
       <item itemvalue="Python.addNewConfig" />
       <item itemvalue="Python.backupConfig" />
-      <item itemvalue="Python.jinja2Test" />
       <item itemvalue="Python.showDataByFilter" />
       <item itemvalue="Python.testConnectionWithPing" />
+      <item itemvalue="Python.jinja2Test" />
+      <item itemvalue="Python.MainGUI" />
     </list>
     <recent_temporary>
       <list>
@@ -592,7 +595,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715604416590</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="remove rprint as it works only on cli">
+      <option name="closed" value="true" />
+      <created>1715682851831</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1715682851831</updated>
+    </task>
+    <option name="localTasksCounter" value="45" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -640,7 +651,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add new functionality to backupscript" />
     <MESSAGE value="add textfsm=true to scripts" />
     <MESSAGE value="remove fsm test from gui" />
     <MESSAGE value="modify print statement in backupConfigScript.py" />
@@ -665,6 +675,7 @@
     <MESSAGE value="add show vlans and show arp table buttons and fuctionality" />
     <MESSAGE value="add tabulate() to showDataByFilterScript.py and text widget in MainGUI.py to display the tables" />
     <MESSAGE value="remove scrollbar from show_result window" />
-    <option name="LAST_COMMIT_MESSAGE" value="remove scrollbar from show_result window" />
+    <MESSAGE value="remove rprint as it works only on cli" />
+    <option name="LAST_COMMIT_MESSAGE" value="remove rprint as it works only on cli" />
   </component>
 </project>
