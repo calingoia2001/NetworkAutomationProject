@@ -20,6 +20,8 @@ root.title("Network Automation Project")     # GUI title
 root.iconbitmap('Assets/gui_icon.ico')       # GUI icon
 root.geometry("400x300")                     # GUI size
 
+font_style = ("Helvetica", 12)               # Define the font size and style
+
 
 # Function to call backupConfig script and store the output in the variable result then show a message box with the result
 def run_script_backupconfig(device_type):
@@ -60,7 +62,7 @@ def create_backupconfig_window():
     backup_window.geometry("400x300")  # GUI size
 
     # Create select text
-    select_text = Label(backup_window, text='Select which device you want to backup', font=50)
+    select_text = Label(backup_window, text='Select which device you want to backup', font=font_style)
     select_text.pack()
 
     # Create a list of devices
@@ -98,7 +100,6 @@ def run_script_showdata(device_type, show_command):
         ["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
          "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/showDataByFilterScript.py",
          "calin", "cisco", device_type, show_command])
-    # messagebox.showinfo("Show data", result.decode('utf-8'))
 
     result_str = result.decode('utf-8').strip()         # convert bytes to string and remove leading/trailing whitespace
 
@@ -134,7 +135,7 @@ def create_showdata_window():
     showdata_window.geometry("400x350")  # GUI size
 
     # Create select text
-    select_text = Label(showdata_window, text='Select which device you want to show data', font=50)
+    select_text = Label(showdata_window, text='Select which device you want to show data', font=font_style)
     select_text.pack()
 
     # Create a list of devices
@@ -192,7 +193,7 @@ def goback_3():
     root.deiconify()                        # restore root window
 
 
-# Display the showdata window
+# Display the pingtest window
 def create_pingtest_window():
     # Create pingtest window
     root.withdraw()  # withdraw the main menu
@@ -203,7 +204,7 @@ def create_pingtest_window():
     pingtest_window.geometry("400x300")  # GUI size
 
     # Create select text
-    select_text = Label(pingtest_window, text='Select which device you want to ping from', font=50)
+    select_text = Label(pingtest_window, text='Select which device you want to ping from', font=font_style)
     select_text.pack()
 
     # Create a list of devices
@@ -222,9 +223,13 @@ def create_pingtest_window():
         Radiobutton(pingtest_window, text=radiobutton_text, variable=device_3, value=value_text).pack()
 
     # Create a button to run the testConnectionWithPing script
-    button_ping = Button(pingtest_window, text="Ping devices",
+    button_ping = Button(pingtest_window, text="Ping all devices",
                          command=lambda: run_script_testconnection(device_3.get()))
     button_ping.pack(pady=10)
+
+    # Create enter device to ping text
+    enter_text = Label(pingtest_window, text='Please enter the IPaddress/Website you want to ping:', font=font_style)
+    enter_text.pack()
 
     # Create a button to go back to main menu
     button_goback = Button(pingtest_window, text="Go back", command=goback_3)
@@ -257,7 +262,7 @@ def create_configure_window():
     configure_window.geometry("400x300")  # GUI size
 
     # Create select text
-    select_text = Label(configure_window, text='Select which device you want to configure', font=50)
+    select_text = Label(configure_window, text='Select which device you want to configure', font=font_style)
     select_text.pack()
 
     # Create a list of devices
@@ -298,7 +303,7 @@ def create_configure_window():
 # Create buttons and text for main menu
 
 # Create select button text
-select_button_text = Label(root, text='Select a task', font=50)
+select_button_text = Label(root, text='Select a task', font=font_style)
 select_button_text.pack(pady=10)
 
 # Create a button to display backupConfig window

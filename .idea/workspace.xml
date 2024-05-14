@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add python f-strings">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add horizontal scrollbar to show_result_window">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
     </list>
@@ -616,7 +618,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715689348332</updated>
     </task>
-    <option name="localTasksCounter" value="47" />
+    <task id="LOCAL-00047" summary="add horizontal scrollbar to show_result_window">
+      <option name="closed" value="true" />
+      <created>1715689823756</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1715689823756</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -664,7 +674,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="modify print statement in backupConfigScript.py" />
     <MESSAGE value="modify print statement in backupConfigScript.py 2" />
     <MESSAGE value="added new functionality to show data button" />
     <MESSAGE value="add show version button" />
@@ -689,6 +698,7 @@
     <MESSAGE value="remove rprint as it works only on cli" />
     <MESSAGE value="add feature to store the tables of showDataByFilterScript.py in .csv files and send them to AWS S3" />
     <MESSAGE value="add python f-strings" />
-    <option name="LAST_COMMIT_MESSAGE" value="add python f-strings" />
+    <MESSAGE value="add horizontal scrollbar to show_result_window" />
+    <option name="LAST_COMMIT_MESSAGE" value="add horizontal scrollbar to show_result_window" />
   </component>
 </project>
