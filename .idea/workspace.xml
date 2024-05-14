@@ -4,14 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add feature to store the tables of showDataByFilterScript.py in .csv files and send them to AWS S3">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add python f-strings">
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -613,7 +608,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715686010133</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="add python f-strings">
+      <option name="closed" value="true" />
+      <created>1715689348332</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1715689348332</updated>
+    </task>
+    <option name="localTasksCounter" value="47" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -661,7 +664,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove fsm test from gui" />
     <MESSAGE value="modify print statement in backupConfigScript.py" />
     <MESSAGE value="modify print statement in backupConfigScript.py 2" />
     <MESSAGE value="added new functionality to show data button" />
@@ -686,6 +688,7 @@
     <MESSAGE value="remove scrollbar from show_result window" />
     <MESSAGE value="remove rprint as it works only on cli" />
     <MESSAGE value="add feature to store the tables of showDataByFilterScript.py in .csv files and send them to AWS S3" />
-    <option name="LAST_COMMIT_MESSAGE" value="add feature to store the tables of showDataByFilterScript.py in .csv files and send them to AWS S3" />
+    <MESSAGE value="add python f-strings" />
+    <option name="LAST_COMMIT_MESSAGE" value="add python f-strings" />
   </component>
 </project>
