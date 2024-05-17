@@ -24,8 +24,18 @@ def send_config(task):
             print(f"Creating VLANs for {sys.argv[3]} ... \n")
             for n in range(2, 4):
                 print(f"Creating VLAN {str(n)}")
-                config_commands = ['vlan ' + str(n), 'name Python_VLAN ' + str(n)]
-                task.run(task=netmiko_send_config, config_commands=config_commands)
+                config_command = ['vlan ' + str(n), 'name Python_VLAN ' + str(n)]
+                task.run(task=netmiko_send_config, config_commands=config_command)
+
+    if sys.argv[4] == "novlan":
+        if sys.argv[3] == "router":
+            print("Cannot delete VLANs for a router!")
+        else:
+            print(f"Deleting VLANs for {sys.argv[3]} ... \n")
+            for n in range(2, 4):
+                print(f"Deleting VLAN {str(n)}")
+                config_command = ['no vlan ' + str(n)]
+                task.run(task=netmiko_send_config, config_commands=config_command)
 
     if sys.argv[4] == "restore":               # restore configuration
         task.run(task=netmiko_send_config, config_file=sys.argv[5], read_timeout=60)

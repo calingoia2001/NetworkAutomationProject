@@ -16,10 +16,8 @@ for host in nr.inventory.hosts.values():  # use sys arg to enter username and pa
 
 def test_connection(task):
     if sys.argv[4] == "pingall":
-        print(f"\nSending ping commands from {sys.argv[3]}:")
+        print(f"\nSending ping commands from {sys.argv[3]}:\n")
         for command in commands:
-            print(command)
-            print(type(command))
             result = task.run(task=netmiko_send_command, command_string=command, use_textfsm=True)
             interfaces = result.result
             for interface in interfaces:

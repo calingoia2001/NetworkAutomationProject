@@ -269,7 +269,7 @@ def create_configure_window():
     configure_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
     configure_window.title("Configure Devices")  # GUI title
     configure_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    configure_window.geometry("400x300")  # GUI size
+    configure_window.geometry("400x350")  # GUI size
 
     # Create select text
     select_text = Label(configure_window, text='Select which device you want to configure', font=font_style)
@@ -291,19 +291,24 @@ def create_configure_window():
         Radiobutton(configure_window, text=radiobutton_text, variable=device_4, value=value_text).pack()
 
     # Create a button to run the addNewConfig script with loopback as sys.argv[4]
-    button_configuration = Button(configure_window, text="Create Loopback Interface",
-                                  command=lambda: run_script_configure(device_4.get(), "loopback", ""))
-    button_configuration.pack(pady=10)
+    button_configuration_loopback = Button(configure_window, text="Create Loopback Interface",
+                                           command=lambda: run_script_configure(device_4.get(), "loopback", ""))
+    button_configuration_loopback.pack(pady=10)
 
     # Create a button to run the addNewConfig script with vlan as sys.argv[4]
-    button_configuration = Button(configure_window, text="Create VLANs",
-                                  command=lambda: run_script_configure(device_4.get(), "vlan", ""))
-    button_configuration.pack(pady=10)
+    button_configuration_vlan = Button(configure_window, text="Create VLANs",
+                                       command=lambda: run_script_configure(device_4.get(), "vlan", ""))
+    button_configuration_vlan.pack(pady=10)
+
+    # Create a button to run the addNewConfig script with vlan as sys.argv[4]
+    button_configuration_novlan = Button(configure_window, text="Delete VLANs",
+                                         command=lambda: run_script_configure(device_4.get(), "novlan", ""))
+    button_configuration_novlan.pack(pady=10)
 
     # Create a button to run the addNewConfig script with saveconfig as sys.argv[4]
-    button_configuration = Button(configure_window, text="Save configuration of selected device",
-                                  command=lambda: run_script_configure(device_4.get(), "saveconfig", ""))
-    button_configuration.pack(pady=10)
+    button_configuration_save = Button(configure_window, text="Save configuration of selected device",
+                                       command=lambda: run_script_configure(device_4.get(), "saveconfig", ""))
+    button_configuration_save.pack(padx=10, pady=10)
 
     # Create a button to go back to main menu
     button_goback = Button(configure_window, text="Go back", command=goback_4)
