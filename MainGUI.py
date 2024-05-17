@@ -15,6 +15,7 @@ global pingtest_window
 global configure_window
 global entry_ip_showdata
 global entry_ip_backup
+global entry_ip_testping
 
 # Create the main window of the GUI
 root = Tk()
@@ -67,12 +68,14 @@ def create_backupconfig_window():
     backup_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
     backup_window.title("Backup config of devices")  # GUI title
     backup_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    backup_window.geometry("400x350")  # GUI size
+    backup_window.geometry("400x300")  # GUI size
 
     # Create select text
-    select_text = Label(backup_window, text='Select which device you want to backup', font=font_style)
+    select_text = Label(backup_window, text='Select which group of devices you want to backup', font=font_style)
     select_text.pack()
 
+    select_text_2 = Label(backup_window, text='or enter device ip address:', font=font_style)
+    select_text_2.pack()
     # Create a list of devices
     devices = [
         ("coresw", "coresw"),
@@ -88,11 +91,6 @@ def create_backupconfig_window():
     # Loop trough list to create radio buttons based on the list
     for radiobutton_text, value_text in devices:
         Radiobutton(backup_window, text=radiobutton_text, variable=device, value=value_text).pack()
-
-    # Create label "enter ipaddr to back up" widget
-    enter_text_backup = Label(backup_window, text='Please enter the IP address of device you want to backup:',
-                              font=font_style)
-    enter_text_backup.pack()
 
     # Create entry widget to enter ip address to back up
     global entry_ip_backup
@@ -163,6 +161,9 @@ def create_showdata_window():
     select_text = Label(showdata_window, text='Select a group of devices you want to show data from', font=font_style)
     select_text.pack()
 
+    select_text_2 = Label(showdata_window, text='or enter device ip address:', font=font_style)
+    select_text_2.pack()
+
     # Create a list of devices
     devices = [
         ("coresw", "coresw"),
@@ -178,12 +179,6 @@ def create_showdata_window():
     # Loop trough list to create radio buttons based on the list
     for radiobutton_text, value_text in devices:
         Radiobutton(showdata_window, text=radiobutton_text, variable=device_2, value=value_text).pack()
-
-    # Create label "enter ipaddr to showdata" widget
-    enter_text_showdata = Label(showdata_window,
-                                text='Please enter the IP address of device you want to show data from:',
-                                font=font_style_2)
-    enter_text_showdata.pack()
 
     # Create entry widget to enter ip address to back up
     global entry_ip_showdata
@@ -230,6 +225,11 @@ def goback_3():
     root.deiconify()  # restore root window
 
 
+def update_entry_pingtest(*args):
+    entry_ip_testping.delete(0, END)                        # clear the backup Entry widget
+    entry_ip_testping.insert(0, device_3.get())             # insert the selected device on Entry widget
+
+
 # Display the pingtest window
 def create_pingtest_window():
     # Create pingtest window
@@ -238,11 +238,14 @@ def create_pingtest_window():
     pingtest_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
     pingtest_window.title("Test Connection With Ping")  # GUI title
     pingtest_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    pingtest_window.geometry("400x300")  # GUI size
+    pingtest_window.geometry("400x350")  # GUI size
 
     # Create select text
-    select_text = Label(pingtest_window, text='Select which device you want to ping from', font=font_style)
+    select_text = Label(pingtest_window, text='Select which group of devices you want to ping from', font=font_style)
     select_text.pack()
+
+    select_text_2 = Label(pingtest_window, text='or enter device ip address:', font=font_style)
+    select_text_2.pack()
 
     # Create a list of devices
     devices = [
@@ -254,14 +257,20 @@ def create_pingtest_window():
     global device_3
     device_3 = StringVar()
     device_3.set("coresw")  # default value for device type
+    device_3.trace('w', update_entry_pingtest)           # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
     for radiobutton_text, value_text in devices:
         Radiobutton(pingtest_window, text=radiobutton_text, variable=device_3, value=value_text).pack()
 
+    # Create entry widget to enter ip address to ping from
+    global entry_ip_testping
+    entry_ip_testping = Entry(pingtest_window, font=font_style)
+    entry_ip_testping.pack()
+
     # Create a button to run the testConnectionWithPing script
     button_ping = Button(pingtest_window, text="Ping all devices",
-                         command=lambda: run_script_testconnection(device_3.get(), "pingall"))
+                         command=lambda: run_script_testconnection(entry_ip_testping.get(), "pingall"))
     button_ping.pack(pady=10)
 
     # Create label "enter ipaddr" widget
@@ -274,7 +283,7 @@ def create_pingtest_window():
 
     # Create ping button to ping specific IP address or website
     button_ping_ip = Button(pingtest_window, text="PING",
-                            command=lambda: run_script_testconnection(device_3.get(), entry_ip.get()))
+                            command=lambda: run_script_testconnection(entry_ip_testping.get(), entry_ip.get()))
     button_ping_ip.pack(pady=10)
 
     # Create a button to go back to main menu

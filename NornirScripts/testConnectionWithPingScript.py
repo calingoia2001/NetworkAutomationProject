@@ -1,5 +1,6 @@
 # We use this script to test if the devices in the topology can ping each other
 import sys
+import ipaddress
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
 
@@ -8,10 +9,19 @@ nr = InitNornir(
 
 commands = []  # declare a list to store ping commands
 
-for host in nr.inventory.hosts.values():  # use sys arg to enter username and password
-    host.username = sys.argv[1]
-    host.password = sys.argv[2]
-    commands.append("ping " + host.hostname)  # append to list ping command to switch
+for host_name in nr.inventory.hosts.values():  # use sys arg to enter username and password
+    host_name.username = sys.argv[1]
+    host_name.password = sys.argv[2]
+    commands.append("ping " + host_name.hostname)  # append to list ping command to switch
+
+
+# Function to check if the ip address is valid
+def check_if_is_ip_address(ip):
+    try:
+        ipaddress.ip_address(ip)
+        return True
+    except ValueError:
+        return False
 
 
 def test_connection(task):
@@ -43,5 +53,12 @@ def test_connection(task):
             print("\n")
 
 
-nr_filter = nr.filter(type=sys.argv[3])  # filter by switch ( "switch" or "coresw" or "router")
-results = nr_filter.run(task=test_connection)  # run task
+if check_if_is_ip_address(sys.argv[3]):                       # check if the ip address is valid
+    nr_filter = nr.filter(filter_func=lambda host: host.hostname == sys.argv[3])      # run backup task on specified ip
+    results = nr_filter.run(task=test_connection)  # run task
+else:
+    if sys.argv[3] == "switch" or sys.argv[3] == "router" or sys.argv[3] == "coresw":
+        nr_filter = nr.filter(type=sys.argv[3])                     # filter by switch ("switch" or "coresw" or "router")
+        results = nr_filter.run(task=test_connection)  # run task
+    else:
+        print("Please enter a valid IP address!")
