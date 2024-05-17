@@ -1,15 +1,25 @@
 # A script to add new configuration to existing devices
 # ip scp server enable must be enabled on devices for this to work!
 import sys
+import ipaddress
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_config                 # without wr
 from nornir_netmiko.tasks import netmiko_save_config                 # save current configuration
 
 nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")  # init the config.yaml
 
-for host in nr.inventory.hosts.values():  # use sys arg to enter username and password
-    host.username = sys.argv[1]
-    host.password = sys.argv[2]
+for host_name in nr.inventory.hosts.values():  # use sys arg to enter username and password
+    host_name.username = sys.argv[1]
+    host_name.password = sys.argv[2]
+
+
+# Function to check if the ip address is valid
+def check_if_is_ip_address(ip):
+    try:
+        ipaddress.ip_address(ip)
+        return True
+    except ValueError:
+        return False
 
 
 def send_config(task):
@@ -50,5 +60,12 @@ def send_config(task):
         print(f"The configuration of {sys.argv[3]} has been successfully saved!\n")
 
 
-nr_filter = nr.filter(type=sys.argv[3])       # filter by "switch" or "coresw" or "router"
-results = nr_filter.run(task=send_config)     # run task
+if check_if_is_ip_address(sys.argv[3]):                       # check if the ip address is valid
+    nr_filter = nr.filter(filter_func=lambda host: host.hostname == sys.argv[3])      # run sendconfig task on specified ip
+    results = nr_filter.run(task=send_config)  # run task
+else:
+    if sys.argv[3] == "switch" or sys.argv[3] == "router" or sys.argv[3] == "coresw":
+        nr_filter = nr.filter(type=sys.argv[3])                     # filter by switch ("switch" or "coresw" or "router")
+        results = nr_filter.run(task=send_config)  # run task
+    else:
+        print("Please enter a valid IP address!")

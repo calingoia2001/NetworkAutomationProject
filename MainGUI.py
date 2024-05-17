@@ -16,6 +16,7 @@ global configure_window
 global entry_ip_showdata
 global entry_ip_backup
 global entry_ip_testping
+global entry_ip_configure
 
 # Create the main window of the GUI
 root = Tk()
@@ -306,6 +307,11 @@ def goback_4():
     root.deiconify()  # restore root window
 
 
+def update_entry_configure(*args):
+    entry_ip_configure.delete(0, END)                        # clear the backup Entry widget
+    entry_ip_configure.insert(0, device_4.get())               # insert the selected device on Entry widget
+
+
 # Display the configure window
 def create_configure_window():
     # Create configure window
@@ -314,11 +320,14 @@ def create_configure_window():
     configure_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
     configure_window.title("Configure Devices")  # GUI title
     configure_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    configure_window.geometry("400x400")  # GUI size
+    configure_window.geometry("400x450")  # GUI size
 
     # Create select text
-    select_text = Label(configure_window, text='Select which device you want to configure', font=font_style)
+    select_text = Label(configure_window, text='Select which group of devices you want to configure', font=font_style)
     select_text.pack()
+
+    select_text_2 = Label(configure_window, text='or enter device ip address', font=font_style)
+    select_text_2.pack()
 
     # Create a list of devices
     devices = [
@@ -330,34 +339,40 @@ def create_configure_window():
     global device_4
     device_4 = StringVar()
     device_4.set("coresw")  # default value for device type
+    device_4.trace('w', update_entry_configure)           # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
     for radiobutton_text, value_text in devices:
         Radiobutton(configure_window, text=radiobutton_text, variable=device_4, value=value_text).pack()
 
+    # Create entry widget to enter ip address to configure
+    global entry_ip_configure
+    entry_ip_configure = Entry(configure_window, font=font_style)
+    entry_ip_configure.pack()
+
     # Create a button to run the addNewConfig script with loopback as sys.argv[4]
     button_configuration_loopback = Button(configure_window, text="Create Loopback Interface",
-                                           command=lambda: run_script_configure(device_4.get(), "loopback", ""))
+                                           command=lambda: run_script_configure(entry_ip_configure.get(), "loopback", ""))
     button_configuration_loopback.pack(pady=10)
 
     # Create a button to run the addNewConfig script with noloopback as sys.argv[4]
     button_configuration_noloopback = Button(configure_window, text="Delete Loopback Interface",
-                                             command=lambda: run_script_configure(device_4.get(), "noloopback", ""))
+                                             command=lambda: run_script_configure(entry_ip_configure.get(), "noloopback", ""))
     button_configuration_noloopback.pack(pady=10)
 
     # Create a button to run the addNewConfig script with vlan as sys.argv[4]
     button_configuration_vlan = Button(configure_window, text="Create VLANs",
-                                       command=lambda: run_script_configure(device_4.get(), "vlan", ""))
+                                       command=lambda: run_script_configure(entry_ip_configure.get(), "vlan", ""))
     button_configuration_vlan.pack(pady=10)
 
     # Create a button to run the addNewConfig script with novlan as sys.argv[4]
     button_configuration_novlan = Button(configure_window, text="Delete VLANs",
-                                         command=lambda: run_script_configure(device_4.get(), "novlan", ""))
+                                         command=lambda: run_script_configure(entry_ip_configure.get(), "novlan", ""))
     button_configuration_novlan.pack(pady=10)
 
     # Create a button to run the addNewConfig script with saveconfig as sys.argv[4]
     button_configuration_save = Button(configure_window, text="Save configuration of selected device",
-                                       command=lambda: run_script_configure(device_4.get(), "saveconfig", ""))
+                                       command=lambda: run_script_configure(entry_ip_configure.get(), "saveconfig", ""))
     button_configuration_save.pack(padx=10, pady=10)
 
     # Create a button to go back to main menu
@@ -368,7 +383,7 @@ def create_configure_window():
 # Create buttons and text for main menu
 
 # Create select button text
-select_button_text = Label(root, text='Select a task', font=font_style)
+select_button_text = Label(root, text='Select a task to automate', font=font_style)
 select_button_text.pack(pady=10)
 
 # Create a button to display backupConfig window
