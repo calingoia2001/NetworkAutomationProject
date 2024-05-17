@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add feature to back up config of specific device(by ip address)">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add feature to show data of specific ip address">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,14 +249,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00004" summary="added scripts from Ubuntu Docker">
-      <option name="closed" value="true" />
-      <created>1714566993947</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1714566993947</updated>
     </task>
     <task id="LOCAL-00005" summary="moved scripts to new folder">
       <option name="closed" value="true" />
@@ -644,7 +634,15 @@
       <option name="project" value="LOCAL" />
       <updated>1715945904400</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="add feature to show data of specific ip address">
+      <option name="closed" value="true" />
+      <created>1715949271556</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1715949271556</updated>
+    </task>
+    <option name="localTasksCounter" value="54" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -692,7 +690,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="finish show Data for now 2" />
     <MESSAGE value="add config_test.yaml to fix the show version on acces switches(for now)" />
     <MESSAGE value="add filter and window to testConnectionWithPingScript button" />
     <MESSAGE value="delete textFSM.py" />
@@ -717,6 +714,7 @@
     <MESSAGE value="add delete VLAN feature" />
     <MESSAGE value="add delete Loopback feature" />
     <MESSAGE value="add feature to back up config of specific device(by ip address)" />
-    <option name="LAST_COMMIT_MESSAGE" value="add feature to back up config of specific device(by ip address)" />
+    <MESSAGE value="add feature to show data of specific ip address" />
+    <option name="LAST_COMMIT_MESSAGE" value="add feature to show data of specific ip address" />
   </component>
 </project>

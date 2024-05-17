@@ -14,6 +14,7 @@ global showdata_window
 global pingtest_window
 global configure_window
 global entry_ip_showdata
+global entry_ip_backup
 
 # Create the main window of the GUI
 root = Tk()
@@ -53,6 +54,11 @@ def restore_backup(device_type):
         run_script_configure(device_type, "restore", file_path)  # call function to add new config
 
 
+def update_entry_backup(*args):
+    entry_ip_backup.delete(0, END)                        # clear the backup Entry widget
+    entry_ip_backup.insert(0, device.get())             # insert the selected device on Entry widget
+
+
 # Display the backup config window
 def create_backupconfig_window():
     # Create backup config window
@@ -77,15 +83,11 @@ def create_backupconfig_window():
     global device
     device = StringVar()
     device.set("coresw")  # default value for device type
+    device.trace('w', update_entry_backup)           # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
     for radiobutton_text, value_text in devices:
         Radiobutton(backup_window, text=radiobutton_text, variable=device, value=value_text).pack()
-
-    # Create a button to run the backupConfig script
-    button_config = Button(backup_window, text="Backup running configuration",
-                           command=lambda: run_script_backupconfig(device.get()))
-    button_config.pack(pady=10)
 
     # Create label "enter ipaddr to back up" widget
     enter_text_backup = Label(backup_window, text='Please enter the IP address of device you want to backup:',
@@ -93,17 +95,18 @@ def create_backupconfig_window():
     enter_text_backup.pack()
 
     # Create entry widget to enter ip address to back up
+    global entry_ip_backup
     entry_ip_backup = Entry(backup_window, font=font_style)
     entry_ip_backup.pack()
 
     # Create backup button to back up config of specific device
-    button_backup_device = Button(backup_window, text="Backup specified device",
+    button_backup_device = Button(backup_window, text="Backup running configuration",
                                   command=lambda: run_script_backupconfig(entry_ip_backup.get()))
     button_backup_device.pack(pady=10)
 
     # Create a button to run the backupConfig script and restore most recent backup
     button_config = Button(backup_window, text="Restore most recent backup",
-                           command=lambda: restore_backup(device.get()))
+                           command=lambda: restore_backup(entry_ip_backup.get()))
     button_config.pack(pady=10)
 
     # Create a button to go back to main menu
