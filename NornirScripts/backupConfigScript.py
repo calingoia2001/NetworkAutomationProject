@@ -3,6 +3,7 @@ import datetime
 import sys
 import os
 import boto3                                             # AWS SDK for Python
+import ipaddress
 from nornir import InitNornir
 from nornir_napalm.plugins.tasks import napalm_get
 
@@ -14,9 +15,18 @@ bucketName = 'backup-configs-bucket'                                      # AWS 
 
 nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")  # init the config.yaml
 
-for host in nr.inventory.hosts.values():                                  # use sys arg to enter username and password
-    host.username = sys.argv[1]
-    host.password = sys.argv[2]
+for host_name in nr.inventory.hosts.values():                                  # use sys arg to enter username and password
+    host_name.username = sys.argv[1]
+    host_name.password = sys.argv[2]
+
+
+# Function to check if the ip address is valid
+def check_if_is_ip_address(ip):
+    try:
+        ipaddress.ip_address(ip)
+        return True
+    except ValueError:
+        return False
 
 
 def backup_configs(task):
@@ -35,5 +45,12 @@ def backup_configs(task):
     # client.upload_file(file, bucketName, file_name)               # upload the file to AWS S3 bucket | commented for now
 
 
-nr_filter = nr.filter(type=sys.argv[3])                     # filter by switch ("switch" or "coresw" or "router")
-results = nr_filter.run(task=backup_configs)                # run task
+if check_if_is_ip_address(sys.argv[3]):                       # check if the ip address is valid
+    nr_filter = nr.filter(filter_func=lambda host: host.hostname == sys.argv[3])      # run backup task on specified ip
+    results = nr_filter.run(task=backup_configs)  # run task
+else:
+    if sys.argv[3] == "switch" or sys.argv[3] == "router" or sys.argv[3] == "coresw":
+        nr_filter = nr.filter(type=sys.argv[3])                     # filter by switch ("switch" or "coresw" or "router")
+        results = nr_filter.run(task=backup_configs)  # run task
+    else:
+        print("Please enter a valid IP address!")

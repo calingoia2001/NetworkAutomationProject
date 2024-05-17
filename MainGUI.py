@@ -59,7 +59,7 @@ def create_backupconfig_window():
     backup_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
     backup_window.title("Backup config of devices")  # GUI title
     backup_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    backup_window.geometry("400x300")  # GUI size
+    backup_window.geometry("400x350")  # GUI size
 
     # Create select text
     select_text = Label(backup_window, text='Select which device you want to backup', font=font_style)
@@ -84,6 +84,20 @@ def create_backupconfig_window():
     button_config = Button(backup_window, text="Backup running configuration",
                            command=lambda: run_script_backupconfig(device.get()))
     button_config.pack(pady=10)
+
+    # Create label "enter ipaddr to back up" widget
+    enter_text_backup = Label(backup_window, text='Please enter the IP address of device you want to backup:',
+                              font=font_style)
+    enter_text_backup.pack()
+
+    # Create entry widget to enter ip address to back up
+    entry_ip_backup = Entry(backup_window, font=font_style)
+    entry_ip_backup.pack()
+
+    # Create backup button to back up config of specific device
+    button_backup_device = Button(backup_window, text="Backup specified device",
+                                  command=lambda: run_script_backupconfig(entry_ip_backup.get()))
+    button_backup_device.pack(pady=10)
 
     # Create a button to run the backupConfig script and restore most recent backup
     button_config = Button(backup_window, text="Restore most recent backup",
@@ -236,7 +250,7 @@ def create_pingtest_window():
     entry_ip = Entry(pingtest_window, font=font_style)
     entry_ip.pack()
 
-    # Create ping entry widget
+    # Create ping button to ping specific IP address or website
     button_ping_ip = Button(pingtest_window, text="PING",
                             command=lambda: run_script_testconnection(device_3.get(), entry_ip.get()))
     button_ping_ip.pack(pady=10)

@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\NornirScripts\ShowDataBackup\CoreSW0INTERFACEtable17_05_2024_142228.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>
