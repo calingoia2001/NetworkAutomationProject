@@ -17,6 +17,10 @@ def send_config(task):
         task.run(task=netmiko_send_config, config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config_file_loopback.txt")
         print(f"Loopback interface for {sys.argv[3]} created successfully!\n")
 
+    if sys.argv[4] == "noloopback":            # remove loopback
+        task.run(task=netmiko_send_config, config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config_file_remove_loopback.txt")
+        print(f"Loopback interface for {sys.argv[3]} deleted successfully!\n")
+
     if sys.argv[4] == "vlan":                   # add VLANs
         if sys.argv[3] == "router":
             print("Cannot create VLANs for a router!")
@@ -27,7 +31,7 @@ def send_config(task):
                 config_command = ['vlan ' + str(n), 'name Python_VLAN ' + str(n)]
                 task.run(task=netmiko_send_config, config_commands=config_command)
 
-    if sys.argv[4] == "novlan":
+    if sys.argv[4] == "novlan":                 # remove VLANs
         if sys.argv[3] == "router":
             print("Cannot delete VLANs for a router!")
         else:

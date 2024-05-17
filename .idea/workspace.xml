@@ -4,11 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add horizontal scrollbar to show_result_window">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add delete VLAN feature">
+      <change afterPath="$PROJECT_DIR$/NornirScripts/config_file_remove_loopback.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +125,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" />
-      <option name="PARAMETERS" value="calin cisco coresw saveconfig" />
+      <option name="PARAMETERS" value="calin cisco coresw noloopback" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -249,14 +251,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00001" summary="Initial Commit">
-      <option name="closed" value="true" />
-      <created>1713177204844</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1713177204844</updated>
     </task>
     <task id="LOCAL-00002" summary="created an initial simple menu with 3 options">
       <option name="closed" value="true" />
@@ -626,7 +620,31 @@
       <option name="project" value="LOCAL" />
       <updated>1715689823756</updated>
     </task>
-    <option name="localTasksCounter" value="48" />
+    <task id="LOCAL-00048" summary="add font_style and add label enter ip address/website to ping window">
+      <option name="closed" value="true" />
+      <created>1715690551711</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1715690551711</updated>
+    </task>
+    <task id="LOCAL-00049" summary="add feature to ping specific ip address">
+      <option name="closed" value="true" />
+      <created>1715708151726</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1715708151726</updated>
+    </task>
+    <task id="LOCAL-00050" summary="add delete VLAN feature">
+      <option name="closed" value="true" />
+      <created>1715938593407</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1715938593408</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -674,9 +692,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="modify print statement in backupConfigScript.py 2" />
-    <MESSAGE value="added new functionality to show data button" />
-    <MESSAGE value="add show version button" />
     <MESSAGE value="add show version functionality in script" />
     <MESSAGE value="finish show Data for now" />
     <MESSAGE value="finish show Data for now 2" />
@@ -699,6 +714,9 @@
     <MESSAGE value="add feature to store the tables of showDataByFilterScript.py in .csv files and send them to AWS S3" />
     <MESSAGE value="add python f-strings" />
     <MESSAGE value="add horizontal scrollbar to show_result_window" />
-    <option name="LAST_COMMIT_MESSAGE" value="add horizontal scrollbar to show_result_window" />
+    <MESSAGE value="add font_style and add label enter ip address/website to ping window" />
+    <MESSAGE value="add feature to ping specific ip address" />
+    <MESSAGE value="add delete VLAN feature" />
+    <option name="LAST_COMMIT_MESSAGE" value="add delete VLAN feature" />
   </component>
 </project>

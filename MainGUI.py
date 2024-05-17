@@ -165,14 +165,14 @@ def create_showdata_window():
     button_shversion.pack(pady=10)
 
     # Create a button to run the showDataByFilter script with shvlan parameter
-    button_shversion = Button(showdata_window, text="Show VLANs",
-                              command=lambda: run_script_showdata(device_2.get(), "shvlan"))
-    button_shversion.pack(pady=10)
+    button_shvlan = Button(showdata_window, text="Show VLANs",
+                           command=lambda: run_script_showdata(device_2.get(), "shvlan"))
+    button_shvlan.pack(pady=10)
 
     # Create a button to run the showDataByFilter script with sharp parameter
-    button_shversion = Button(showdata_window, text="Show ARP table",
-                              command=lambda: run_script_showdata(device_2.get(), "sharp"))
-    button_shversion.pack(pady=10)
+    button_sharp = Button(showdata_window, text="Show ARP table",
+                          command=lambda: run_script_showdata(device_2.get(), "sharp"))
+    button_sharp.pack(pady=10)
 
     # Create a button to go back to main menu
     button_goback = Button(showdata_window, text="Go back", command=goback_2)
@@ -269,7 +269,7 @@ def create_configure_window():
     configure_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
     configure_window.title("Configure Devices")  # GUI title
     configure_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    configure_window.geometry("400x350")  # GUI size
+    configure_window.geometry("400x400")  # GUI size
 
     # Create select text
     select_text = Label(configure_window, text='Select which device you want to configure', font=font_style)
@@ -295,12 +295,17 @@ def create_configure_window():
                                            command=lambda: run_script_configure(device_4.get(), "loopback", ""))
     button_configuration_loopback.pack(pady=10)
 
+    # Create a button to run the addNewConfig script with noloopback as sys.argv[4]
+    button_configuration_noloopback = Button(configure_window, text="Delete Loopback Interface",
+                                             command=lambda: run_script_configure(device_4.get(), "noloopback", ""))
+    button_configuration_noloopback.pack(pady=10)
+
     # Create a button to run the addNewConfig script with vlan as sys.argv[4]
     button_configuration_vlan = Button(configure_window, text="Create VLANs",
                                        command=lambda: run_script_configure(device_4.get(), "vlan", ""))
     button_configuration_vlan.pack(pady=10)
 
-    # Create a button to run the addNewConfig script with vlan as sys.argv[4]
+    # Create a button to run the addNewConfig script with novlan as sys.argv[4]
     button_configuration_novlan = Button(configure_window, text="Delete VLANs",
                                          command=lambda: run_script_configure(device_4.get(), "novlan", ""))
     button_configuration_novlan.pack(pady=10)
