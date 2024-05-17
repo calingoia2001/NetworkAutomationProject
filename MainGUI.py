@@ -13,6 +13,7 @@ global backup_window
 global showdata_window
 global pingtest_window
 global configure_window
+global entry_ip_showdata
 
 # Create the main window of the GUI
 root = Tk()
@@ -20,7 +21,8 @@ root.title("Network Automation Project")  # GUI title
 root.iconbitmap('Assets/gui_icon.ico')  # GUI icon
 root.geometry("400x300")  # GUI size
 
-font_style = ("Helvetica", 12)  # Define the font size and style
+font_style = ("Helvetica", 12)    # Define the font size and style
+font_style_2 = ("Helvetica", 10)  # Define the font size and style
 
 
 # Function to call backupConfig script and store the output in the variable result then show a message box with the result
@@ -139,6 +141,11 @@ def goback_2():
     root.deiconify()  # restore root window
 
 
+def update_entry_showdata(*args):
+    entry_ip_showdata.delete(0, END)                        # clear the showdata Entry widget
+    entry_ip_showdata.insert(0, device_2.get())             # insert the selected device on Entry widget
+
+
 # Display the showdata window
 def create_showdata_window():
     # Create showdata window
@@ -147,10 +154,10 @@ def create_showdata_window():
     showdata_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
     showdata_window.title("Show Data of Devices")  # GUI title
     showdata_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    showdata_window.geometry("400x350")  # GUI size
+    showdata_window.geometry("400x400")  # GUI size
 
     # Create select text
-    select_text = Label(showdata_window, text='Select which device you want to show data', font=font_style)
+    select_text = Label(showdata_window, text='Select a group of devices you want to show data from', font=font_style)
     select_text.pack()
 
     # Create a list of devices
@@ -162,30 +169,42 @@ def create_showdata_window():
 
     global device_2
     device_2 = StringVar()
-    device_2.set("coresw")  # default value for device type
+    device_2.set("coresw")                                     # default value for device type
+    device_2.trace('w', update_entry_showdata)           # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
     for radiobutton_text, value_text in devices:
         Radiobutton(showdata_window, text=radiobutton_text, variable=device_2, value=value_text).pack()
 
+    # Create label "enter ipaddr to showdata" widget
+    enter_text_showdata = Label(showdata_window,
+                                text='Please enter the IP address of device you want to show data from:',
+                                font=font_style_2)
+    enter_text_showdata.pack()
+
+    # Create entry widget to enter ip address to back up
+    global entry_ip_showdata
+    entry_ip_showdata = Entry(showdata_window, font=font_style)
+    entry_ip_showdata.pack()
+
     # Create a button to run the showDataByFilter script with ship parameter
     button_ship = Button(showdata_window, text="Show running interfaces",
-                         command=lambda: run_script_showdata(device_2.get(), "ship"))
+                         command=lambda: run_script_showdata(entry_ip_showdata.get(), "ship"))
     button_ship.pack(pady=10)
 
     # Create a button to run the showDataByFilter script with shversion parameter
     button_shversion = Button(showdata_window, text="Show version",
-                              command=lambda: run_script_showdata(device_2.get(), "shversion"))
+                              command=lambda: run_script_showdata(entry_ip_showdata.get(), "shversion"))
     button_shversion.pack(pady=10)
 
     # Create a button to run the showDataByFilter script with shvlan parameter
     button_shvlan = Button(showdata_window, text="Show VLANs",
-                           command=lambda: run_script_showdata(device_2.get(), "shvlan"))
+                           command=lambda: run_script_showdata(entry_ip_showdata.get(), "shvlan"))
     button_shvlan.pack(pady=10)
 
     # Create a button to run the showDataByFilter script with sharp parameter
     button_sharp = Button(showdata_window, text="Show ARP table",
-                          command=lambda: run_script_showdata(device_2.get(), "sharp"))
+                          command=lambda: run_script_showdata(entry_ip_showdata.get(), "sharp"))
     button_sharp.pack(pady=10)
 
     # Create a button to go back to main menu

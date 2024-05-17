@@ -5,6 +5,7 @@ import os
 import csv
 import datetime
 import boto3                                             # AWS SDK for Python
+import ipaddress
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
 from tabulate import tabulate
@@ -17,9 +18,18 @@ bucketName = 'backup-configs-bucket'                                      # AWS 
 
 nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config_test.yaml")  # init config.yaml
 
-for host in nr.inventory.hosts.values():  # use sys arg to enter username and password
-    host.username = sys.argv[1]
-    host.password = sys.argv[2]
+for host_name in nr.inventory.hosts.values():  # use sys arg to enter username and password
+    host_name.username = sys.argv[1]
+    host_name.password = sys.argv[2]
+
+
+# Function to check if the ip address is valid
+def check_if_is_ip_address(ip):
+    try:
+        ipaddress.ip_address(ip)
+        return True
+    except ValueError:
+        return False
 
 
 def showdata_byfilter(task):
@@ -145,5 +155,12 @@ def showdata_byfilter(task):
         print(f"ARP table saved to {file_name} and send to AWS S3")
 
 
-nr_filter = nr.filter(type=sys.argv[3])                   # filter by switch ( "switch" or "coresw" or "router")
-results = nr_filter.run(task=showdata_byfilter)           # run task
+if check_if_is_ip_address(sys.argv[3]):                       # check if the ip address is valid
+    nr_filter = nr.filter(filter_func=lambda host: host.hostname == sys.argv[3])      # run showdata task on specified ip
+    results = nr_filter.run(task=showdata_byfilter)                                   # run task
+else:
+    if sys.argv[3] == "switch" or sys.argv[3] == "router" or sys.argv[3] == "coresw":
+        nr_filter = nr.filter(type=sys.argv[3])                     # filter by switch ("switch" or "coresw" or "router")
+        results = nr_filter.run(task=showdata_byfilter)             # run task
+    else:
+        print("Please enter a valid IP address / group name!")
