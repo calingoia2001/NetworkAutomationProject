@@ -68,7 +68,7 @@ def send_config(task):
     except NornirExecutionError as err:
         print(f"Failed to run task on {task.host.name}: {err}")
     except Exception as err:
-        print(f"Error during backup for {task.host.name}: {err}")
+        print(f"Error during adding configuration for {task.host.name}: {err}")
 
 
 if __name__ == "__main__":
