@@ -17,7 +17,7 @@ AccessSW1:
    data:
      type: switch
 AccessSW2:
-   hostname: "192.168.137.102"
+   hostname: "192.168.137.103"
    port: 22
    platform: ios
    groups:
@@ -25,7 +25,7 @@ AccessSW2:
    data:
      type: switch
 R1:
-   hostname: "192.168.137.4"
+   hostname: "192.168.137.199"
    port: 22
    platform: ios
    groups:

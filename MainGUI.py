@@ -22,6 +22,41 @@ global entry_ip_showdata
 global entry_ip_backup
 global entry_ip_testping
 global entry_ip_configure
+credentials = {}                # Global variable to store credentials
+
+
+def login():
+    global credentials
+    login_window = Toplevel(root)
+    login_window.title("Login")
+    login_window.geometry("300x220")
+
+    Label(login_window, text="Enter login credentials for devices").pack(pady=5)
+
+    Label(login_window, text="Username:").pack(pady=5)
+    entry_username = Entry(login_window)
+    entry_username.pack(pady=5)
+
+    Label(login_window, text="Password:").pack(pady=5)
+    entry_password = Entry(login_window, show="*")
+    entry_password.pack(pady=5)
+
+    def submit_login():
+        username = entry_username.get()
+        password = entry_password.get()
+        if username and password:
+            credentials['username'] = username
+            credentials['password'] = password
+            login_window.destroy()
+            messagebox.showinfo("Login Success", "Logged in successfully!")
+        else:
+            messagebox.showerror("Error", "Please enter both username and password")
+            login_window.deiconify()            # restore root window
+
+    Button(login_window, text="Login", command=submit_login).pack(pady=20)
+
+    root.wait_window(login_window)
+
 
 # Create the main window of the GUI
 root = Tk()
@@ -43,7 +78,7 @@ def run_script_backupconfig(device_type):
         result = subprocess.check_output(
             [os.path.join(base_dir, '.venv/Scripts/python.exe'),
              os.path.join(scripts_dir, 'backupConfigScript.py'),
-             "calin", "cisco", device_type])
+             credentials['username'], credentials['password'], device_type])
         messagebox.showinfo("Backup configuration state", result.decode('utf-8'))
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
@@ -133,7 +168,7 @@ def run_script_showdata(device_type, show_command):
         result = subprocess.check_output(
             [os.path.join(base_dir, '.venv/Scripts/python.exe'),
              os.path.join(scripts_dir, 'showDataByFilterScript.py'),
-             "calin", "cisco", device_type, show_command])
+             credentials['username'], credentials['password'], device_type, show_command])
 
         result_str = result.decode('utf-8').strip()  # convert bytes to string and remove leading/trailing whitespace
 
@@ -236,7 +271,7 @@ def run_script_testconnection(device_type, ping_type):
         result = subprocess.check_output(
             [os.path.join(base_dir, '.venv/Scripts/python.exe'),
              os.path.join(scripts_dir, 'testConnectionWithPingScript.py'),
-             "calin", "cisco", device_type, ping_type])
+             credentials['username'], credentials['password'], device_type, ping_type])
         messagebox.showinfo("Test connection", result.decode('utf-8'))
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
@@ -321,7 +356,7 @@ def run_script_configure(device_type, configure_type, backup_config):
         result = subprocess.check_output(
             [os.path.join(base_dir, '.venv/Scripts/python.exe'),
              os.path.join(scripts_dir, 'addNewConfigScript.py'),
-             "calin", "cisco", device_type, configure_type, backup_config])
+             credentials['username'], credentials['password'], device_type, configure_type, backup_config])
         messagebox.showinfo("Configure Device", result.decode('utf-8'))
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
@@ -407,31 +442,34 @@ def create_configure_window():
     button_goback.pack(pady=10)
 
 
-# Create buttons and text for main menu
+if __name__ == "__main__":
+    login()                 # Prompt user to login before accessing the main GUI
 
-# Create select button text
-select_button_text = Label(root, text='Select a task to automate', font=font_style)
-select_button_text.pack(pady=10)
+    # Create buttons and text for main menu
 
-# Create a button to display backupConfig window
-button_backup = Button(root, text="Backup Configuration of Devices", command=create_backupconfig_window)
-button_backup.pack(pady=10)
+    # Create select button text
+    select_button_text = Label(root, text='Select a task to automate', font=font_style)
+    select_button_text.pack(pady=10)
 
-# Create a button to display showdata window
-button_showData = Button(root, text="Show Data of Devices", command=create_showdata_window)
-button_showData.pack(pady=10)
+    # Create a button to display backupConfig window
+    button_backup = Button(root, text="Backup Configuration of Devices", command=create_backupconfig_window)
+    button_backup.pack(pady=10)
 
-# Create a button to display pingtest window
-button_pingtest = Button(root, text="Test Connection With Ping", command=create_pingtest_window)
-button_pingtest.pack(pady=10)
+    # Create a button to display showdata window
+    button_showData = Button(root, text="Show Data of Devices", command=create_showdata_window)
+    button_showData.pack(pady=10)
 
-# Create a button to display configure window
-button_configure = Button(root, text="Configure Devices", command=create_configure_window)
-button_configure.pack(pady=10)
+    # Create a button to display pingtest window
+    button_pingtest = Button(root, text="Test Connection With Ping", command=create_pingtest_window)
+    button_pingtest.pack(pady=10)
 
-# Create a button to close the GUI
-button_exit = Button(root, text="Exit", command=root.destroy)
-button_exit.pack(pady=10)
+    # Create a button to display configure window
+    button_configure = Button(root, text="Configure Devices", command=create_configure_window)
+    button_configure.pack(pady=10)
 
-# Run the Tkinter event loop
-root.mainloop()
+    # Create a button to close the GUI
+    button_exit = Button(root, text="Exit", command=root.destroy)
+    button_exit.pack(pady=10)
+
+    # Run the Tkinter event loop
+    root.mainloop()
