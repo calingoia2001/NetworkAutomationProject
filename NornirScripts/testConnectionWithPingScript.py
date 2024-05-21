@@ -56,8 +56,8 @@ def test_connection(task):
         else:
             ping_command = "ping " + sys.argv[4]
             result = task.run(task=netmiko_send_command, command_string=ping_command, use_textfsm=True)
-            parse_ping_output(result.result
-                              )
+            parse_ping_output(result.result)
+
     except NornirExecutionError as err:
         print(f"Failed to run task on {task.host.name}: {err}")
     except Exception as err:

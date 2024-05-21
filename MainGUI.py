@@ -2,7 +2,12 @@
 from tkinter import *
 from tkinter import messagebox
 from tkinter import filedialog
+import os
 import subprocess
+import logging
+
+# Setup logging
+logging.basicConfig(filename='gui.log', level=logging.INFO, format='%(asctime)s %(levelname)s:%(message)s')
 
 # Create global variables
 global device
@@ -27,14 +32,22 @@ root.geometry("400x300")  # GUI size
 font_style = ("Helvetica", 12)    # Define the font size and style
 font_style_2 = ("Helvetica", 10)  # Define the font size and style
 
+# Define script paths
+base_dir = os.path.dirname(os.path.abspath(__file__))
+scripts_dir = os.path.join(base_dir, 'NornirScripts')
+
 
 # Function to call backupConfig script and store the output in the variable result then show a message box with the result
 def run_script_backupconfig(device_type):
-    result = subprocess.check_output(
-        ["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
-         "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/backupConfigScript.py",
-         "calin", "cisco", device_type])
-    messagebox.showinfo("Backup configuration state", result.decode('utf-8'))
+    try:
+        result = subprocess.check_output(
+            [os.path.join(base_dir, '.venv/Scripts/python.exe'),
+             os.path.join(scripts_dir, 'backupConfigScript.py'),
+             "calin", "cisco", device_type])
+        messagebox.showinfo("Backup configuration state", result.decode('utf-8'))
+    except subprocess.CalledProcessError as e:
+        messagebox.showerror("Error", f"An error occurred: {e}")
+        logging.error(f"Error during backup configuration: {e}")
 
 
 # Function to go back to main menu from the backupconfig
@@ -47,11 +60,11 @@ def goback_1():
 def restore_backup(device_type):
     # Open a file dialog to select the backup configuration file
     file_path = filedialog.askopenfilename(
-        initialdir="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/BackupConfigs/",
+        initialdir=os.path.join(scripts_dir, 'BackupConfigs'),
         title="Select backup configuration file",
         filetypes=(("Text files", "*.txt"), ("All files", "*.*")))
     if not file_path:
-        print("Please select a file!")
+        messagebox.showerror("Error", "Please select a file!")
     else:
         run_script_configure(device_type, "restore", file_path)  # call function to add new config
 
@@ -77,6 +90,7 @@ def create_backupconfig_window():
 
     select_text_2 = Label(backup_window, text='or enter device ip address:', font=font_style)
     select_text_2.pack()
+
     # Create a list of devices
     devices = [
         ("coresw", "coresw"),
@@ -115,26 +129,31 @@ def create_backupconfig_window():
 
 # Call showDataByFilter script and store the output in the variable result then show a message box with the result
 def run_script_showdata(device_type, show_command):
-    result = subprocess.check_output(
-        ["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
-         "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/showDataByFilterScript.py",
-         "calin", "cisco", device_type, show_command])
+    try:
+        result = subprocess.check_output(
+            [os.path.join(base_dir, '.venv/Scripts/python.exe'),
+             os.path.join(scripts_dir, 'showDataByFilterScript.py'),
+             "calin", "cisco", device_type, show_command])
 
-    result_str = result.decode('utf-8').strip()  # convert bytes to string and remove leading/trailing whitespace
+        result_str = result.decode('utf-8').strip()  # convert bytes to string and remove leading/trailing whitespace
 
-    # Create a new window to display the result
-    show_result_window = Toplevel()
-    show_result_window.title("Show Data")
+        # Create a new window to display the result
+        show_result_window = Toplevel()
+        show_result_window.title("Show Data")
 
-    # Create a Text widget to display the result
-    text = Text(show_result_window, wrap="none")  # no text wrapping
-    text.insert(END, result_str)
-    text.pack(expand=True, fill="both")  # allow to expand both horizontally and vertically to fill any available space
+        # Create a Text widget to display the result
+        text = Text(show_result_window, wrap="none")  # no text wrapping
+        text.insert(END, result_str)
+        text.pack(expand=True, fill="both")  # allow to expand both horizontally and vertically to fill any available space
 
-    # Create horizontal scrollbar
-    scrollbar_horizontal = Scrollbar(show_result_window, orient=HORIZONTAL, command=text.xview)
-    scrollbar_horizontal.pack(side="bottom", fill="x")
-    text.config(xscrollcommand=scrollbar_horizontal.set)
+        # Create horizontal scrollbar
+        scrollbar_horizontal = Scrollbar(show_result_window, orient=HORIZONTAL, command=text.xview)
+        scrollbar_horizontal.pack(side="bottom", fill="x")
+        text.config(xscrollcommand=scrollbar_horizontal.set)
+
+    except subprocess.CalledProcessError as e:
+        messagebox.showerror("Error", f"An error occurred: {e}")
+        logging.error(f"Error during show data: {e}")
 
 
 # Function to go back to main menu from the showdata window
@@ -213,11 +232,15 @@ def create_showdata_window():
 
 # Call testConnectionWithPing script and store the output in the variable result then show a message box with the result
 def run_script_testconnection(device_type, ping_type):
-    result = subprocess.check_output(
-        ["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
-         "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/testConnectionWithPingScript.py",
-         "calin", "cisco", device_type, ping_type])
-    messagebox.showinfo("Test connection", result.decode('utf-8'))
+    try:
+        result = subprocess.check_output(
+            [os.path.join(base_dir, '.venv/Scripts/python.exe'),
+             os.path.join(scripts_dir, 'testConnectionWithPingScript.py'),
+             "calin", "cisco", device_type, ping_type])
+        messagebox.showinfo("Test connection", result.decode('utf-8'))
+    except subprocess.CalledProcessError as e:
+        messagebox.showerror("Error", f"An error occurred: {e}")
+        logging.error(f"Error during test connection: {e}")
 
 
 # Function to go back to main menu from the pingtest window
@@ -294,11 +317,15 @@ def create_pingtest_window():
 
 # Call addNewConfig script and show a message with the result
 def run_script_configure(device_type, configure_type, backup_config):
-    result = subprocess.check_output(
-        ["D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/.venv/Scripts/python.exe",
-         "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/addNewConfigScript.py",
-         "calin", "cisco", device_type, configure_type, backup_config])
-    messagebox.showinfo("Configure Device", result.decode('utf-8'))
+    try:
+        result = subprocess.check_output(
+            [os.path.join(base_dir, '.venv/Scripts/python.exe'),
+             os.path.join(scripts_dir, 'addNewConfigScript.py'),
+             "calin", "cisco", device_type, configure_type, backup_config])
+        messagebox.showinfo("Configure Device", result.decode('utf-8'))
+    except subprocess.CalledProcessError as e:
+        messagebox.showerror("Error", f"An error occurred: {e}")
+        logging.error(f"Error during configure device: {e}")
 
 
 # Function to go back to main menu from the configure window
