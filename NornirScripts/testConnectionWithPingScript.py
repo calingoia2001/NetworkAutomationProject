@@ -6,7 +6,8 @@ from nornir_netmiko.tasks import netmiko_send_command
 from nornir.core.exceptions import NornirExecutionError
 
 try:
-    nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")  # init the config.yaml
+    nr = InitNornir(
+        config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")  # init the config.yaml
 except FileNotFoundError as e:
     print(f"Config file not found: {e}")
 except Exception as e:
@@ -29,34 +30,34 @@ def check_if_is_ip_address(ip):
         return False
 
 
+def parse_ping_output(output):
+    try:
+        interfaces = output
+        for interface in interfaces:
+            print("Sending", interface['sent_qty'], ",", interface['sent_type'], "to",
+                  interface['destination'], ",timeout is", interface['timeout'], "seconds ... ")
+            print("Success rate is", interface['success_pct'], "percent (", interface['success_qty'], "/",
+                  interface['sent_qty'], "), round-trip min/avg/max =", interface['rtt_min'], "/",
+                  interface['rtt_avg'],
+                  "/", interface['rtt_max'], "ms!")
+            print("\n")
+    except KeyError as error:
+        print(f"Error parsing ping output: {error}")
+
+
 def test_connection(task):
     try:
         if sys.argv[4] == "pingall":
             print(f"\nSending ping commands from {sys.argv[3]}:\n")
             for command in commands:
                 result = task.run(task=netmiko_send_command, command_string=command, use_textfsm=True)
-                interfaces = result.result
-                for interface in interfaces:
-                    print("Sending", interface['sent_qty'], ",", interface['sent_type'], "to",
-                          interface['destination'], ",timeout is", interface['timeout'], "seconds ... ")
-                    print("Success rate is", interface['success_pct'], "percent (", interface['success_qty'], "/",
-                          interface['sent_qty'], "), round-trip min/avg/max =", interface['rtt_min'], "/",
-                          interface['rtt_avg'],
-                          "/", interface['rtt_max'], "ms!")
-                    print("\n")
+                parse_ping_output(result.result)
 
         else:
             ping_command = "ping " + sys.argv[4]
             result = task.run(task=netmiko_send_command, command_string=ping_command, use_textfsm=True)
-            interfaces = result.result
-            for interface in interfaces:
-                print("Sending", interface['sent_qty'], ",", interface['sent_type'], "to",
-                      interface['destination'], ",timeout is", interface['timeout'], "seconds ... ")
-                print("Success rate is", interface['success_pct'], "percent (", interface['success_qty'], "/",
-                      interface['sent_qty'], "), round-trip min/avg/max =", interface['rtt_min'], "/",
-                      interface['rtt_avg'],
-                      "/", interface['rtt_max'], "ms!")
-                print("\n")
+            parse_ping_output(result.result
+                              )
     except NornirExecutionError as err:
         print(f"Failed to run task on {task.host.name}: {err}")
     except Exception as err:

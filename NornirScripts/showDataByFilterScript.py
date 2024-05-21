@@ -42,128 +42,77 @@ def check_if_is_ip_address(ip):
         return False
 
 
+def write_to_csv(file_path, headers, data):
+    try:
+        with open(file_path, mode='w', newline='') as f:
+            writer = csv.writer(f)
+            writer.writerow(headers)    # write header row
+            writer.writerows(data)      # write data rows
+        print(f"Interface table saved to {file_path}")
+    except Exception as err:
+        print(f"Failed to write data to CSV: {err}")
+
+
+def upload_to_s3(file_path, bucket_name, file_name):
+    try:
+        client.upload_file(file_path, bucket_name, file_name)               # upload file to AWS S3
+        print(f"File {file_name} uploaded to S3 bucket {bucket_name}")
+    except Exception as error:
+        print(f"Failed to upload file to S3: {error}")
+
+
 def showdata_byfilter(task):
     try:
-        if sys.argv[4] == "ship":                             # show running interfaces of selected device
-            result = task.run(task=netmiko_send_command, command_string="show ip int brief", use_textfsm=True)
+        command_mapping = {
+            "ship": "show ip int brief",
+            "shversion": "show version",
+            "shvlan": "show vlan",
+            "sharp": "show ip arp"
+        }
 
-            interfaces = result.result                                             # store result
-            hdr = ['interface', 'ip_address', 'status', 'proto']                   # headers of the table
-            value_list = []                                                        # init table content
+        headers_mapping = {
+            "ship": ['interface', 'ip_address', 'status', 'proto'],
+            "shversion": ['software_image', 'version', 'hostname', 'uptime', 'running_image', 'hardware', 'serial'],
+            "shvlan": ['vlan_id', 'vlan_name', 'status', 'interfaces'],
+            "sharp": ['protocol', 'ip_address', 'age', 'mac_address', 'type', 'interface']
+        }
 
-            for interface in interfaces:
-                if interface['status'] == 'up':                                        # check if interface is up
-                    value_list.append(list(interface.values()))                        # append interface to table content
+        command = command_mapping.get(sys.argv[4])
+        headers = headers_mapping.get(sys.argv[4])
 
-            print(f"\nShowing up running interfaces of {sys.argv[3]}:")
-            print(tabulate(value_list, headers=hdr, tablefmt='double_outline'))     # print the table
+        if not command or not headers:
+            print(f"Invalid command argument: {sys.argv[4]}")
+            return
 
-            # Writing Version table to a CSV file and send it to AWS S3
+        result = task.run(task=netmiko_send_command, command_string=command, use_textfsm=True)    # run task
+        data = result.result                          # store data
 
-            hostname = task.host.name  # store hostname
-            save_path = 'D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ShowDataBackup'
-            file_name = hostname + 'INTERFACEtable' + current_time_formatted + '.csv'  # name of the file
-            file = os.path.join(save_path, file_name)  # get full path
+        if sys.argv[4] == "ship":                             # store running interfaces of selected device
+            data = [list(interface.values()) for interface in data if interface['status'] == 'up']
 
-            with open(file, mode='w', newline='') as f:
-                writer = csv.writer(f)
-                writer.writerow(hdr)  # write header row
-                writer.writerows(value_list)  # write data rows
+        elif sys.argv[4] == "shversion":                     # store details of selected device
+            data = [[interface.get(key, '') for key in headers] for interface in data]
 
-            # client.upload_file(file, bucketName, file_name)  # upload the file to AWS S3 bucket | commented for now
-            print(f"Interface table saved to {file_name} and send to AWS S3")
-
-        elif sys.argv[4] == "shversion":                     # show details of selected device
-            result = task.run(task=netmiko_send_command, command_string="show version", use_textfsm=True)
-
-            interfaces = result.result                       # store result
-            hdr = ['software_image', 'version', 'hostname', 'uptime', 'running_image', 'hardware', 'serial']     # headers
-            value_list = []                                  # init table content
-
-            for interface in interfaces:
-                row = []                                            # list to append only header values
-                for key in hdr:
-                    row.append(interface.get(key, ''))              # append to the row only values that have "header" column
-                value_list.append(row)                              # append values to the table content
-                print(interface['hostname'], "details:")
-
-            print(tabulate(value_list, headers=hdr, tablefmt='double_outline'))              # print the table
-
-            # Writing Version table to a CSV file and send it to AWS S3
-
-            hostname = task.host.name  # store hostname
-            save_path = 'D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ShowDataBackup'
-            file_name = hostname + 'VERSIONtable' + current_time_formatted + '.csv'  # name of the file
-            file = os.path.join(save_path, file_name)  # get full path
-
-            with open(file, mode='w', newline='') as f:
-                writer = csv.writer(f)
-                writer.writerow(hdr)  # write header row
-                writer.writerows(value_list)  # write data rows
-
-            # client.upload_file(file, bucketName, file_name)  # upload the file to AWS S3 bucket | commented for now
-            print(f"Version table saved to {file_name} and send to AWS S3")
-
-        elif sys.argv[4] == "shvlan":                       # show VLANs of selected device
-
+        elif sys.argv[4] == "shvlan":                       # store VLANs table of selected device
             if sys.argv[3] == "router":
                 print("Can`t show VLANs on a router !!!")
-
+                return
             else:
-                result = task.run(task=netmiko_send_command, command_string="show vlan", use_textfsm=True)
+                data = [[interface.get(key, '') for key in headers] for interface in data]
 
-                interfaces = result.result                                         # store result
-                hdr = ['vlan_id', 'vlan_name', 'status', 'interfaces']             # headers of the table
-                value_list = []                                                    # init table content
+        elif sys.argv[4] == "sharp":                        # store arp table of selected device
+            data = [[interface.get(key, '') for key in headers] for interface in data]
 
-                for interface in interfaces:
-                    value_list.append(list(interface.values()))                          # append interface to table content
+        print(tabulate(data, headers=headers, tablefmt='double_outline'))  # print the date as a table
 
-                print(f"\nShowing up VLANs of {sys.argv[3]}:")
-                print(tabulate(value_list, headers=hdr, tablefmt='double_outline'))      # print the table
+        hostname = task.host.name                       # store hostname
+        save_path = 'D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ShowDataBackup'
+        file_name = f"{hostname}_{sys.argv[4]}_table_{current_time_formatted}.csv"  # name of the file
+        file = os.path.join(save_path, file_name)       # get full path
 
-                # Writing VLAN table to a CSV file and send it to AWS S3
+        write_to_csv(file, headers, data)                       # execute function to write the table to .csv file
+        # upload_to_s3(file, bucketName, file_name)             # execute function to upload .csv file to AWS S3
 
-                hostname = task.host.name  # store hostname
-                save_path = 'D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ShowDataBackup'
-                file_name = hostname + 'VLANtable' + current_time_formatted + '.csv'  # name of the file
-                file = os.path.join(save_path, file_name)  # get full path
-
-                with open(file, mode='w', newline='') as f:
-                    writer = csv.writer(f)
-                    writer.writerow(hdr)  # write header row
-                    writer.writerows(value_list)  # write data rows
-
-                # client.upload_file(file, bucketName, file_name)  # upload the file to AWS S3 bucket | commented for now
-                print(f"VLAN table saved to {file_name} and send to AWS S3")
-
-        elif sys.argv[4] == "sharp":                        # show arp table of selected device
-            result = task.run(task=netmiko_send_command, command_string="show ip arp", use_textfsm=True)
-
-            interfaces = result.result                                             # store result
-            hdr = ['protocol', 'ip_address', 'age', 'mac_address', 'type', 'interface']             # headers of the table
-            value_list = []                                                        # init table content
-
-            for interface in interfaces:
-                value_list.append(list(interface.values()))                        # append interface to table content
-
-            print(f"\nShowing up ARP table of {sys.argv[3]}:")
-            print(tabulate(value_list, headers=hdr, tablefmt='double_outline'))                     # print the table
-
-            # Writing ARP table to a CSV file and send it to AWS S3
-
-            hostname = task.host.name                           # store hostname
-            save_path = 'D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ShowDataBackup'
-            file_name = hostname + 'ARPtable' + current_time_formatted + '.csv'  # name of the file
-            file = os.path.join(save_path, file_name)  # get full path
-
-            with open(file, mode='w', newline='') as f:
-                writer = csv.writer(f)
-                writer.writerow(hdr)                          # write header row
-                writer.writerows(value_list)                  # write data rows
-
-            # client.upload_file(file, bucketName, file_name)  # upload the file to AWS S3 bucket | commented for now
-            print(f"ARP table saved to {file_name} and send to AWS S3")
     except NornirExecutionError as err:
         print(f"Failed to run task on {task.host.name}: {err}")
     except Exception as err:
