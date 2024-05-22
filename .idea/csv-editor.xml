@@ -10,6 +10,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="\NornirScripts\ShowDataBackup\AccessSW1_ship_table_22_05_2024_153634.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
       </map>
     </option>
   </component>

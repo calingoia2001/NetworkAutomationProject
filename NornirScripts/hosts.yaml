@@ -4,8 +4,7 @@ AccessSW1:
   groups:
   - cisco
   hostname: 192.168.137.101
-  platform:
-  - ios
+  platform: ios
   port: '22'
 AccessSW2:
   data:
@@ -13,8 +12,7 @@ AccessSW2:
   groups:
   - cisco
   hostname: 192.168.137.102
-  platform:
-  - ios
+  platform: ios
   port: '22'
 CoreSW0:
   data:
@@ -22,8 +20,7 @@ CoreSW0:
   groups:
   - cisco
   hostname: 192.168.137.100
-  platform:
-  - ios
+  platform: ios
   port: '22'
 R1:
   data:
@@ -31,6 +28,5 @@ R1:
   groups:
   - cisco
   hostname: 192.168.137.156
-  platform:
-  - ios
+  platform: ios
   port: '22'

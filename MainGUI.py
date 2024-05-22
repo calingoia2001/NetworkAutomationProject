@@ -73,17 +73,19 @@ def login():
     root.wait_window(login_window)
 
 
-# Create the main window of the GUI
-root = Tk()
-root.title("Network Automation Project")  # GUI title
-root.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-root.geometry("400x350")  # GUI size
-
-
 # Function to go back to main menu
 def goback_main_menu(window):
     window.destroy()            # destroy current window
     root.deiconify()            # restore root window
+
+
+def get_device_group_names():
+    with open('NornirScripts/hosts.yaml', 'r') as file:
+        hosts = yaml.safe_load(file)
+    device_types = set()
+    for dev in hosts.values():
+        device_types.add(dev['data']['type'])
+    return list(device_types)
 
 
 # Function to read the hosts.yaml file
@@ -125,7 +127,7 @@ def create_manage_devices_window():
                 hosts[device_name] = {
                     'hostname': hostname,
                     'port': port,
-                    'platform': ['ios'],
+                    'platform': "ios",
                     'groups': ['cisco'],
                     'data': {'type': device_type}
                 }
@@ -136,14 +138,14 @@ def create_manage_devices_window():
         selected_device = device_list.get(ACTIVE)
         if selected_device:
             device_name = hosts[selected_device]
-            hostname = simpledialog.askstring("Input", "Enter hostname:", initialvalue=device_name['hostname'])
+            hostname = simpledialog.askstring("Input", "Enter IP address:", initialvalue=device_name['hostname'])
             port = simpledialog.askstring("Input", "Enter port:", initialvalue=device_name['port'])
             device_type = simpledialog.askstring("Input", "Enter device type:", initialvalue=device_name['data']['type'])
             if all([hostname, port, device_type]):
                 hosts[selected_device] = {
                     'hostname': hostname,
                     'port': port,
-                    'platform': ['ios'],
+                    'platform': "ios",
                     'groups': ['cisco'],
                     'data': {'type': device_type}
                 }
@@ -227,12 +229,8 @@ def create_backupconfig_window():
     select_text_2 = Label(backup_window, text='or enter device ip address:', font=font_style)
     select_text_2.pack()
 
-    # Create a list of devices
-    devices = [
-        ("coresw", "coresw"),
-        ("router", "router"),
-        ("switch", "switch"),
-    ]
+    # Create a list of group names
+    group_names = get_device_group_names()
 
     global device
     device = StringVar()
@@ -240,8 +238,8 @@ def create_backupconfig_window():
     device.trace('w', update_entry_backup)           # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
-    for radiobutton_text, value_text in devices:
-        Radiobutton(backup_window, text=radiobutton_text, variable=device, value=value_text).pack()
+    for group_name in group_names:
+        Radiobutton(backup_window, text=group_name, variable=device, value=group_name).pack()
 
     # Create entry widget to enter ip address to back up
     global entry_ip_backup
@@ -314,12 +312,8 @@ def create_showdata_window():
     select_text_2 = Label(showdata_window, text='or enter device ip address:', font=font_style)
     select_text_2.pack()
 
-    # Create a list of devices
-    devices = [
-        ("coresw", "coresw"),
-        ("router", "router"),
-        ("switch", "switch"),
-    ]
+    # Create a list of group names
+    group_names = get_device_group_names()
 
     global device_2
     device_2 = StringVar()
@@ -327,8 +321,8 @@ def create_showdata_window():
     device_2.trace('w', update_entry_showdata)           # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
-    for radiobutton_text, value_text in devices:
-        Radiobutton(showdata_window, text=radiobutton_text, variable=device_2, value=value_text).pack()
+    for group_name in group_names:
+        Radiobutton(showdata_window, text=group_name, variable=device_2, value=group_name).pack()
 
     # Create entry widget to enter ip address to back up
     global entry_ip_showdata
@@ -395,12 +389,8 @@ def create_pingtest_window():
     select_text_2 = Label(pingtest_window, text='or enter device ip address:', font=font_style)
     select_text_2.pack()
 
-    # Create a list of devices
-    devices = [
-        ("coresw", "coresw"),
-        ("router", "router"),
-        ("switch", "switch"),
-    ]
+    # Create a list of group names
+    group_names = get_device_group_names()
 
     global device_3
     device_3 = StringVar()
@@ -408,8 +398,8 @@ def create_pingtest_window():
     device_3.trace('w', update_entry_pingtest)           # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
-    for radiobutton_text, value_text in devices:
-        Radiobutton(pingtest_window, text=radiobutton_text, variable=device_3, value=value_text).pack()
+    for group_name in group_names:
+        Radiobutton(pingtest_window, text=group_name, variable=device_3, value=group_name).pack()
 
     # Create entry widget to enter ip address to ping from
     global entry_ip_testping
@@ -474,12 +464,8 @@ def create_configure_window():
     select_text_2 = Label(configure_window, text='or enter device ip address', font=font_style)
     select_text_2.pack()
 
-    # Create a list of devices
-    devices = [
-        ("coresw", "coresw"),
-        ("router", "router"),
-        ("switch", "switch"),
-    ]
+    # Create a list of group names
+    group_names = get_device_group_names()
 
     global device_4
     device_4 = StringVar()
@@ -487,8 +473,8 @@ def create_configure_window():
     device_4.trace('w', update_entry_configure)           # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
-    for radiobutton_text, value_text in devices:
-        Radiobutton(configure_window, text=radiobutton_text, variable=device_4, value=value_text).pack()
+    for group_name in group_names:
+        Radiobutton(configure_window, text=group_name, variable=device_4, value=group_name).pack()
 
     # Create entry widget to enter ip address to configure
     global entry_ip_configure
@@ -526,6 +512,12 @@ def create_configure_window():
 
 
 if __name__ == "__main__":
+    # Create the main window of the GUI
+    root = Tk()
+    root.title("Network Automation Project")  # GUI title
+    root.iconbitmap('Assets/gui_icon.ico')  # GUI icon
+    root.geometry("400x350")  # GUI size
+
     login()                 # Prompt user to login before accessing the main GUI
 
     # Create buttons and text for main menu

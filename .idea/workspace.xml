@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add only one back to main menu function in MainGUI.py">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="create Manage Devices functionality">
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
@@ -250,14 +251,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00017" summary="add comments to MainGUI.py">
-      <option name="closed" value="true" />
-      <created>1714728084002</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1714728084002</updated>
     </task>
     <task id="LOCAL-00018" summary="add new functionality to backupscript">
       <option name="closed" value="true" />
@@ -643,7 +636,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716379454484</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="create Manage Devices functionality">
+      <option name="closed" value="true" />
+      <created>1716382429815</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1716382429815</updated>
+    </task>
+    <option name="localTasksCounter" value="67" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -691,7 +692,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add show vlans and show arp table buttons and fuctionality" />
     <MESSAGE value="add tabulate() to showDataByFilterScript.py and text widget in MainGUI.py to display the tables" />
     <MESSAGE value="remove scrollbar from show_result window" />
     <MESSAGE value="remove rprint as it works only on cli" />
@@ -716,6 +716,7 @@
     <MESSAGE value="add docstring to all scripts, moved check_if_is_ip_address to a utils function dir" />
     <MESSAGE value="add docstring to backupConfigScript.py" />
     <MESSAGE value="add only one back to main menu function in MainGUI.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="add only one back to main menu function in MainGUI.py" />
+    <MESSAGE value="create Manage Devices functionality" />
+    <option name="LAST_COMMIT_MESSAGE" value="create Manage Devices functionality" />
   </component>
 </project>
