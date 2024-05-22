@@ -1,11 +1,18 @@
-# A script to show various data about the devices based on a filter and using textfsm
-# Possible command_string : shop ip int brief / show version / show vlan / show ip route / show arp
+"""
+This script is designed to:
+    -> store various data about the devices (show running interfaces, show VLANs, show version, show ARP table)
+       using textfsm
+    -> show data in a table format using tabulate
+    -> store the data in .csv file
+    -> send .csv file to AWS S3
+"""
+
 import sys
 import os
 import csv
 import datetime
-import boto3                                             # AWS SDK for Python
-import ipaddress
+import boto3
+from utils_functions.functions import check_if_is_ip_address
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
 from nornir.core.exceptions import NornirExecutionError
@@ -28,31 +35,24 @@ except FileNotFoundError as e:
 except Exception as e:
     print(f"Failed to initialize Nornir: {e}")
 
-for host_name in nr.inventory.hosts.values():  # use sys arg to enter username and password
+for host_name in nr.inventory.hosts.values():  # add username and password to hosts
     host_name.username = sys.argv[1]
     host_name.password = sys.argv[2]
 
 
-# Function to check if the ip address is valid
-def check_if_is_ip_address(ip):
-    try:
-        ipaddress.ip_address(ip)
-        return True
-    except ValueError:
-        return False
-
-
+# Function to write the data stored in .csv files
 def write_to_csv(file_path, headers, data):
     try:
         with open(file_path, mode='w', newline='') as f:
             writer = csv.writer(f)
-            writer.writerow(headers)    # write header row
-            writer.writerows(data)      # write data rows
-        print(f"Interface table saved to {file_path}")
+            writer.writerow(headers)                     # write header row
+            writer.writerows(data)                       # write data rows
+        print(f"Table saved to {file_path}")
     except Exception as err:
         print(f"Failed to write data to CSV: {err}")
 
 
+# Function to upload the .csv file to AWS S3
 def upload_to_s3(file_path, bucket_name, file_name):
     try:
         client.upload_file(file_path, bucket_name, file_name)               # upload file to AWS S3
@@ -85,7 +85,7 @@ def showdata_byfilter(task):
             return
 
         result = task.run(task=netmiko_send_command, command_string=command, use_textfsm=True)    # run task
-        data = result.result                          # store data
+        data = result.result                                                                      # store data
 
         if sys.argv[4] == "ship":                             # store running interfaces of selected device
             data = [list(interface.values()) for interface in data if interface['status'] == 'up']
@@ -103,11 +103,11 @@ def showdata_byfilter(task):
         elif sys.argv[4] == "sharp":                        # store arp table of selected device
             data = [[interface.get(key, '') for key in headers] for interface in data]
 
-        print(tabulate(data, headers=headers, tablefmt='double_outline'))  # print the date as a table
+        print(tabulate(data, headers=headers, tablefmt='double_outline'))           # print the date as a table
 
         hostname = task.host.name                       # store hostname
         save_path = 'D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ShowDataBackup'
-        file_name = f"{hostname}_{sys.argv[4]}_table_{current_time_formatted}.csv"  # name of the file
+        file_name = f"{hostname}_{sys.argv[4]}_table_{current_time_formatted}.csv"              # name of the file
         file = os.path.join(save_path, file_name)       # get full path
 
         write_to_csv(file, headers, data)                       # execute function to write the table to .csv file

@@ -1,6 +1,11 @@
-# We use this script to test if the devices in the topology can ping each other
+"""
+This script is designed to:
+    -> ping from selected device to all other devices in the topology and print the results
+    -> ping from a selected device to a specific device in the topology and print the results
+"""
+
 import sys
-import ipaddress
+from utils_functions.functions import check_if_is_ip_address
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
 from nornir.core.exceptions import NornirExecutionError
@@ -15,21 +20,13 @@ except Exception as e:
 
 commands = []  # declare a list to store ping commands
 
-for host_name in nr.inventory.hosts.values():  # use sys arg to enter username and password
+for host_name in nr.inventory.hosts.values():  # add username and password to hosts
     host_name.username = sys.argv[1]
     host_name.password = sys.argv[2]
-    commands.append("ping " + host_name.hostname)  # append to list ping command to switch
+    commands.append("ping " + host_name.hostname)           # append to list ping command to all devices
 
 
-# Function to check if the ip address is valid
-def check_if_is_ip_address(ip):
-    try:
-        ipaddress.ip_address(ip)
-        return True
-    except ValueError:
-        return False
-
-
+# Function to parse the ping output after running the task and print it to the console
 def parse_ping_output(output):
     try:
         interfaces = output
@@ -47,13 +44,13 @@ def parse_ping_output(output):
 
 def test_connection(task):
     try:
-        if sys.argv[4] == "pingall":
+        if sys.argv[4] == "pingall":                                        # ping all devices from the topology
             print(f"\nSending ping commands from {sys.argv[3]}:\n")
             for command in commands:
                 result = task.run(task=netmiko_send_command, command_string=command, use_textfsm=True)
                 parse_ping_output(result.result)
 
-        else:
+        else:                                                               # ping specific device
             ping_command = "ping " + sys.argv[4]
             result = task.run(task=netmiko_send_command, command_string=ping_command, use_textfsm=True)
             parse_ping_output(result.result)
