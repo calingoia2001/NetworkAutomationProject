@@ -2,9 +2,11 @@
 from tkinter import *
 from tkinter import messagebox
 from tkinter import filedialog
+from tkinter import simpledialog
 import os
 import subprocess
 import logging
+import yaml
 
 # Setup logging
 logging.basicConfig(filename='gui.log', level=logging.INFO, format='%(asctime)s %(levelname)s:%(message)s')
@@ -14,6 +16,7 @@ global device
 global device_2
 global device_3
 global device_4
+global manage_devices_window
 global backup_window
 global showdata_window
 global pingtest_window
@@ -74,13 +77,106 @@ def login():
 root = Tk()
 root.title("Network Automation Project")  # GUI title
 root.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-root.geometry("400x300")  # GUI size
+root.geometry("400x350")  # GUI size
 
 
 # Function to go back to main menu
 def goback_main_menu(window):
     window.destroy()            # destroy current window
     root.deiconify()            # restore root window
+
+
+# Function to read the hosts.yaml file
+def read_hosts_file():
+    with open('NornirScripts/hosts.yaml', 'r') as file:
+        hosts = yaml.safe_load(file)
+    return hosts
+
+
+# Function to write the hosts.yaml file
+def write_hosts_file(hosts):
+    with open('NornirScripts/hosts.yaml', 'w') as file:
+        yaml.safe_dump(hosts, file)
+
+
+def create_manage_devices_window():
+    # Create manage devices window
+    root.withdraw()                             # withdraw the main menu
+    global manage_devices_window                # make manage_devices_window global ( to be used in goback() function )
+    manage_devices_window = Toplevel()          # need to use Toplevel() for a window that opens on another one
+    manage_devices_window.title("Manage Devices")                   # GUI title
+    manage_devices_window.iconbitmap('Assets/gui_icon.ico')         # GUI icon
+    manage_devices_window.geometry("400x350")                       # GUI size
+
+    hosts = read_hosts_file()                    # store devices names
+
+    def refresh_device_list():
+        device_list.delete(0, END)
+        for network_device in hosts:
+            device_list.insert(END, network_device)
+
+    def add_new_device():
+        device_name = simpledialog.askstring("Input", "Enter device name:")
+        if device_name:
+            hostname = simpledialog.askstring("Input", "Enter IP address:")
+            port = simpledialog.askstring("Input", "Enter port number:")
+            device_type = simpledialog.askstring("Input", "Enter device group name:")
+            if all([hostname, port, device_type]):
+                hosts[device_name] = {
+                    'hostname': hostname,
+                    'port': port,
+                    'platform': ['ios'],
+                    'groups': ['cisco'],
+                    'data': {'type': device_type}
+                }
+                write_hosts_file(hosts)
+                refresh_device_list()
+
+    def edit_device():
+        selected_device = device_list.get(ACTIVE)
+        if selected_device:
+            device_name = hosts[selected_device]
+            hostname = simpledialog.askstring("Input", "Enter hostname:", initialvalue=device_name['hostname'])
+            port = simpledialog.askstring("Input", "Enter port:", initialvalue=device_name['port'])
+            device_type = simpledialog.askstring("Input", "Enter device type:", initialvalue=device_name['data']['type'])
+            if all([hostname, port, device_type]):
+                hosts[selected_device] = {
+                    'hostname': hostname,
+                    'port': port,
+                    'platform': ['ios'],
+                    'groups': ['cisco'],
+                    'data': {'type': device_type}
+                }
+                write_hosts_file(hosts)
+                refresh_device_list()
+
+    def delete_device():
+        selected_device = device_list.get(ACTIVE)
+        if selected_device:
+            del hosts[selected_device]
+            write_hosts_file(hosts)
+            refresh_device_list()
+
+    # Create a device_list Listbox and store device names in the variable
+    device_list = Listbox(manage_devices_window)
+    device_list.pack(fill=BOTH, expand=True)
+    refresh_device_list()
+
+    # Create a button to add new device to hosts.yaml
+    button_add_device = Button(manage_devices_window, text="Add Device", command=add_new_device)
+    button_add_device.pack(pady=5)
+
+    # Create a button to edit device from hosts.yaml
+    button_edit_device = Button(manage_devices_window, text="Edit Device", command=edit_device)
+    button_edit_device.pack(pady=5)
+
+    # Create a button to delete device from hosts.yaml
+    button_delete_device = Button(manage_devices_window, text="Delete Device", command=delete_device)
+    button_delete_device.pack(pady=5)
+
+    # Create a button to go back to main menu
+    button_goback = Button(manage_devices_window, text="Go back", command=lambda: goback_main_menu(manage_devices_window))
+    button_goback.pack(pady=10)
 
 
 # Function to call backupConfig script and show a message box with the result
@@ -433,6 +529,10 @@ if __name__ == "__main__":
     login()                 # Prompt user to login before accessing the main GUI
 
     # Create buttons and text for main menu
+
+    # Create a button to display manageDevices window
+    button_manage_devices = Button(root, text="Manage Devices", command=create_manage_devices_window)
+    button_manage_devices.pack(pady=10)
 
     # Create select button text
     select_button_text = Label(root, text='Select a task to automate', font=font_style)
