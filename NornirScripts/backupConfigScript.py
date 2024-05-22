@@ -1,22 +1,28 @@
-# A script where we get the configs of all switches and backup the running configs in .txt files
+"""
+This script is designed to:
+    -> backup configuration of specific device(by ip address) or group of devices
+    -> save the backup in a local .txt file
+    -> send the backup file to AWS S3
+"""
+
 import datetime
 import sys
 import os
-import boto3                                             # AWS SDK for Python
-import ipaddress
+import boto3
+from utils_functions.functions import check_if_is_ip_address
 from nornir import InitNornir
 from nornir_napalm.plugins.tasks import napalm_get
 from nornir.core.exceptions import NornirExecutionError
 
-current_time = datetime.datetime.now().replace(microsecond=0)             # get the current date
-current_time_formatted = '{:%d_%m_%Y_%H%M%S}'.format(current_time)        # format current date
+current_time = datetime.datetime.now().replace(microsecond=0)                 # get the current date
+current_time_formatted = '{:%d_%m_%Y_%H%M%S}'.format(current_time)            # format current date
 
 try:
-    client = boto3.client("s3")                                               # connect to AWS S3
+    client = boto3.client("s3")                                               # connect to AWS S3 using AWS SDK boto3
 except Exception as e:
     print(f"Failed to connect to AWS S3: {e}")
 
-bucketName = 'backup-configs-bucket'                                      # AWS S3 bucket name
+bucketName = 'backup-configs-bucket'                                          # AWS S3 bucket name
 
 try:
     nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")  # init the config.yaml
@@ -25,18 +31,9 @@ except FileNotFoundError as e:
 except Exception as e:
     print(f"Failed to initialize Nornir: {e}")
 
-for host_name in nr.inventory.hosts.values():                                  # use sys arg to enter username and password
+for host_name in nr.inventory.hosts.values():                                  # add username and password to hosts
     host_name.username = sys.argv[1]
     host_name.password = sys.argv[2]
-
-
-# Function to check if the ip address is valid
-def check_if_is_ip_address(ip):
-    try:
-        ipaddress.ip_address(ip)
-        return True
-    except ValueError:
-        return False
 
 
 def backup_configs(task):
