@@ -13,6 +13,7 @@ from nornir_netmiko.tasks import netmiko_save_config
 from nornir.core.exceptions import NornirExecutionError
 from utils_functions.functions import check_if_is_ip_address
 
+# Constants
 CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml"
 LOOPBACK_CONFIG_FILE = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config_file_loopback.txt"
 NO_LOOPBACK_CONFIG_FILE = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config_file_remove_loopback.txt"

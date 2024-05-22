@@ -12,32 +12,38 @@ import os
 import csv
 import datetime
 import boto3
-from utils_functions.functions import check_if_is_ip_address
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
 from nornir.core.exceptions import NornirExecutionError
 from tabulate import tabulate
+from utils_functions.functions import check_if_is_ip_address
 
-current_time = datetime.datetime.now().replace(microsecond=0)             # get the current date
-current_time_formatted = '{:%d_%m_%Y_%H%M%S}'.format(current_time)        # format current date
 
-try:
-    client = boto3.client("s3")                                               # connect to AWS S3
-except Exception as e:
-    print(f"Failed to connect to AWS S3: {e}")
+# Constants
+BUCKET_NAME = 'backup-configs-bucket'                                          # AWS S3 bucket name
+CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml"
+SAVE_PATH = 'D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ShowDataBackup'
 
-bucketName = 'backup-configs-bucket'                                      # AWS S3 bucket name
 
-try:
-    nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")  # init the config.yaml
-except FileNotFoundError as e:
-    print(f"Config file not found: {e}")
-except Exception as e:
-    print(f"Failed to initialize Nornir: {e}")
+def initialize_nornir():
+    try:
+        nr_init = InitNornir(config_file=CONFIG_PATH)  # init the config.yaml
+        return nr_init
+    except FileNotFoundError:
+        print("Config file not found!")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Failed to initialize Nornir: {e}")
+        sys.exit(1)
 
-for host_name in nr.inventory.hosts.values():  # add username and password to hosts
-    host_name.username = sys.argv[1]
-    host_name.password = sys.argv[2]
+
+def connect_to_s3():
+    try:
+        s3_client = boto3.client("s3")                                               # connect to AWS S3
+        return s3_client
+    except Exception as e:
+        print(f"Failed to connect to AWS S3: {e}")
+        sys.exit(1)
 
 
 # Function to write the data stored in .csv files
@@ -53,9 +59,9 @@ def write_to_csv(file_path, headers, data):
 
 
 # Function to upload the .csv file to AWS S3
-def upload_to_s3(file_path, bucket_name, file_name):
+def upload_to_s3(cl, file_path, bucket_name, file_name):
     try:
-        client.upload_file(file_path, bucket_name, file_name)               # upload file to AWS S3
+        cl.upload_file(file_path, bucket_name, file_name)               # upload file to AWS S3
         print(f"File {file_name} uploaded to S3 bucket {bucket_name}")
     except Exception as error:
         print(f"Failed to upload file to S3: {error}")
@@ -106,12 +112,11 @@ def showdata_byfilter(task):
         print(tabulate(data, headers=headers, tablefmt='double_outline'))           # print the date as a table
 
         hostname = task.host.name                       # store hostname
-        save_path = 'D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ShowDataBackup'
         file_name = f"{hostname}_{sys.argv[4]}_table_{current_time_formatted}.csv"              # name of the file
-        file = os.path.join(save_path, file_name)       # get full path
+        file = os.path.join(SAVE_PATH, file_name)       # get full path
 
         write_to_csv(file, headers, data)                       # execute function to write the table to .csv file
-        # upload_to_s3(file, bucketName, file_name)             # execute function to upload .csv file to AWS S3
+        upload_to_s3(client, file, BUCKET_NAME, file_name)             # execute function to upload .csv file to AWS S3
 
     except NornirExecutionError as err:
         print(f"Failed to run task on {task.host.name}: {err}")
@@ -120,6 +125,16 @@ def showdata_byfilter(task):
 
 
 if __name__ == "__main__":
+
+    current_time = datetime.datetime.now().replace(microsecond=0)  # get the current date
+    current_time_formatted = '{:%d_%m_%Y_%H%M%S}'.format(current_time)  # format current date
+
+    nr = initialize_nornir()
+    client = connect_to_s3()
+
+    for host_name in nr.inventory.hosts.values():  # add username and password to hosts
+        host_name.username = sys.argv[1]
+        host_name.password = sys.argv[2]
 
     target = sys.argv[3]
 

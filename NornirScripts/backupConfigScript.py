@@ -14,6 +14,7 @@ from nornir_napalm.plugins.tasks import napalm_get
 from nornir.core.exceptions import NornirExecutionError
 from utils_functions.functions import check_if_is_ip_address
 
+# Constants
 BUCKET_NAME = 'backup-configs-bucket'                                          # AWS S3 bucket name
 CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml"
 SAVE_PATH = 'D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/BackupConfigs'

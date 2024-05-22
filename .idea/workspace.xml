@@ -4,10 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="refactor addNewConfigScript.py">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="refactor testConnectionWithPingScript.py">
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -249,14 +251,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00022" summary="modify print statement in backupConfigScript.py 2">
-      <option name="closed" value="true" />
-      <created>1714744995703</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1714744995703</updated>
     </task>
     <task id="LOCAL-00023" summary="added new functionality to show data button">
       <option name="closed" value="true" />
@@ -642,7 +636,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716397877283</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="refactor testConnectionWithPingScript.py">
+      <option name="closed" value="true" />
+      <created>1716401309845</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1716401309845</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -690,7 +692,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="remove rprint as it works only on cli" />
     <MESSAGE value="add feature to store the tables of showDataByFilterScript.py in .csv files and send them to AWS S3" />
     <MESSAGE value="add python f-strings" />
     <MESSAGE value="add horizontal scrollbar to show_result_window" />
@@ -715,6 +716,7 @@
     <MESSAGE value="fix bug on login window(close app when clicking X button)" />
     <MESSAGE value="refactor backupConfigScript.py" />
     <MESSAGE value="refactor addNewConfigScript.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor addNewConfigScript.py" />
+    <MESSAGE value="refactor testConnectionWithPingScript.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor testConnectionWithPingScript.py" />
   </component>
 </project>

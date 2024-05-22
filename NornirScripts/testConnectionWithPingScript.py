@@ -10,6 +10,7 @@ from nornir_netmiko.tasks import netmiko_send_command
 from nornir.core.exceptions import NornirExecutionError
 from utils_functions.functions import check_if_is_ip_address
 
+# Constant
 CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml"
 
 
