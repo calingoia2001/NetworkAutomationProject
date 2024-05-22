@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="create Manage Devices functionality">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add feature to dynamically take the groups names from hosts.yaml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/hosts.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,14 +249,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00018" summary="add new functionality to backupscript">
-      <option name="closed" value="true" />
-      <created>1714732932036</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1714732932036</updated>
     </task>
     <task id="LOCAL-00019" summary="add textfsm=true to scripts">
       <option name="closed" value="true" />
@@ -644,7 +634,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716382429815</updated>
     </task>
-    <option name="localTasksCounter" value="67" />
+    <task id="LOCAL-00067" summary="add feature to dynamically take the groups names from hosts.yaml">
+      <option name="closed" value="true" />
+      <created>1716392596684</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1716392596684</updated>
+    </task>
+    <option name="localTasksCounter" value="68" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -692,7 +690,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add tabulate() to showDataByFilterScript.py and text widget in MainGUI.py to display the tables" />
     <MESSAGE value="remove scrollbar from show_result window" />
     <MESSAGE value="remove rprint as it works only on cli" />
     <MESSAGE value="add feature to store the tables of showDataByFilterScript.py in .csv files and send them to AWS S3" />
@@ -717,6 +714,7 @@
     <MESSAGE value="add docstring to backupConfigScript.py" />
     <MESSAGE value="add only one back to main menu function in MainGUI.py" />
     <MESSAGE value="create Manage Devices functionality" />
-    <option name="LAST_COMMIT_MESSAGE" value="create Manage Devices functionality" />
+    <MESSAGE value="add feature to dynamically take the groups names from hosts.yaml" />
+    <option name="LAST_COMMIT_MESSAGE" value="add feature to dynamically take the groups names from hosts.yaml" />
   </component>
 </project>

@@ -68,8 +68,12 @@ def login():
             messagebox.showerror("Error", "Please enter both username and password")
             login_window.deiconify()            # restore login window
 
-    Button(login_window, text="Login", command=submit_login).pack(pady=20)
+    def on_close():
+        if not credentials:
+            root.destroy()              # close the main menu if the login window is closed without entering credentials
 
+    login_window.protocol("WM_DELETE_WINDOW", on_close)
+    Button(login_window, text="Login", command=submit_login).pack(pady=20)
     root.wait_window(login_window)
 
 
@@ -518,7 +522,7 @@ if __name__ == "__main__":
     root.iconbitmap('Assets/gui_icon.ico')  # GUI icon
     root.geometry("400x350")  # GUI size
 
-    login()                 # Prompt user to login before accessing the main GUI
+    login()                 # Call function to log in before accessing the main GUI
 
     # Create buttons and text for main menu
 
