@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add a prompt user to login before accessing the main GUI">
-      <change afterPath="$PROJECT_DIR$/NornirScripts/utils_functions/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/NornirScripts/utils_functions/functions.py" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add docstring to backupConfigScript.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/hosts.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -254,22 +252,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00014" summary="add Asssets folder, refactored main gui">
-      <option name="closed" value="true" />
-      <created>1714670444417</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1714670444417</updated>
-    </task>
-    <task id="LOCAL-00015" summary="add 4 buttons to call the 4 scripts and show the output">
-      <option name="closed" value="true" />
-      <created>1714672514261</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1714672514261</updated>
     </task>
     <task id="LOCAL-00016" summary="add third parameter to scripts">
       <option name="closed" value="true" />
@@ -647,7 +629,23 @@
       <option name="project" value="LOCAL" />
       <updated>1716321911342</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="add docstring to all scripts, moved check_if_is_ip_address to a utils function dir">
+      <option name="closed" value="true" />
+      <created>1716376306635</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1716376306635</updated>
+    </task>
+    <task id="LOCAL-00064" summary="add docstring to backupConfigScript.py">
+      <option name="closed" value="true" />
+      <created>1716376332787</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1716376332787</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -695,8 +693,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add feature to send backup configs to AWS S3 bucket" />
-    <MESSAGE value="add feature to restore most recent backup" />
     <MESSAGE value="add new comments to scripts and .yaml files" />
     <MESSAGE value="add show vlans and show arp table buttons and fuctionality" />
     <MESSAGE value="add tabulate() to showDataByFilterScript.py and text widget in MainGUI.py to display the tables" />
@@ -720,6 +716,8 @@
     <MESSAGE value="refactor scripts" />
     <MESSAGE value="refactor MainGUI.py" />
     <MESSAGE value="add a prompt user to login before accessing the main GUI" />
-    <option name="LAST_COMMIT_MESSAGE" value="add a prompt user to login before accessing the main GUI" />
+    <MESSAGE value="add docstring to all scripts, moved check_if_is_ip_address to a utils function dir" />
+    <MESSAGE value="add docstring to backupConfigScript.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="add docstring to backupConfigScript.py" />
   </component>
 </project>

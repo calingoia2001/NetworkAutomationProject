@@ -24,20 +24,32 @@ global entry_ip_testping
 global entry_ip_configure
 credentials = {}                # Global variable to store credentials
 
+# Define the font size and style
+font_style = ("Helvetica", 12)
+font_style_2 = ("Helvetica", 10)
 
+# Define script paths
+base_dir = os.path.dirname(os.path.abspath(__file__))
+scripts_dir = os.path.join(base_dir, 'NornirScripts')
+
+
+# Create a login window where the user must enter the username and password of devices
 def login():
     global credentials
     login_window = Toplevel(root)
     login_window.title("Login")
+    login_window.iconbitmap('Assets/gui_icon.ico')          # GUI icon
     login_window.geometry("300x220")
 
     Label(login_window, text="Enter login credentials for devices").pack(pady=5)
 
     Label(login_window, text="Username:").pack(pady=5)
+
     entry_username = Entry(login_window)
     entry_username.pack(pady=5)
 
     Label(login_window, text="Password:").pack(pady=5)
+
     entry_password = Entry(login_window, show="*")
     entry_password.pack(pady=5)
 
@@ -51,7 +63,7 @@ def login():
             messagebox.showinfo("Login Success", "Logged in successfully!")
         else:
             messagebox.showerror("Error", "Please enter both username and password")
-            login_window.deiconify()            # restore root window
+            login_window.deiconify()            # restore login window
 
     Button(login_window, text="Login", command=submit_login).pack(pady=20)
 
@@ -64,15 +76,14 @@ root.title("Network Automation Project")  # GUI title
 root.iconbitmap('Assets/gui_icon.ico')  # GUI icon
 root.geometry("400x300")  # GUI size
 
-font_style = ("Helvetica", 12)    # Define the font size and style
-font_style_2 = ("Helvetica", 10)  # Define the font size and style
 
-# Define script paths
-base_dir = os.path.dirname(os.path.abspath(__file__))
-scripts_dir = os.path.join(base_dir, 'NornirScripts')
+# Function to go back to main menu
+def goback_main_menu(window):
+    window.destroy()            # destroy current window
+    root.deiconify()            # restore root window
 
 
-# Function to call backupConfig script and store the output in the variable result then show a message box with the result
+# Function to call backupConfig script and show a message box with the result
 def run_script_backupconfig(device_type):
     try:
         result = subprocess.check_output(
@@ -83,12 +94,6 @@ def run_script_backupconfig(device_type):
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
         logging.error(f"Error during backup configuration: {e}")
-
-
-# Function to go back to main menu from the backupconfig
-def goback_1():
-    backup_window.destroy()  # destroy backup window
-    root.deiconify()  # restore root window
 
 
 # Function to handle restoring the most recent backup
@@ -106,7 +111,7 @@ def restore_backup(device_type):
 
 def update_entry_backup(*args):
     entry_ip_backup.delete(0, END)                        # clear the backup Entry widget
-    entry_ip_backup.insert(0, device.get())             # insert the selected device on Entry widget
+    entry_ip_backup.insert(0, device.get())               # insert the selected device on Entry widget
 
 
 # Display the backup config window
@@ -158,7 +163,7 @@ def create_backupconfig_window():
     button_config.pack(pady=10)
 
     # Create a button to go back to main menu
-    button_goback = Button(backup_window, text="Go back", command=goback_1)
+    button_goback = Button(backup_window, text="Go back", command=lambda: goback_main_menu(backup_window))
     button_goback.pack(pady=10)
 
 
@@ -189,12 +194,6 @@ def run_script_showdata(device_type, show_command):
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
         logging.error(f"Error during show data: {e}")
-
-
-# Function to go back to main menu from the showdata window
-def goback_2():
-    showdata_window.destroy()  # destroy showdata window
-    root.deiconify()  # restore root window
 
 
 def update_entry_showdata(*args):
@@ -261,7 +260,7 @@ def create_showdata_window():
     button_sharp.pack(pady=10)
 
     # Create a button to go back to main menu
-    button_goback = Button(showdata_window, text="Go back", command=goback_2)
+    button_goback = Button(showdata_window, text="Go back", command=lambda: goback_main_menu(showdata_window))
     button_goback.pack(pady=10)
 
 
@@ -276,12 +275,6 @@ def run_script_testconnection(device_type, ping_type):
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
         logging.error(f"Error during test connection: {e}")
-
-
-# Function to go back to main menu from the pingtest window
-def goback_3():
-    pingtest_window.destroy()  # destroy pingtest window
-    root.deiconify()  # restore root window
 
 
 def update_entry_pingtest(*args):
@@ -346,7 +339,7 @@ def create_pingtest_window():
     button_ping_ip.pack(pady=10)
 
     # Create a button to go back to main menu
-    button_goback = Button(pingtest_window, text="Go back", command=goback_3)
+    button_goback = Button(pingtest_window, text="Go back", command=lambda: goback_main_menu(pingtest_window))
     button_goback.pack(pady=10)
 
 
@@ -361,12 +354,6 @@ def run_script_configure(device_type, configure_type, backup_config):
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
         logging.error(f"Error during configure device: {e}")
-
-
-# Function to go back to main menu from the configure window
-def goback_4():
-    configure_window.destroy()  # destroy configure window
-    root.deiconify()  # restore root window
 
 
 def update_entry_configure(*args):
@@ -438,7 +425,7 @@ def create_configure_window():
     button_configuration_save.pack(padx=10, pady=10)
 
     # Create a button to go back to main menu
-    button_goback = Button(configure_window, text="Go back", command=goback_4)
+    button_goback = Button(configure_window, text="Go back", command=lambda: goback_main_menu(configure_window))
     button_goback.pack(pady=10)
 
 

@@ -81,4 +81,4 @@ if __name__ == "__main__":
             nr_filter = nr.filter(type=target)                     # filter by switch ("switch" or "coresw" or "router")
             results = nr_filter.run(task=send_config)              # run task
         else:
-            print("Please enter a valid IP address!")
+            print("Please enter a valid IP address / group name!")
