@@ -5,25 +5,24 @@ This script is designed to:
 """
 
 import sys
-from utils_functions.functions import check_if_is_ip_address
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
 from nornir.core.exceptions import NornirExecutionError
+from utils_functions.functions import check_if_is_ip_address
 
-try:
-    nr = InitNornir(
-        config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")  # init the config.yaml
-except FileNotFoundError as e:
-    print(f"Config file not found: {e}")
-except Exception as e:
-    print(f"Failed to initialize Nornir: {e}")
+CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml"
 
-commands = []  # declare a list to store ping commands
 
-for host_name in nr.inventory.hosts.values():  # add username and password to hosts
-    host_name.username = sys.argv[1]
-    host_name.password = sys.argv[2]
-    commands.append("ping " + host_name.hostname)           # append to list ping command to all devices
+def initialize_nornir():
+    try:
+        nr_init = InitNornir(config_file=CONFIG_PATH)  # init the config.yaml
+        return nr_init
+    except FileNotFoundError:
+        print("Config file not found!")
+        sys.exit(1)
+    except Exception as e:
+        print(f"Failed to initialize Nornir: {e}")
+        sys.exit(1)
 
 
 # Function to parse the ping output after running the task and print it to the console
@@ -31,12 +30,11 @@ def parse_ping_output(output):
     try:
         interfaces = output
         for interface in interfaces:
-            print("Sending", interface['sent_qty'], ",", interface['sent_type'], "to",
-                  interface['destination'], ",timeout is", interface['timeout'], "seconds ... ")
-            print("Success rate is", interface['success_pct'], "percent (", interface['success_qty'], "/",
-                  interface['sent_qty'], "), round-trip min/avg/max =", interface['rtt_min'], "/",
-                  interface['rtt_avg'],
-                  "/", interface['rtt_max'], "ms!")
+            print(f"Sending {interface['sent_qty']}, {interface['sent_type']} to"
+                  f" {interface['destination']}, timeout is {interface['timeout']} seconds ... ")
+            print(f"Success rate is {interface['success_pct']} percent ({interface['success_qty']} /"
+                  f" {interface['sent_qty']}), round-trip min/avg/max = {interface['rtt_min']} / "
+                  f" {interface['rtt_avg']} / {interface['rtt_max']} ms!")
             print("\n")
     except KeyError as error:
         print(f"Error parsing ping output: {error}")
@@ -51,7 +49,7 @@ def test_connection(task):
                 parse_ping_output(result.result)
 
         else:                                                               # ping specific device
-            ping_command = "ping " + sys.argv[4]
+            ping_command = f"ping {sys.argv[4]}"
             result = task.run(task=netmiko_send_command, command_string=ping_command, use_textfsm=True)
             parse_ping_output(result.result)
 
@@ -62,6 +60,14 @@ def test_connection(task):
 
 
 if __name__ == "__main__":
+    nr = initialize_nornir()
+
+    commands = []  # declare a list to store ping commands
+
+    for host_name in nr.inventory.hosts.values():           # add username and password to hosts
+        host_name.username = sys.argv[1]
+        host_name.password = sys.argv[2]
+        commands.append("ping " + host_name.hostname)      # append to list ping command to all devices
 
     target = sys.argv[3]
 
