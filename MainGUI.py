@@ -473,6 +473,10 @@ def create_configure_window():
     entry_ip_configure = Entry(configure_window, font=font_style)
     entry_ip_configure.pack()
 
+    def get_num_vlans(action):
+        num_vlans = simpledialog.askinteger("Input", f"Enter the number of VLANs you want to create/delete:")
+        run_script_configure(entry_ip_configure.get(), action, str(num_vlans))
+
     # Create a button to run the addNewConfig script with loopback as sys.argv[4]
     button_configuration_loopback = Button(configure_window, text="Create Loopback Interface",
                                            command=lambda: run_script_configure(entry_ip_configure.get(), "loopback", ""))
@@ -484,13 +488,11 @@ def create_configure_window():
     button_configuration_noloopback.pack(pady=10)
 
     # Create a button to run the addNewConfig script with vlan as sys.argv[4]
-    button_configuration_vlan = Button(configure_window, text="Create VLANs",
-                                       command=lambda: run_script_configure(entry_ip_configure.get(), "vlan", ""))
+    button_configuration_vlan = Button(configure_window, text="Create VLANs", command=lambda: get_num_vlans("vlan"))
     button_configuration_vlan.pack(pady=10)
 
     # Create a button to run the addNewConfig script with novlan as sys.argv[4]
-    button_configuration_novlan = Button(configure_window, text="Delete VLANs",
-                                         command=lambda: run_script_configure(entry_ip_configure.get(), "novlan", ""))
+    button_configuration_novlan = Button(configure_window, text="Delete VLANs", command=lambda: get_num_vlans("novlan"))
     button_configuration_novlan.pack(pady=10)
 
     # Create a button to run the addNewConfig script with saveconfig as sys.argv[4]

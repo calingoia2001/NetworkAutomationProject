@@ -48,8 +48,9 @@ def send_config(task):
             if target_device == "router":
                 print("Cannot create VLANs for a router!")
             else:
+                num_vlans = int(sys.argv[5])
                 print(f"Creating VLANs for {target_device} ... \n")
-                for n in range(2, 4):
+                for n in range(2, 2 + num_vlans):
                     config_command = [f'vlan {n}', f'name Python_VLAN {n}']
                     task.run(task=netmiko_send_config, config_commands=config_command)
                     print(f"VLAN {n} created for {target_device}")
@@ -58,8 +59,9 @@ def send_config(task):
             if target_device == "router":
                 print("Cannot delete VLANs for a router!")
             else:
+                num_vlans = int(sys.argv[5])
                 print(f"Deleting VLANs for {target_device} ... \n")
-                for n in range(2, 4):
+                for n in range(2, 2 + num_vlans):
                     config_command = [f'no vlan {n}']
                     task.run(task=netmiko_send_config, config_commands=config_command)
                     print(f"VLAN {n} deleted for {target_device}")

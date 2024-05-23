@@ -27,6 +27,6 @@ R1:
     type: router
   groups:
   - cisco
-  hostname: 192.168.137.156
+  hostname: 192.168.137.180
   platform: ios
   port: '22'

@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="refactor showDataByFilterScript.py">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="refactor MainGUI.py">
       <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/hosts.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
     </list>
@@ -252,14 +253,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00024" summary="add show version button">
-      <option name="closed" value="true" />
-      <created>1715169754130</created>
-      <option name="number" value="00024" />
-      <option name="presentableId" value="LOCAL-00024" />
-      <option name="project" value="LOCAL" />
-      <updated>1715169754130</updated>
     </task>
     <task id="LOCAL-00025" summary="add show version functionality in script">
       <option name="closed" value="true" />
@@ -645,7 +638,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716402294461</updated>
     </task>
-    <option name="localTasksCounter" value="73" />
+    <task id="LOCAL-00073" summary="refactor MainGUI.py">
+      <option name="closed" value="true" />
+      <created>1716480358506</created>
+      <option name="number" value="00073" />
+      <option name="presentableId" value="LOCAL-00073" />
+      <option name="project" value="LOCAL" />
+      <updated>1716480358506</updated>
+    </task>
+    <option name="localTasksCounter" value="74" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -706,7 +707,6 @@
     <MESSAGE value="add feature to ping from a specific IP address" />
     <MESSAGE value="add feature to configure a device by a specific IP address" />
     <MESSAGE value="refactor scripts" />
-    <MESSAGE value="refactor MainGUI.py" />
     <MESSAGE value="add a prompt user to login before accessing the main GUI" />
     <MESSAGE value="add docstring to all scripts, moved check_if_is_ip_address to a utils function dir" />
     <MESSAGE value="add docstring to backupConfigScript.py" />
@@ -718,6 +718,7 @@
     <MESSAGE value="refactor addNewConfigScript.py" />
     <MESSAGE value="refactor testConnectionWithPingScript.py" />
     <MESSAGE value="refactor showDataByFilterScript.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor showDataByFilterScript.py" />
+    <MESSAGE value="refactor MainGUI.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor MainGUI.py" />
   </component>
 </project>

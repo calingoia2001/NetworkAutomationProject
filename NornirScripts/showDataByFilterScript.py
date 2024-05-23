@@ -83,36 +83,37 @@ def showdata_byfilter(task):
             "sharp": ['protocol', 'ip_address', 'age', 'mac_address', 'type', 'interface']
         }
 
-        command = command_mapping.get(sys.argv[4])
-        headers = headers_mapping.get(sys.argv[4])
+        show_type = sys.argv[4]
+        command = command_mapping.get(show_type)
+        headers = headers_mapping.get(show_type)
 
         if not command or not headers:
-            print(f"Invalid command argument: {sys.argv[4]}")
+            print(f"Invalid command argument: {show_type}")
             return
 
         result = task.run(task=netmiko_send_command, command_string=command, use_textfsm=True)    # run task
         data = result.result                                                                      # store data
 
-        if sys.argv[4] == "ship":                             # store running interfaces of selected device
+        if show_type == "ship":                             # store running interfaces of selected device
             data = [list(interface.values()) for interface in data if interface['status'] == 'up']
 
-        elif sys.argv[4] == "shversion":                     # store details of selected device
+        elif show_type == "shversion":                     # store details of selected device
             data = [[interface.get(key, '') for key in headers] for interface in data]
 
-        elif sys.argv[4] == "shvlan":                       # store VLANs table of selected device
+        elif show_type == "shvlan":                       # store VLANs table of selected device
             if sys.argv[3] == "router":
                 print("Can`t show VLANs on a router !!!")
                 return
             else:
                 data = [[interface.get(key, '') for key in headers] for interface in data]
 
-        elif sys.argv[4] == "sharp":                        # store arp table of selected device
+        elif show_type == "sharp":                        # store arp table of selected device
             data = [[interface.get(key, '') for key in headers] for interface in data]
 
         print(tabulate(data, headers=headers, tablefmt='double_outline'))           # print the date as a table
 
         hostname = task.host.name                       # store hostname
-        file_name = f"{hostname}_{sys.argv[4]}_table_{current_time_formatted}.csv"              # name of the file
+        file_name = f"{hostname}_{show_type}_table_{current_time_formatted}.csv"              # name of the file
         file = os.path.join(SAVE_PATH, file_name)       # get full path
 
         write_to_csv(file, headers, data)                       # execute function to write the table to .csv file
