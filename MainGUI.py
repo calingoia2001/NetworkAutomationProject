@@ -3,6 +3,7 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import filedialog
 from tkinter import simpledialog
+from NornirScripts.utils_functions.functions import get_last_log_entry
 import os
 import subprocess
 import logging
@@ -10,6 +11,13 @@ import yaml
 
 # Setup logging
 logging.basicConfig(filename='gui.log', level=logging.INFO, format='%(asctime)s %(levelname)s:%(message)s')
+
+
+# Display last nornir.log
+def display_last_log():
+    log_output = get_last_log_entry()
+    messagebox.showinfo("Last Log Entry", log_output)
+
 
 # Create global variables
 global device, device_2, device_3, device_4
@@ -184,6 +192,8 @@ def run_script_backupconfig(device_type):
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
         logging.error(f"Error during backup configuration: {e}")
+    finally:
+        display_last_log()
 
 
 # Function to handle restoring the most recent backup
@@ -280,6 +290,8 @@ def run_script_showdata(device_type, show_command):
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
         logging.error(f"Error during show data: {e}")
+    finally:
+        display_last_log()
 
 
 def update_entry_showdata(*args):
@@ -357,6 +369,8 @@ def run_script_testconnection(device_type, ping_type):
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
         logging.error(f"Error during test connection: {e}")
+    finally:
+        display_last_log()
 
 
 def update_entry_pingtest(*args):
@@ -432,6 +446,8 @@ def run_script_configure(device_type, configure_type, backup_config):
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
         logging.error(f"Error during configure device: {e}")
+    finally:
+        display_last_log()
 
 
 def update_entry_configure(*args):

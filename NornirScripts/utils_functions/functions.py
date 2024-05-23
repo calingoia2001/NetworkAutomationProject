@@ -1,5 +1,8 @@
 # Function to check if the ip address is valid
 import ipaddress
+import re
+
+LOG_FILE_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/nornir.log"
 
 
 def check_if_is_ip_address(ip):
@@ -8,3 +11,43 @@ def check_if_is_ip_address(ip):
         return True
     except ValueError:
         return False
+
+
+# Function that returns the last log from nornir.log
+def get_last_log_entry():
+    try:
+        with open(LOG_FILE_PATH, 'r') as log_file:
+            logs = log_file.readlines()
+
+        # Find the last timestamped log entry
+        timestamp_regex = re.compile(r'^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2},\d{3}')
+        last_log_entry = ""
+        for log in reversed(logs):
+            if timestamp_regex.match(log):
+                last_log_entry = log
+                break
+
+        # Check if the last log entry is an error log
+        if "ERROR" in last_log_entry:
+            error_start_index = logs.index(last_log_entry)
+            error_log = logs[error_start_index:]
+
+            # Extract the relevant part of the error message
+            error_message = ""
+            for line in error_log:
+                if line.startswith("raise "):
+                    error_message += line
+                    break
+                elif line.startswith("Traceback") or line.startswith("During handling of the above exception"):
+                    continue
+                else:
+                    error_message += line
+
+            return error_message.strip()
+
+        return last_log_entry.strip()
+
+    except FileNotFoundError:
+        return "Log file not found."
+    except Exception as e:
+        return f"An error occurred while reading the log file: {e}"
