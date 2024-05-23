@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="refactor testConnectionWithPingScript.py">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="refactor showDataByFilterScript.py">
+      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/hosts.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/testConnectionWithPingScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,14 +252,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00023" summary="added new functionality to show data button">
-      <option name="closed" value="true" />
-      <created>1715169343773</created>
-      <option name="number" value="00023" />
-      <option name="presentableId" value="LOCAL-00023" />
-      <option name="project" value="LOCAL" />
-      <updated>1715169343773</updated>
     </task>
     <task id="LOCAL-00024" summary="add show version button">
       <option name="closed" value="true" />
@@ -644,7 +637,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716401309845</updated>
     </task>
-    <option name="localTasksCounter" value="72" />
+    <task id="LOCAL-00072" summary="refactor showDataByFilterScript.py">
+      <option name="closed" value="true" />
+      <created>1716402294461</created>
+      <option name="number" value="00072" />
+      <option name="presentableId" value="LOCAL-00072" />
+      <option name="project" value="LOCAL" />
+      <updated>1716402294461</updated>
+    </task>
+    <option name="localTasksCounter" value="73" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -704,7 +705,6 @@
     <MESSAGE value="fix backup window do dynamically update entry when selecting a group of device" />
     <MESSAGE value="add feature to ping from a specific IP address" />
     <MESSAGE value="add feature to configure a device by a specific IP address" />
-    <MESSAGE value="refactor showDataByFilterScript.py" />
     <MESSAGE value="refactor scripts" />
     <MESSAGE value="refactor MainGUI.py" />
     <MESSAGE value="add a prompt user to login before accessing the main GUI" />
@@ -717,6 +717,7 @@
     <MESSAGE value="refactor backupConfigScript.py" />
     <MESSAGE value="refactor addNewConfigScript.py" />
     <MESSAGE value="refactor testConnectionWithPingScript.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor testConnectionWithPingScript.py" />
+    <MESSAGE value="refactor showDataByFilterScript.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor showDataByFilterScript.py" />
   </component>
 </project>

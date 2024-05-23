@@ -116,7 +116,7 @@ def showdata_byfilter(task):
         file = os.path.join(SAVE_PATH, file_name)       # get full path
 
         write_to_csv(file, headers, data)                       # execute function to write the table to .csv file
-        upload_to_s3(client, file, BUCKET_NAME, file_name)             # execute function to upload .csv file to AWS S3
+        # upload_to_s3(client, file, BUCKET_NAME, file_name)             # execute function to upload .csv file to AWS S3
 
     except NornirExecutionError as err:
         print(f"Failed to run task on {task.host.name}: {err}")

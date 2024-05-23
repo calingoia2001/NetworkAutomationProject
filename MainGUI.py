@@ -12,19 +12,9 @@ import yaml
 logging.basicConfig(filename='gui.log', level=logging.INFO, format='%(asctime)s %(levelname)s:%(message)s')
 
 # Create global variables
-global device
-global device_2
-global device_3
-global device_4
-global manage_devices_window
-global backup_window
-global showdata_window
-global pingtest_window
-global configure_window
-global entry_ip_showdata
-global entry_ip_backup
-global entry_ip_testping
-global entry_ip_configure
+global device, device_2, device_3, device_4
+global manage_devices_window, backup_window, showdata_window, pingtest_window, configure_window
+global entry_ip_showdata, entry_ip_backup, entry_ip_testping, entry_ip_configure
 credentials = {}                # Global variable to store credentials
 
 # Define the font size and style
@@ -47,12 +37,10 @@ def login():
     Label(login_window, text="Enter login credentials for devices").pack(pady=5)
 
     Label(login_window, text="Username:").pack(pady=5)
-
     entry_username = Entry(login_window)
     entry_username.pack(pady=5)
 
     Label(login_window, text="Password:").pack(pady=5)
-
     entry_password = Entry(login_window, show="*")
     entry_password.pack(pady=5)
 
@@ -238,7 +226,7 @@ def create_backupconfig_window():
 
     global device
     device = StringVar()
-    device.set("coresw")  # default value for device type
+    device.set(group_names[0])  # default value for device type
     device.trace('w', update_entry_backup)           # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
@@ -321,7 +309,7 @@ def create_showdata_window():
 
     global device_2
     device_2 = StringVar()
-    device_2.set("coresw")                                     # default value for device type
+    device_2.set(group_names[0])                                     # default value for device type
     device_2.trace('w', update_entry_showdata)           # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
@@ -398,7 +386,7 @@ def create_pingtest_window():
 
     global device_3
     device_3 = StringVar()
-    device_3.set("coresw")  # default value for device type
+    device_3.set(group_names[0])  # default value for device type
     device_3.trace('w', update_entry_pingtest)           # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
@@ -473,7 +461,7 @@ def create_configure_window():
 
     global device_4
     device_4 = StringVar()
-    device_4.set("coresw")  # default value for device type
+    device_4.set(group_names[0])  # default value for device type
     device_4.trace('w', update_entry_configure)           # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
