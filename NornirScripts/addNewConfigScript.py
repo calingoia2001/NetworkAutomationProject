@@ -11,7 +11,7 @@ from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_config
 from nornir_netmiko.tasks import netmiko_save_config
 from nornir.core.exceptions import NornirExecutionError
-from utils_functions.functions import check_if_is_ip_address
+from utils_functions.functions import check_if_is_ip_address, get_device_group_names
 
 # Constants
 CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml"
@@ -82,6 +82,7 @@ def send_config(task):
 
 if __name__ == "__main__":
     nr = initialize_nornir()
+    group_names = get_device_group_names()
 
     for host_name in nr.inventory.hosts.values():  # add username and password to hosts
         host_name.username = sys.argv[1]

@@ -8,7 +8,7 @@ import sys
 from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
 from nornir.core.exceptions import NornirExecutionError
-from utils_functions.functions import check_if_is_ip_address
+from utils_functions.functions import check_if_is_ip_address, get_device_group_names
 
 # Constant
 CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml"
@@ -62,7 +62,7 @@ def test_connection(task):
 
 if __name__ == "__main__":
     nr = initialize_nornir()
-
+    group_names = get_device_group_names()
     commands = []  # declare a list to store ping commands
 
     for host_name in nr.inventory.hosts.values():           # add username and password to hosts
@@ -76,7 +76,7 @@ if __name__ == "__main__":
         nr_filter = nr.filter(filter_func=lambda host: host.hostname == sys.argv[3])  # run backup task on specified ip
         results = nr_filter.run(task=test_connection)  # run task
     else:
-        if target in ["switch", "router", "coresw"]:
+        if target in group_names:
             nr_filter = nr.filter(type=target)  # filter by switch ("switch" or "coresw" or "router")
             results = nr_filter.run(task=test_connection)  # run task
         else:

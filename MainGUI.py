@@ -4,10 +4,25 @@ from tkinter import messagebox
 from tkinter import filedialog
 from tkinter import simpledialog
 from NornirScripts.utils_functions.functions import get_last_log_entry
+from NornirScripts.utils_functions.functions import get_device_group_names, read_hosts_file, write_hosts_file
 import os
 import subprocess
 import logging
-import yaml
+
+
+# Create global variables
+global device, device_2, device_3, device_4
+global manage_devices_window, backup_window, showdata_window, pingtest_window, configure_window
+global entry_ip_showdata, entry_ip_backup, entry_ip_testping, entry_ip_configure
+credentials = {}                # Global variable to store credentials
+
+# Define script paths
+base_dir = os.path.dirname(os.path.abspath(__file__))
+scripts_dir = os.path.join(base_dir, 'NornirScripts')
+
+# Define the font size and style
+font_style = ("Helvetica", 12)
+font_style_2 = ("Helvetica", 10)
 
 # Setup logging
 logging.basicConfig(filename='gui.log', level=logging.INFO, format='%(asctime)s %(levelname)s:%(message)s')
@@ -19,19 +34,10 @@ def display_last_log():
     messagebox.showinfo("Last Log Entry", log_output)
 
 
-# Create global variables
-global device, device_2, device_3, device_4
-global manage_devices_window, backup_window, showdata_window, pingtest_window, configure_window
-global entry_ip_showdata, entry_ip_backup, entry_ip_testping, entry_ip_configure
-credentials = {}                # Global variable to store credentials
-
-# Define the font size and style
-font_style = ("Helvetica", 12)
-font_style_2 = ("Helvetica", 10)
-
-# Define script paths
-base_dir = os.path.dirname(os.path.abspath(__file__))
-scripts_dir = os.path.join(base_dir, 'NornirScripts')
+# Function to go back to main menu
+def goback_main_menu(window):
+    window.destroy()            # destroy current window
+    root.deiconify()            # restore root window
 
 
 # Create a login window where the user must enter the username and password of devices
@@ -73,34 +79,6 @@ def login():
     root.wait_window(login_window)
 
 
-# Function to go back to main menu
-def goback_main_menu(window):
-    window.destroy()            # destroy current window
-    root.deiconify()            # restore root window
-
-
-def get_device_group_names():
-    with open('NornirScripts/hosts.yaml', 'r') as file:
-        hosts = yaml.safe_load(file)
-    device_types = set()
-    for dev in hosts.values():
-        device_types.add(dev['data']['type'])
-    return list(device_types)
-
-
-# Function to read the hosts.yaml file
-def read_hosts_file():
-    with open('NornirScripts/hosts.yaml', 'r') as file:
-        hosts = yaml.safe_load(file)
-    return hosts
-
-
-# Function to write the hosts.yaml file
-def write_hosts_file(hosts):
-    with open('NornirScripts/hosts.yaml', 'w') as file:
-        yaml.safe_dump(hosts, file)
-
-
 def create_manage_devices_window():
     # Create manage devices window
     root.withdraw()                             # withdraw the main menu
@@ -140,7 +118,7 @@ def create_manage_devices_window():
             device_name = hosts[selected_device]
             hostname = simpledialog.askstring("Input", "Enter IP address:", initialvalue=device_name['hostname'])
             port = simpledialog.askstring("Input", "Enter port:", initialvalue=device_name['port'])
-            device_type = simpledialog.askstring("Input", "Enter device type:", initialvalue=device_name['data']['type'])
+            device_type = simpledialog.askstring("Input", "Enter group name:", initialvalue=device_name['data']['type'])
             if all([hostname, port, device_type]):
                 hosts[selected_device] = {
                     'hostname': hostname,
@@ -490,7 +468,7 @@ def create_configure_window():
     entry_ip_configure.pack()
 
     def get_num_vlans(action):
-        num_vlans = simpledialog.askinteger("Input", f"Enter the number of VLANs you want to create/delete:")
+        num_vlans = simpledialog.askinteger("Input", f"Enter the number of VLANs you want to create/delete:", minvalue=1, maxvalue=100)
         run_script_configure(entry_ip_configure.get(), action, str(num_vlans))
 
     # Create a button to run the addNewConfig script with loopback as sys.argv[4]

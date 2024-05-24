@@ -1,8 +1,33 @@
 # Function to check if the ip address is valid
 import ipaddress
 import re
+import yaml
 
 LOG_FILE_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/nornir.log"
+HOSTS_FILE_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/hosts.yaml"
+
+
+# Function to read the hosts.yaml file and get the data type variable
+def get_device_group_names():
+    with open(HOSTS_FILE_PATH, 'r') as file:
+        hosts = yaml.safe_load(file)
+    device_types = set()
+    for dev in hosts.values():
+        device_types.add(dev['data']['type'])
+    return list(device_types)
+
+
+# Function to read the hosts.yaml file
+def read_hosts_file():
+    with open(HOSTS_FILE_PATH, 'r') as file:
+        hosts = yaml.safe_load(file)
+    return hosts
+
+
+# Function to write the hosts.yaml file
+def write_hosts_file(hosts):
+    with open(HOSTS_FILE_PATH, 'w') as file:
+        yaml.safe_dump(hosts, file)
 
 
 def check_if_is_ip_address(ip):

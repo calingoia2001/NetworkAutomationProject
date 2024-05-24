@@ -12,7 +12,7 @@ import boto3
 from nornir import InitNornir
 from nornir_napalm.plugins.tasks import napalm_get
 from nornir.core.exceptions import NornirExecutionError
-from utils_functions.functions import check_if_is_ip_address
+from utils_functions.functions import check_if_is_ip_address, get_device_group_names
 
 # Constants
 BUCKET_NAME = 'backup-configs-bucket'                                          # AWS S3 bucket name
@@ -75,6 +75,7 @@ if __name__ == "__main__":
     current_time_formatted = '{:%d_%m_%Y_%H%M%S}'.format(current_time)  # format current date
 
     nr = initialize_nornir()
+    group_names = get_device_group_names()
     client = connect_to_s3()
 
     for host_name in nr.inventory.hosts.values():  # add username and password to hosts
@@ -87,7 +88,7 @@ if __name__ == "__main__":
         nr_filter = nr.filter(filter_func=lambda host: host.hostname == target)      # run backup task on specified ip
         nr_filter.run(task=backup_configs)  # run task
     else:
-        if target in ["switch", "router", "coresw"]:
+        if target in group_names:
             nr_filter = nr.filter(type=target)                     # filter by switch ("switch" or "coresw" or "router")
             nr_filter.run(task=backup_configs)  # run task
         else:

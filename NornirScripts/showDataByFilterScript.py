@@ -16,7 +16,7 @@ from nornir import InitNornir
 from nornir_netmiko.tasks import netmiko_send_command
 from nornir.core.exceptions import NornirExecutionError
 from tabulate import tabulate
-from utils_functions.functions import check_if_is_ip_address
+from utils_functions.functions import check_if_is_ip_address, get_device_group_names
 
 
 # Constants
@@ -131,6 +131,7 @@ if __name__ == "__main__":
     current_time_formatted = '{:%d_%m_%Y_%H%M%S}'.format(current_time)  # format current date
 
     nr = initialize_nornir()
+    group_names = get_device_group_names()
     client = connect_to_s3()
 
     for host_name in nr.inventory.hosts.values():  # add username and password to hosts
@@ -143,7 +144,7 @@ if __name__ == "__main__":
         nr_filter = nr.filter(filter_func=lambda host: host.hostname == target)      # run showdata task on specified ip
         results = nr_filter.run(task=showdata_byfilter)                                   # run task
     else:
-        if target in ["switch", "router", "coresw"]:
+        if target in get_device_group_names():
             nr_filter = nr.filter(type=target)                     # filter by switch ("switch" or "coresw" or "router")
             results = nr_filter.run(task=showdata_byfilter)             # run task
         else:
