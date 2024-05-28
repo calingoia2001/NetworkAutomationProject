@@ -4,13 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add complianceCheckConfigurationScript.py, remove config_test.yaml">
-      <change afterPath="$PROJECT_DIR$/NornirScripts/reader.txt" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="update complianceCheckConfigurationScript.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/complianceCheckConfigurationScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/complianceCheckConfigurationScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/hosts.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -276,14 +274,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00029" summary="add filter and window to testConnectionWithPingScript button">
-      <option name="closed" value="true" />
-      <created>1715179780933</created>
-      <option name="number" value="00029" />
-      <option name="presentableId" value="LOCAL-00029" />
-      <option name="project" value="LOCAL" />
-      <updated>1715179780933</updated>
     </task>
     <task id="LOCAL-00030" summary="delete textFSM.py">
       <option name="closed" value="true" />
@@ -669,7 +659,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716564440824</updated>
     </task>
-    <option name="localTasksCounter" value="78" />
+    <task id="LOCAL-00078" summary="update complianceCheckConfigurationScript.py">
+      <option name="closed" value="true" />
+      <created>1716921833590</created>
+      <option name="number" value="00078" />
+      <option name="presentableId" value="LOCAL-00078" />
+      <option name="project" value="LOCAL" />
+      <updated>1716921833591</updated>
+    </task>
+    <option name="localTasksCounter" value="79" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -717,7 +715,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add feature to ping specific ip address" />
     <MESSAGE value="add delete VLAN feature" />
     <MESSAGE value="add delete Loopback feature" />
     <MESSAGE value="add feature to back up config of specific device(by ip address)" />
@@ -742,7 +739,8 @@
     <MESSAGE value="add feature to parse last log from nornir.log and display it as message box" />
     <MESSAGE value="refactor some functions to functions.py" />
     <MESSAGE value="add complianceCheckConfigurationScript.py, remove config_test.yaml" />
-    <option name="LAST_COMMIT_MESSAGE" value="add complianceCheckConfigurationScript.py, remove config_test.yaml" />
+    <MESSAGE value="update complianceCheckConfigurationScript.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="update complianceCheckConfigurationScript.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

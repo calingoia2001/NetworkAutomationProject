@@ -9,12 +9,11 @@ import os
 import subprocess
 import logging
 
-
 # Create global variables
-global device, device_2, device_3, device_4
-global manage_devices_window, backup_window, showdata_window, pingtest_window, configure_window
-global entry_ip_showdata, entry_ip_backup, entry_ip_testping, entry_ip_configure
-credentials = {}                # Global variable to store credentials
+global device, device_2, device_3, device_4, device_5
+global manage_devices_window, backup_window, showdata_window, pingtest_window, configure_window, compliance_window
+global entry_ip_showdata, entry_ip_backup, entry_ip_testping, entry_ip_configure, entry_ip_compliance
+credentials = {}  # Global variable to store credentials
 
 # Define script paths
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -36,8 +35,8 @@ def display_last_log():
 
 # Function to go back to main menu
 def goback_main_menu(window):
-    window.destroy()            # destroy current window
-    root.deiconify()            # restore root window
+    window.destroy()  # destroy current window
+    root.deiconify()  # restore root window
 
 
 # Create a login window where the user must enter the username and password of devices
@@ -45,7 +44,7 @@ def login():
     global credentials
     login_window = Toplevel(root)
     login_window.title("Login")
-    login_window.iconbitmap('Assets/gui_icon.ico')          # GUI icon
+    login_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
     login_window.geometry("300x220")
 
     Label(login_window, text="Enter login credentials for devices").pack(pady=5)
@@ -68,11 +67,11 @@ def login():
             messagebox.showinfo("Login Success", "Logged in successfully!")
         else:
             messagebox.showerror("Error", "Please enter both username and password")
-            login_window.deiconify()            # restore login window
+            login_window.deiconify()  # restore login window
 
     def on_close():
         if not credentials:
-            root.destroy()              # close the main menu if the login window is closed without entering credentials
+            root.destroy()  # close the main menu if the login window is closed without entering credentials
 
     login_window.protocol("WM_DELETE_WINDOW", on_close)
     Button(login_window, text="Login", command=submit_login).pack(pady=20)
@@ -81,14 +80,14 @@ def login():
 
 def create_manage_devices_window():
     # Create manage devices window
-    root.withdraw()                             # withdraw the main menu
-    global manage_devices_window                # make manage_devices_window global ( to be used in goback() function )
-    manage_devices_window = Toplevel()          # need to use Toplevel() for a window that opens on another one
-    manage_devices_window.title("Manage Devices")                   # GUI title
-    manage_devices_window.iconbitmap('Assets/gui_icon.ico')         # GUI icon
-    manage_devices_window.geometry("400x350")                       # GUI size
+    root.withdraw()  # withdraw the main menu
+    global manage_devices_window  # make manage_devices_window global ( to be used in goback() function )
+    manage_devices_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
+    manage_devices_window.title("Manage Devices")  # GUI title
+    manage_devices_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
+    manage_devices_window.geometry("400x350")  # GUI size
 
-    hosts = read_hosts_file()                    # store devices names
+    hosts = read_hosts_file()  # store devices names
 
     def refresh_device_list():
         device_list.delete(0, END)
@@ -155,7 +154,8 @@ def create_manage_devices_window():
     button_delete_device.pack(pady=5)
 
     # Create a button to go back to main menu
-    button_goback = Button(manage_devices_window, text="Go back", command=lambda: goback_main_menu(manage_devices_window))
+    button_goback = Button(manage_devices_window, text="Go back",
+                           command=lambda: goback_main_menu(manage_devices_window))
     button_goback.pack(pady=10)
 
 
@@ -188,15 +188,15 @@ def restore_backup(device_type):
 
 
 def update_entry_backup(*args):
-    entry_ip_backup.delete(0, END)                        # clear the backup Entry widget
-    entry_ip_backup.insert(0, device.get())               # insert the selected device on Entry widget
+    entry_ip_backup.delete(0, END)  # clear the backup Entry widget
+    entry_ip_backup.insert(0, device.get())  # insert the selected device on Entry widget
 
 
 # Display the backup config window
 def create_backupconfig_window():
     # Create backup config window
     root.withdraw()  # withdraw the main menu
-    global backup_window  # make backup_window global ( to be used in goback() function )
+    global backup_window  # make backup_window global to be used in goback() function )
     backup_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
     backup_window.title("Backup config of devices")  # GUI title
     backup_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
@@ -215,7 +215,7 @@ def create_backupconfig_window():
     global device
     device = StringVar()
     device.set(group_names[0])  # default value for device type
-    device.trace('w', update_entry_backup)           # add trace to update Entry widget when value changes
+    device.trace('w', update_entry_backup)  # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
@@ -258,7 +258,8 @@ def run_script_showdata(device_type, show_command):
         # Create a Text widget to display the result
         text = Text(show_result_window, wrap="none")  # no text wrapping
         text.insert(END, result_str)
-        text.pack(expand=True, fill="both")  # allow to expand both horizontally and vertically to fill any available space
+        text.pack(expand=True,
+                  fill="both")  # allow to expand both horizontally and vertically to fill any available space
 
         # Create horizontal scrollbar
         scrollbar_horizontal = Scrollbar(show_result_window, orient=HORIZONTAL, command=text.xview)
@@ -273,15 +274,15 @@ def run_script_showdata(device_type, show_command):
 
 
 def update_entry_showdata(*args):
-    entry_ip_showdata.delete(0, END)                        # clear the showdata Entry widget
-    entry_ip_showdata.insert(0, device_2.get())             # insert the selected device on Entry widget
+    entry_ip_showdata.delete(0, END)  # clear the showdata Entry widget
+    entry_ip_showdata.insert(0, device_2.get())  # insert the selected device on Entry widget
 
 
 # Display the showdata window
 def create_showdata_window():
     # Create showdata window
     root.withdraw()  # withdraw the main menu
-    global showdata_window  # make showdata_window global ( to be used in goback()_2 function )
+    global showdata_window  # make showdata_window global to be used in goback() function )
     showdata_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
     showdata_window.title("Show Data of Devices")  # GUI title
     showdata_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
@@ -299,8 +300,8 @@ def create_showdata_window():
 
     global device_2
     device_2 = StringVar()
-    device_2.set(group_names[0])                                     # default value for device type
-    device_2.trace('w', update_entry_showdata)           # add trace to update Entry widget when value changes
+    device_2.set(group_names[0])  # default value for device type
+    device_2.trace('w', update_entry_showdata)  # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
@@ -352,15 +353,15 @@ def run_script_testconnection(device_type, ping_type):
 
 
 def update_entry_pingtest(*args):
-    entry_ip_testping.delete(0, END)                        # clear the backup Entry widget
-    entry_ip_testping.insert(0, device_3.get())             # insert the selected device on Entry widget
+    entry_ip_testping.delete(0, END)  # clear the backup Entry widget
+    entry_ip_testping.insert(0, device_3.get())  # insert the selected device on Entry widget
 
 
 # Display the pingtest window
 def create_pingtest_window():
     # Create pingtest window
     root.withdraw()  # withdraw the main menu
-    global pingtest_window  # make pingtest_window global ( to be used in goback()_3 function )
+    global pingtest_window  # make pingtest_window global ( to be used in goback() function )
     pingtest_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
     pingtest_window.title("Test Connection With Ping")  # GUI title
     pingtest_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
@@ -379,7 +380,7 @@ def create_pingtest_window():
     global device_3
     device_3 = StringVar()
     device_3.set(group_names[0])  # default value for device type
-    device_3.trace('w', update_entry_pingtest)           # add trace to update Entry widget when value changes
+    device_3.trace('w', update_entry_pingtest)  # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
@@ -429,15 +430,15 @@ def run_script_configure(device_type, configure_type, backup_config):
 
 
 def update_entry_configure(*args):
-    entry_ip_configure.delete(0, END)                        # clear the backup Entry widget
-    entry_ip_configure.insert(0, device_4.get())               # insert the selected device on Entry widget
+    entry_ip_configure.delete(0, END)  # clear the backup Entry widget
+    entry_ip_configure.insert(0, device_4.get())  # insert the selected device on Entry widget
 
 
 # Display the configure window
 def create_configure_window():
     # Create configure window
     root.withdraw()  # withdraw the main menu
-    global configure_window  # make configure_window global ( to be used in goback()_4 function )
+    global configure_window  # make configure_window global ( to be used in goback() function )
     configure_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
     configure_window.title("Configure Devices")  # GUI title
     configure_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
@@ -456,7 +457,7 @@ def create_configure_window():
     global device_4
     device_4 = StringVar()
     device_4.set(group_names[0])  # default value for device type
-    device_4.trace('w', update_entry_configure)           # add trace to update Entry widget when value changes
+    device_4.trace('w', update_entry_configure)  # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
@@ -468,17 +469,20 @@ def create_configure_window():
     entry_ip_configure.pack()
 
     def get_num_vlans(action):
-        num_vlans = simpledialog.askinteger("Input", f"Enter the number of VLANs you want to create/delete:", minvalue=1, maxvalue=100)
+        num_vlans = simpledialog.askinteger("Input", f"Enter the number of VLANs you want to create/delete:",
+                                            minvalue=1, maxvalue=100)
         run_script_configure(entry_ip_configure.get(), action, str(num_vlans))
 
     # Create a button to run the addNewConfig script with loopback as sys.argv[4]
     button_configuration_loopback = Button(configure_window, text="Create Loopback Interface",
-                                           command=lambda: run_script_configure(entry_ip_configure.get(), "loopback", ""))
+                                           command=lambda: run_script_configure(entry_ip_configure.get(), "loopback",
+                                                                                ""))
     button_configuration_loopback.pack(pady=10)
 
     # Create a button to run the addNewConfig script with noloopback as sys.argv[4]
     button_configuration_noloopback = Button(configure_window, text="Delete Loopback Interface",
-                                             command=lambda: run_script_configure(entry_ip_configure.get(), "noloopback", ""))
+                                             command=lambda: run_script_configure(entry_ip_configure.get(),
+                                                                                  "noloopback", ""))
     button_configuration_noloopback.pack(pady=10)
 
     # Create a button to run the addNewConfig script with vlan as sys.argv[4]
@@ -499,14 +503,78 @@ def create_configure_window():
     button_goback.pack(pady=10)
 
 
+# Call addNewConfig script and show a message with the result
+def run_script_compliance(device_type):
+    try:
+        result = subprocess.check_output(
+            [os.path.join(base_dir, '.venv/Scripts/python.exe'),
+             os.path.join(scripts_dir, 'complianceCheckConfigurationScript.py'),
+             credentials['username'], credentials['password'], device_type])
+        messagebox.showinfo("Compliance Check", result.decode('utf-8'))
+    except subprocess.CalledProcessError as e:
+        messagebox.showerror("Error", f"An error occurred: {e}")
+        logging.error(f"Error during compliance check of device: {e}")
+    finally:
+        display_last_log()
+
+
+def update_entry_compliance(*args):
+    entry_ip_compliance.delete(0, END)  # clear the compliance Entry widget
+    entry_ip_compliance.insert(0, device_5.get())  # insert the selected device on Entry widget
+
+
+# Display the compliance window
+def create_compliance_window():
+    # Create compliance window
+    root.withdraw()  # withdraw the main menu
+    global compliance_window  # make compliance_window global ( to be used in goback function )
+    compliance_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
+    compliance_window.title("Compliance Check")  # GUI title
+    compliance_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
+    compliance_window.geometry("400x450")  # GUI size
+
+    # Create select text
+    select_text = Label(compliance_window, text='Select which group of devices you want to check', font=font_style)
+    select_text.pack()
+
+    select_text_2 = Label(compliance_window, text='or enter device ip address', font=font_style)
+    select_text_2.pack()
+
+    # Create a list of group names
+    group_names = get_device_group_names()
+
+    global device_5
+    device_5 = StringVar()
+    device_5.set(group_names[0])  # default value for device type
+    device_5.trace('w', update_entry_compliance)  # add trace to update Entry widget when value changes
+
+    # Loop trough list to create radio buttons based on the list
+    for group_name in group_names:
+        Radiobutton(compliance_window, text=group_name, variable=device_5, value=group_name).pack()
+
+    # Create entry widget to enter ip address to configure
+    global entry_ip_compliance
+    entry_ip_compliance = Entry(compliance_window, font=font_style)
+    entry_ip_compliance.pack()
+
+    # Create a button to run the complianceCheckConfiguration script
+    button_compliance_check = Button(compliance_window, text="Compliance Check",
+                                     command=lambda: run_script_compliance(entry_ip_compliance.get()))
+    button_compliance_check.pack(padx=10, pady=10)
+
+    # Create a button to go back to main menu
+    button_goback = Button(compliance_window, text="Go back", command=lambda: goback_main_menu(compliance_window))
+    button_goback.pack(pady=10)
+
+
 if __name__ == "__main__":
     # Create the main window of the GUI
     root = Tk()
     root.title("Network Automation Project")  # GUI title
     root.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    root.geometry("400x350")  # GUI size
+    root.geometry("400x370")  # GUI size
 
-    login()                 # Call function to log in before accessing the main GUI
+    login()  # Call function to log in before accessing the main GUI
 
     # Create buttons and text for main menu
 
@@ -533,6 +601,10 @@ if __name__ == "__main__":
     # Create a button to display configure window
     button_configure = Button(root, text="Configure Devices", command=create_configure_window)
     button_configure.pack(pady=10)
+
+    # Create a button to display compliance check window
+    button_compliance = Button(root, text="Compliance Check", command=create_compliance_window)
+    button_compliance.pack(pady=10)
 
     # Create a button to close the GUI
     button_exit = Button(root, text="Exit", command=root.destroy)

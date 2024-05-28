@@ -2,7 +2,6 @@
 This script is designed to:
     -> automate compliance check of configuration of network devices using Nornir Napalm validate task
 """
-import os
 import sys
 import threading
 from nornir import InitNornir
@@ -11,6 +10,7 @@ from nornir_utils.plugins.functions import print_title
 from colorama import Fore, Style
 
 CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml"
+READER_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/reader.txt"
 
 
 def initialize_nornir():
@@ -54,7 +54,7 @@ if __name__ == "__main__":
         host_name.username = sys.argv[1]
         host_name.password = sys.argv[2]
 
-    with open('reader.txt', 'r') as f:
+    with open(READER_PATH, 'r') as f:
         filelines = f.readlines()
 
     results = nr.run(task=runner)
