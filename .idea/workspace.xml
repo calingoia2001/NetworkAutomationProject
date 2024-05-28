@@ -4,12 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="refactor some functions to functions.py">
-      <change afterPath="$PROJECT_DIR$/NornirScripts/complianceCheckConfigurationScript.py" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add complianceCheckConfigurationScript.py, remove config_test.yaml">
+      <change afterPath="$PROJECT_DIR$/NornirScripts/reader.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/config_test.yaml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/complianceCheckConfigurationScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/complianceCheckConfigurationScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/hosts.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,31 +51,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.Jinja2Demo.executor": "Run",
-    "Python.MainGUI.executor": "Run",
-    "Python.addNewConfig.executor": "Run",
-    "Python.backupConfig.executor": "Run",
-    "Python.complianceCheckConfigurationScript.executor": "Run",
-    "Python.jinja2Test.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.napalmTest.executor": "Run",
-    "Python.netmikoScript.executor": "Run",
-    "Python.showDataByFilter.executor": "Run",
-    "Python.showDataByFilterScript.executor": "Run",
-    "Python.testConnectionWithPing.executor": "Run",
-    "Python.testFSM.executor": "Run",
-    "Python.testnetmiko.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/Archive",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.Jinja2Demo.executor&quot;: &quot;Run&quot;,
+    &quot;Python.MainGUI.executor&quot;: &quot;Run&quot;,
+    &quot;Python.addNewConfig.executor&quot;: &quot;Run&quot;,
+    &quot;Python.backupConfig.executor&quot;: &quot;Run&quot;,
+    &quot;Python.complianceCheckConfigurationScript.executor&quot;: &quot;Run&quot;,
+    &quot;Python.jinja2Test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.napalmTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python.netmikoScript.executor&quot;: &quot;Run&quot;,
+    &quot;Python.showDataByFilter.executor&quot;: &quot;Run&quot;,
+    &quot;Python.showDataByFilterScript.executor&quot;: &quot;Run&quot;,
+    &quot;Python.testConnectionWithPing.executor&quot;: &quot;Run&quot;,
+    &quot;Python.testFSM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.testnetmiko.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/Archive&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\Archive" />
@@ -88,7 +89,7 @@
       <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\Archive" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.complianceCheckConfigurationScript">
+  <component name="RunManager" selected="Python.MainGUI">
     <configuration name="MainGUI" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
       <module name="NetworkAutomationProject" />
       <option name="ENV_FILES" value="" />
@@ -254,8 +255,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.complianceCheckConfigurationScript" />
         <item itemvalue="Python.MainGUI" />
+        <item itemvalue="Python.complianceCheckConfigurationScript" />
         <item itemvalue="Python.jinja2Test" />
       </list>
     </recent_temporary>
@@ -275,14 +276,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00028" summary="add config_test.yaml to fix the show version on acces switches(for now)">
-      <option name="closed" value="true" />
-      <created>1715179703863</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1715179703863</updated>
     </task>
     <task id="LOCAL-00029" summary="add filter and window to testConnectionWithPingScript button">
       <option name="closed" value="true" />
@@ -668,7 +661,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716559233655</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="add complianceCheckConfigurationScript.py, remove config_test.yaml">
+      <option name="closed" value="true" />
+      <created>1716564440824</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1716564440824</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -716,7 +717,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add font_style and add label enter ip address/website to ping window" />
     <MESSAGE value="add feature to ping specific ip address" />
     <MESSAGE value="add delete VLAN feature" />
     <MESSAGE value="add delete Loopback feature" />
@@ -741,7 +741,8 @@
     <MESSAGE value="add feature so the user can enter the number of vlans he wants to create" />
     <MESSAGE value="add feature to parse last log from nornir.log and display it as message box" />
     <MESSAGE value="refactor some functions to functions.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor some functions to functions.py" />
+    <MESSAGE value="add complianceCheckConfigurationScript.py, remove config_test.yaml" />
+    <option name="LAST_COMMIT_MESSAGE" value="add complianceCheckConfigurationScript.py, remove config_test.yaml" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
