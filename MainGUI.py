@@ -531,7 +531,7 @@ def create_compliance_window():
     compliance_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
     compliance_window.title("Compliance Check")  # GUI title
     compliance_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    compliance_window.geometry("400x450")  # GUI size
+    compliance_window.geometry("400x250")  # GUI size
 
     # Create select text
     select_text = Label(compliance_window, text='Select which group of devices you want to check', font=font_style)
