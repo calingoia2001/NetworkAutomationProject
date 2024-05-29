@@ -23,7 +23,7 @@ base_dir = os.path.dirname(os.path.abspath(__file__))
 scripts_dir = os.path.join(base_dir, 'NornirScripts')
 
 # Define the font size and style
-font_style = ("Helvetica", 12)
+font_style = ("Helvetica", 15)
 font_style_2 = ("Helvetica", 10)
 
 # Setup logging
@@ -33,7 +33,16 @@ logging.basicConfig(filename='gui.log', level=logging.INFO, format='%(asctime)s 
 # Display last nornir.log
 def display_last_log():
     log_output = get_last_log_entry()
-    CTkMessagebox(title="Last Log Entry", message=log_output)
+    CTkMessagebox(title="Last Log Entry", message=log_output, fade_in_duration=1)
+
+
+def exit_app():
+    msg = CTkMessagebox(title="Exit", message="Are you sure you want to close the program?",
+                        icon="question", option_1="Cancel", option_2="Yes")
+    response = msg.get()
+
+    if response == "Yes":
+        root.destroy()
 
 
 # Function to go back to main menu
@@ -47,10 +56,10 @@ def login():
     global credentials
     login_window = customtkinter.CTkToplevel(root)
     login_window.title("Login")
-    login_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
+    login_window.after(201, lambda: login_window.iconbitmap('Assets/login.ico'))  # GUI icon
     login_window.geometry("300x250")
 
-    customtkinter.CTkLabel(login_window, text="Enter login credentials for devices").pack(pady=5)
+    customtkinter.CTkLabel(login_window, text="Enter login credentials for devices:").pack(pady=5)
 
     customtkinter.CTkLabel(login_window, text="Username:").pack(pady=5)
     entry_username = customtkinter.CTkEntry(login_window)
@@ -67,7 +76,8 @@ def login():
             credentials['username'] = username
             credentials['password'] = password
             login_window.destroy()
-            CTkMessagebox(title="Login", message="Logged in successfully!", icon="check", option_1="Ok")
+            CTkMessagebox(title="Login", message="Logged in successfully!", icon="check", option_1="Ok",
+                          fade_in_duration=1)
         else:
             CTkMessagebox(title="Error", message="Please enter both username and password", icon="cancel",
                           option_1="Ok")
@@ -88,7 +98,7 @@ def create_manage_devices_window():
     global manage_devices_window  # make manage_devices_window global ( to be used in goback() function )
     manage_devices_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
     manage_devices_window.title("Manage Devices")  # GUI title
-    manage_devices_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
+    manage_devices_window.after(201, lambda: manage_devices_window.iconbitmap('Assets/router.ico'))  # GUI icon
     manage_devices_window.geometry("400x350")  # GUI size
 
     hosts = read_hosts_file()  # store devices names
@@ -160,7 +170,7 @@ def create_manage_devices_window():
     # Create a button to go back to main menu
     button_goback = customtkinter.CTkButton(manage_devices_window, text="Go back",
                                             command=lambda: goback_main_menu(manage_devices_window))
-    button_goback.pack(pady=10)
+    button_goback.pack(pady=5)
 
 
 # Function to call backupConfig script and show a message box with the result
@@ -170,7 +180,7 @@ def run_script_backupconfig(device_type):
             [os.path.join(base_dir, '.venv/Scripts/python.exe'),
              os.path.join(scripts_dir, 'backupConfigScript.py'),
              credentials['username'], credentials['password'], device_type])
-        CTkMessagebox(title="Backup configuration state", message=result.decode('utf-8'))
+        CTkMessagebox(title="Backup configuration state", message=result.decode('utf-8'), fade_in_duration=1)
     except subprocess.CalledProcessError as e:
         CTkMessagebox(title="Error", message=f"An error occurred: {e}", icon="cancel")
         logging.error(f"Error during backup configuration: {e}")
@@ -202,17 +212,14 @@ def create_backupconfig_window():
     root.withdraw()  # withdraw the main menu
     global backup_window  # make backup_window global to be used in goback() function )
     backup_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
-    backup_window.title("Backup config of devices")  # GUI title
-    backup_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
+    backup_window.title("Backup running configuration of devices")  # GUI title
+    backup_window.after(201, lambda: backup_window.iconbitmap('Assets/router.ico'))  # GUI icon
     backup_window.geometry("400x350")  # GUI size
 
     # Create select text
-    select_text = customtkinter.CTkLabel(backup_window, text='Select which group of devices you want to backup',
+    select_text = customtkinter.CTkLabel(backup_window, text='Select which group of devices you want to backup \n or enter device ip address:',
                                          font=font_style)
-    select_text.pack()
-
-    select_text_2 = customtkinter.CTkLabel(backup_window, text='or enter device ip address:', font=font_style)
-    select_text_2.pack()
+    select_text.pack(pady=10)
 
     # Create a list of group names
     group_names = get_device_group_names()
@@ -224,12 +231,12 @@ def create_backupconfig_window():
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
-        customtkinter.CTkRadioButton(backup_window, text=group_name, variable=device, value=group_name).pack()
+        customtkinter.CTkRadioButton(backup_window, text=group_name, variable=device, value=group_name).pack(pady=5)
 
     # Create entry widget to enter ip address to back up
     global entry_ip_backup
     entry_ip_backup = customtkinter.CTkEntry(backup_window, font=font_style)
-    entry_ip_backup.pack()
+    entry_ip_backup.pack(pady=10)
 
     # Create backup button to back up config of specific device
     button_backup_device = customtkinter.CTkButton(backup_window, text="Backup running configuration",
@@ -594,11 +601,11 @@ def create_compliance_window():
 if __name__ == "__main__":
     # Create the main window of the GUI
     root = customtkinter.CTk()
-    root.title("Network Automation Project")  # GUI title
-    root.iconbitmap('Assets/gui_icon.ico')  # GUI icon
+    root.title("Network Automation Platform")  # GUI title
+    root.iconbitmap('Assets/router.ico')  # GUI icon
     root.geometry("400x400")  # GUI size
     customtkinter.set_appearance_mode("dark")  # theme of app
-    customtkinter.set_default_color_theme("green")  # theme of components
+    customtkinter.set_default_color_theme('Assets/TkinterThemes/GhostTrain.json')  # theme of components
 
     login()  # Call function to log in before accessing the main GUI
 
@@ -609,20 +616,20 @@ if __name__ == "__main__":
     button_manage_devices.pack(pady=10)
 
     # Create select button text
-    select_button_text = customtkinter.CTkLabel(root, text='Select a task to automate', font=font_style)
+    select_button_text = customtkinter.CTkLabel(root, text='Please select a task you want to automate:', font=font_style)
     select_button_text.pack(pady=10)
 
     # Create a button to display backupConfig window
-    button_backup = customtkinter.CTkButton(root, text="Backup Configuration of Devices",
+    button_backup = customtkinter.CTkButton(root, text="Backup Configuration",
                                             command=create_backupconfig_window)
     button_backup.pack(pady=10)
 
     # Create a button to display showdata window
-    button_showData = customtkinter.CTkButton(root, text="Show Data of Devices", command=create_showdata_window)
+    button_showData = customtkinter.CTkButton(root, text="Show Data", command=create_showdata_window)
     button_showData.pack(pady=10)
 
     # Create a button to display pingtest window
-    button_pingtest = customtkinter.CTkButton(root, text="Test Connection With Ping", command=create_pingtest_window)
+    button_pingtest = customtkinter.CTkButton(root, text="Test Connection", command=create_pingtest_window)
     button_pingtest.pack(pady=10)
 
     # Create a button to display configure window
@@ -634,7 +641,7 @@ if __name__ == "__main__":
     button_compliance.pack(pady=10)
 
     # Create a button to close the GUI
-    button_exit = customtkinter.CTkButton(root, text="Exit", command=root.destroy)
+    button_exit = customtkinter.CTkButton(root, text="Exit", command=exit_app)
     button_exit.pack(pady=10)
 
     # Run the Tkinter event loop
