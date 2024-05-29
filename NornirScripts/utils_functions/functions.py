@@ -4,7 +4,7 @@ import re
 import yaml
 
 LOG_FILE_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/nornir.log"
-HOSTS_FILE_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/hosts.yaml"
+HOSTS_FILE_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ConfigFiles/hosts.yaml"
 
 
 # Function to read the hosts.yaml file and get the data type variable

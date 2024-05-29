@@ -8,8 +8,8 @@ from nornir import InitNornir
 from nornir_napalm.plugins.tasks import napalm_get
 from utils_functions.functions import check_if_is_ip_address, get_device_group_names
 
-CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml"
-READER_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/reader.txt"
+CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ConfigFiles/config.yaml"
+READER_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ConfigFiles/reader.txt"
 
 
 def initialize_nornir():

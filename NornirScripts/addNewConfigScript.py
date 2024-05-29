@@ -14,9 +14,9 @@ from nornir.core.exceptions import NornirExecutionError
 from utils_functions.functions import check_if_is_ip_address, get_device_group_names
 
 # Constants
-CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml"
-LOOPBACK_CONFIG_FILE = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config_file_loopback.txt"
-NO_LOOPBACK_CONFIG_FILE = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config_file_remove_loopback.txt"
+CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ConfigFiles/config.yaml"
+LOOPBACK_CONFIG_FILE = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ConfigFiles/config_file_loopback.txt"
+NO_LOOPBACK_CONFIG_FILE = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ConfigFiles/config_file_remove_loopback.txt"
 
 
 def initialize_nornir():

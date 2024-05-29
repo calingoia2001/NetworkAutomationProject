@@ -11,7 +11,7 @@ from nornir.core.exceptions import NornirExecutionError
 from utils_functions.functions import check_if_is_ip_address, get_device_group_names
 
 # Constant
-CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml"
+CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ConfigFiles/config.yaml"
 
 
 def initialize_nornir():

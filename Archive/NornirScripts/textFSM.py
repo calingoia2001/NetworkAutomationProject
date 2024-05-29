@@ -5,7 +5,7 @@ from nornir_netmiko.tasks import netmiko_send_command
 from operator import itemgetter
 from rich import print as rprint
 
-nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")
+nr = InitNornir(config_file="/NornirScripts/ConfigFiles/config.yaml")
 
 for host in nr.inventory.hosts.values():          # use sys arg to enter username and password
     host.username = sys.argv[1]

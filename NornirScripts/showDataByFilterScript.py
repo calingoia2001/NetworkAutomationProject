@@ -21,7 +21,7 @@ from utils_functions.functions import check_if_is_ip_address, get_device_group_n
 
 # Constants
 BUCKET_NAME = 'backup-configs-bucket'                                          # AWS S3 bucket name
-CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml"
+CONFIG_PATH = "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ConfigFiles/config.yaml"
 SAVE_PATH = 'D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/ShowDataBackup'
 
 

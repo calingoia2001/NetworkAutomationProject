@@ -8,7 +8,7 @@ from nornir_napalm.plugins.tasks import napalm_get
 current_time = datetime.datetime.now().replace(microsecond=0)  # get the current date
 current_time_formatted = '{:%d_%m_%Y_%H%M%S}'.format(current_time)  # format current date
 
-nr = InitNornir(config_file="D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/config.yaml")  # init the config.yaml
+nr = InitNornir(config_file="/NornirScripts/ConfigFiles/config.yaml")  # init the config.yaml
 
 for host in nr.inventory.hosts.values():  # use sys arg to enter username and password
     host.username = sys.argv[1]
