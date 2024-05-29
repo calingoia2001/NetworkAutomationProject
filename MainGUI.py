@@ -1,8 +1,10 @@
 # The GUI of the Network Automation Project
 from tkinter import *
 from tkinter import messagebox
-from tkinter import filedialog
 from tkinter import simpledialog
+from tkinter import filedialog
+from CTkMessagebox import CTkMessagebox
+from CTkListbox import *
 from NornirScripts.utils_functions.functions import get_last_log_entry
 from NornirScripts.utils_functions.functions import get_device_group_names, read_hosts_file, write_hosts_file
 import customtkinter
@@ -31,7 +33,7 @@ logging.basicConfig(filename='gui.log', level=logging.INFO, format='%(asctime)s 
 # Display last nornir.log
 def display_last_log():
     log_output = get_last_log_entry()
-    messagebox.showinfo("Last Log Entry", log_output)
+    CTkMessagebox(title="Last Log Entry", message=log_output)
 
 
 # Function to go back to main menu
@@ -43,19 +45,19 @@ def goback_main_menu(window):
 # Create a login window where the user must enter the username and password of devices
 def login():
     global credentials
-    login_window = Toplevel(root)
+    login_window = customtkinter.CTkToplevel(root)
     login_window.title("Login")
     login_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    login_window.geometry("300x220")
+    login_window.geometry("300x250")
 
-    Label(login_window, text="Enter login credentials for devices").pack(pady=5)
+    customtkinter.CTkLabel(login_window, text="Enter login credentials for devices").pack(pady=5)
 
-    Label(login_window, text="Username:").pack(pady=5)
-    entry_username = Entry(login_window)
+    customtkinter.CTkLabel(login_window, text="Username:").pack(pady=5)
+    entry_username = customtkinter.CTkEntry(login_window)
     entry_username.pack(pady=5)
 
-    Label(login_window, text="Password:").pack(pady=5)
-    entry_password = Entry(login_window, show="*")
+    customtkinter.CTkLabel(login_window, text="Password:").pack(pady=5)
+    entry_password = customtkinter.CTkEntry(login_window, show="*")
     entry_password.pack(pady=5)
 
     def submit_login():
@@ -65,9 +67,10 @@ def login():
             credentials['username'] = username
             credentials['password'] = password
             login_window.destroy()
-            messagebox.showinfo("Login Success", "Logged in successfully!")
+            CTkMessagebox(title="Login", message="Logged in successfully!", icon="check", option_1="Ok")
         else:
-            messagebox.showerror("Error", "Please enter both username and password")
+            CTkMessagebox(title="Error", message="Please enter both username and password", icon="cancel",
+                          option_1="Ok")
             login_window.deiconify()  # restore login window
 
     def on_close():
@@ -75,7 +78,7 @@ def login():
             root.destroy()  # close the main menu if the login window is closed without entering credentials
 
     login_window.protocol("WM_DELETE_WINDOW", on_close)
-    Button(login_window, text="Login", command=submit_login).pack(pady=20)
+    customtkinter.CTkButton(login_window, text="Login", command=submit_login).pack(pady=20)
     root.wait_window(login_window)
 
 
@@ -83,7 +86,7 @@ def create_manage_devices_window():
     # Create manage devices window
     root.withdraw()  # withdraw the main menu
     global manage_devices_window  # make manage_devices_window global ( to be used in goback() function )
-    manage_devices_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
+    manage_devices_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
     manage_devices_window.title("Manage Devices")  # GUI title
     manage_devices_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
     manage_devices_window.geometry("400x350")  # GUI size
@@ -113,7 +116,7 @@ def create_manage_devices_window():
                 refresh_device_list()
 
     def edit_device():
-        selected_device = device_list.get(ACTIVE)
+        selected_device = device_list.get()
         if selected_device:
             device_name = hosts[selected_device]
             hostname = simpledialog.askstring("Input", "Enter IP address:", initialvalue=device_name['hostname'])
@@ -131,32 +134,32 @@ def create_manage_devices_window():
                 refresh_device_list()
 
     def delete_device():
-        selected_device = device_list.get(ACTIVE)
+        selected_device = device_list.get()
         if selected_device:
             del hosts[selected_device]
             write_hosts_file(hosts)
             refresh_device_list()
 
     # Create a device_list Listbox and store device names in the variable
-    device_list = Listbox(manage_devices_window)
+    device_list = CTkListbox(manage_devices_window)
     device_list.pack(fill=BOTH, expand=True)
     refresh_device_list()
 
     # Create a button to add new device to hosts.yaml
-    button_add_device = Button(manage_devices_window, text="Add Device", command=add_new_device)
+    button_add_device = customtkinter.CTkButton(manage_devices_window, text="Add Device", command=add_new_device)
     button_add_device.pack(pady=5)
 
     # Create a button to edit device from hosts.yaml
-    button_edit_device = Button(manage_devices_window, text="Edit Device", command=edit_device)
+    button_edit_device = customtkinter.CTkButton(manage_devices_window, text="Edit Device", command=edit_device)
     button_edit_device.pack(pady=5)
 
     # Create a button to delete device from hosts.yaml
-    button_delete_device = Button(manage_devices_window, text="Delete Device", command=delete_device)
+    button_delete_device = customtkinter.CTkButton(manage_devices_window, text="Delete Device", command=delete_device)
     button_delete_device.pack(pady=5)
 
     # Create a button to go back to main menu
-    button_goback = Button(manage_devices_window, text="Go back",
-                           command=lambda: goback_main_menu(manage_devices_window))
+    button_goback = customtkinter.CTkButton(manage_devices_window, text="Go back",
+                                            command=lambda: goback_main_menu(manage_devices_window))
     button_goback.pack(pady=10)
 
 
@@ -167,9 +170,9 @@ def run_script_backupconfig(device_type):
             [os.path.join(base_dir, '.venv/Scripts/python.exe'),
              os.path.join(scripts_dir, 'backupConfigScript.py'),
              credentials['username'], credentials['password'], device_type])
-        messagebox.showinfo("Backup configuration state", result.decode('utf-8'))
+        CTkMessagebox(title="Backup configuration state", message=result.decode('utf-8'))
     except subprocess.CalledProcessError as e:
-        messagebox.showerror("Error", f"An error occurred: {e}")
+        CTkMessagebox(title="Error", message=f"An error occurred: {e}", icon="cancel")
         logging.error(f"Error during backup configuration: {e}")
     finally:
         display_last_log()
@@ -183,7 +186,7 @@ def restore_backup(device_type):
         title="Select backup configuration file",
         filetypes=(("Text files", "*.txt"), ("All files", "*.*")))
     if not file_path:
-        messagebox.showerror("Error", "Please select a file!")
+        CTkMessagebox(title="Error", message="Please select a file!", icon="cancel")
     else:
         run_script_configure(device_type, "restore", file_path)  # call function to add new config
 
@@ -198,16 +201,17 @@ def create_backupconfig_window():
     # Create backup config window
     root.withdraw()  # withdraw the main menu
     global backup_window  # make backup_window global to be used in goback() function )
-    backup_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
+    backup_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
     backup_window.title("Backup config of devices")  # GUI title
     backup_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    backup_window.geometry("400x300")  # GUI size
+    backup_window.geometry("400x350")  # GUI size
 
     # Create select text
-    select_text = Label(backup_window, text='Select which group of devices you want to backup', font=font_style)
+    select_text = customtkinter.CTkLabel(backup_window, text='Select which group of devices you want to backup',
+                                         font=font_style)
     select_text.pack()
 
-    select_text_2 = Label(backup_window, text='or enter device ip address:', font=font_style)
+    select_text_2 = customtkinter.CTkLabel(backup_window, text='or enter device ip address:', font=font_style)
     select_text_2.pack()
 
     # Create a list of group names
@@ -220,25 +224,26 @@ def create_backupconfig_window():
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
-        Radiobutton(backup_window, text=group_name, variable=device, value=group_name).pack()
+        customtkinter.CTkRadioButton(backup_window, text=group_name, variable=device, value=group_name).pack()
 
     # Create entry widget to enter ip address to back up
     global entry_ip_backup
-    entry_ip_backup = Entry(backup_window, font=font_style)
+    entry_ip_backup = customtkinter.CTkEntry(backup_window, font=font_style)
     entry_ip_backup.pack()
 
     # Create backup button to back up config of specific device
-    button_backup_device = Button(backup_window, text="Backup running configuration",
-                                  command=lambda: run_script_backupconfig(entry_ip_backup.get()))
+    button_backup_device = customtkinter.CTkButton(backup_window, text="Backup running configuration",
+                                                   command=lambda: run_script_backupconfig(entry_ip_backup.get()))
     button_backup_device.pack(pady=10)
 
     # Create a button to run the backupConfig script and restore most recent backup
-    button_config = Button(backup_window, text="Restore most recent backup",
-                           command=lambda: restore_backup(entry_ip_backup.get()))
+    button_config = customtkinter.CTkButton(backup_window, text="Restore most recent backup",
+                                            command=lambda: restore_backup(entry_ip_backup.get()))
     button_config.pack(pady=10)
 
     # Create a button to go back to main menu
-    button_goback = Button(backup_window, text="Go back", command=lambda: goback_main_menu(backup_window))
+    button_goback = customtkinter.CTkButton(backup_window, text="Go back",
+                                            command=lambda: goback_main_menu(backup_window))
     button_goback.pack(pady=10)
 
 
@@ -570,45 +575,48 @@ def create_compliance_window():
 
 if __name__ == "__main__":
     # Create the main window of the GUI
-    root = Tk()
+    root = customtkinter.CTk()
     root.title("Network Automation Project")  # GUI title
     root.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    root.geometry("400x370")  # GUI size
+    root.geometry("400x400")  # GUI size
+    customtkinter.set_appearance_mode("dark")  # theme of app
+    customtkinter.set_default_color_theme("green")  # theme of components
 
     login()  # Call function to log in before accessing the main GUI
 
     # Create buttons and text for main menu
 
     # Create a button to display manageDevices window
-    button_manage_devices = Button(root, text="Manage Devices", command=create_manage_devices_window)
+    button_manage_devices = customtkinter.CTkButton(root, text="Manage Devices", command=create_manage_devices_window)
     button_manage_devices.pack(pady=10)
 
     # Create select button text
-    select_button_text = Label(root, text='Select a task to automate', font=font_style)
+    select_button_text = customtkinter.CTkLabel(root, text='Select a task to automate', font=font_style)
     select_button_text.pack(pady=10)
 
     # Create a button to display backupConfig window
-    button_backup = Button(root, text="Backup Configuration of Devices", command=create_backupconfig_window)
+    button_backup = customtkinter.CTkButton(root, text="Backup Configuration of Devices",
+                                            command=create_backupconfig_window)
     button_backup.pack(pady=10)
 
     # Create a button to display showdata window
-    button_showData = Button(root, text="Show Data of Devices", command=create_showdata_window)
+    button_showData = customtkinter.CTkButton(root, text="Show Data of Devices", command=create_showdata_window)
     button_showData.pack(pady=10)
 
     # Create a button to display pingtest window
-    button_pingtest = Button(root, text="Test Connection With Ping", command=create_pingtest_window)
+    button_pingtest = customtkinter.CTkButton(root, text="Test Connection With Ping", command=create_pingtest_window)
     button_pingtest.pack(pady=10)
 
     # Create a button to display configure window
-    button_configure = Button(root, text="Configure Devices", command=create_configure_window)
+    button_configure = customtkinter.CTkButton(root, text="Configure Devices", command=create_configure_window)
     button_configure.pack(pady=10)
 
     # Create a button to display compliance check window
-    button_compliance = Button(root, text="Compliance Check", command=create_compliance_window)
+    button_compliance = customtkinter.CTkButton(root, text="Compliance Check", command=create_compliance_window)
     button_compliance.pack(pady=10)
 
     # Create a button to close the GUI
-    button_exit = Button(root, text="Exit", command=root.destroy)
+    button_exit = customtkinter.CTkButton(root, text="Exit", command=root.destroy)
     button_exit.pack(pady=10)
 
     # Run the Tkinter event loop

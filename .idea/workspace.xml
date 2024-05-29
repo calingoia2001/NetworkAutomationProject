@@ -4,13 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="refactor config files">
-      <change beforePath="$PROJECT_DIR$/.idea/csv-editor.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/csv-editor.xml" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="fixed warning on complianceCheckConfigurationScript.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/ConfigFiles/reader.txt" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/ConfigFiles/reader.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/complianceCheckConfigurationScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/complianceCheckConfigurationScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/ConfigFiles/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/ConfigFiles/hosts.yaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,14 +279,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00033" summary="add new buttons to configure window and changed the functionality of the addNewConfigScript.py">
-      <option name="closed" value="true" />
-      <created>1715254534018</created>
-      <option name="number" value="00033" />
-      <option name="presentableId" value="LOCAL-00033" />
-      <option name="project" value="LOCAL" />
-      <updated>1715254534018</updated>
     </task>
     <task id="LOCAL-00034" summary="add jinja2Test.py for testing purposes">
       <option name="closed" value="true" />
@@ -673,7 +664,15 @@
       <option name="project" value="LOCAL" />
       <updated>1716971014816</updated>
     </task>
-    <option name="localTasksCounter" value="82" />
+    <task id="LOCAL-00082" summary="fixed warning on complianceCheckConfigurationScript.py">
+      <option name="closed" value="true" />
+      <created>1716988301434</created>
+      <option name="number" value="00082" />
+      <option name="presentableId" value="LOCAL-00082" />
+      <option name="project" value="LOCAL" />
+      <updated>1716988301435</updated>
+    </task>
+    <option name="localTasksCounter" value="83" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -721,7 +720,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add feature to show data of specific ip address" />
     <MESSAGE value="fix backup window do dynamically update entry when selecting a group of device" />
     <MESSAGE value="add feature to ping from a specific IP address" />
     <MESSAGE value="add feature to configure a device by a specific IP address" />
@@ -746,7 +744,8 @@
     <MESSAGE value="add compliance check feature to the GUI" />
     <MESSAGE value="add filter feature to complianceCheckConfigurationScript.py" />
     <MESSAGE value="refactor config files" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor config files" />
+    <MESSAGE value="fixed warning on complianceCheckConfigurationScript.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixed warning on complianceCheckConfigurationScript.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
