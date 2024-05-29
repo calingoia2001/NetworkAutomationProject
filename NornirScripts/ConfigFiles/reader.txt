@@ -1,1 +1,8 @@
 username calin privilege 15 password 0 cisco
+ip name-server 8.8.8.8
+ip scp server enable
+no ip http server
+no ip http secure-server
+line vty 0 4
+ login local
+ transport input ssh

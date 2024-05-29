@@ -5,6 +5,7 @@ from tkinter import filedialog
 from tkinter import simpledialog
 from NornirScripts.utils_functions.functions import get_last_log_entry
 from NornirScripts.utils_functions.functions import get_device_group_names, read_hosts_file, write_hosts_file
+import customtkinter
 import os
 import subprocess
 import logging

@@ -1,6 +1,7 @@
 """
 This script is designed to:
     -> automate compliance check of configuration of network devices using Nornir Napalm validate task
+    -> compare the running configuration of a device with a predefined standard and report any deviations
 """
 import sys
 import threading
@@ -30,7 +31,7 @@ def compliance_check(task):
     running_config = result[0].result["get_config"]["running"]  # store the running config
 
     for cmd in filelines:
-        if not cmd in running_config:
+        if cmd not in running_config:
             mylist.append(cmd)
     if not mylist:
         print(f"{task.host} VALIDATED!")
