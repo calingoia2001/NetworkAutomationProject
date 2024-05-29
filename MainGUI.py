@@ -258,19 +258,20 @@ def run_script_showdata(device_type, show_command):
         result_str = result.decode('utf-8').strip()  # convert bytes to string and remove leading/trailing whitespace
 
         # Create a new window to display the result
-        show_result_window = Toplevel()
+        show_result_window = customtkinter.CTkToplevel()
         show_result_window.title("Show Data")
 
         # Create a Text widget to display the result
-        text = Text(show_result_window, wrap="none")  # no text wrapping
-        text.insert(END, result_str)
+        text = customtkinter.CTkTextbox(show_result_window, width=800, corner_radius=0)  # no text wrapping
+        text.insert("0.0", result_str)
+        text.configure(state="disabled")  # configure textbox to be read-only
         text.pack(expand=True,
                   fill="both")  # allow to expand both horizontally and vertically to fill any available space
 
         # Create horizontal scrollbar
-        scrollbar_horizontal = Scrollbar(show_result_window, orient=HORIZONTAL, command=text.xview)
-        scrollbar_horizontal.pack(side="bottom", fill="x")
-        text.config(xscrollcommand=scrollbar_horizontal.set)
+        # scrollbar_horizontal = Scrollbar(show_result_window, orient=HORIZONTAL, command=text.xview)
+        # scrollbar_horizontal.pack(side="bottom", fill="x")
+        # text.config(commandingly=scrollbar_horizontal.set)
 
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
@@ -289,16 +290,17 @@ def create_showdata_window():
     # Create showdata window
     root.withdraw()  # withdraw the main menu
     global showdata_window  # make showdata_window global to be used in goback() function )
-    showdata_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
+    showdata_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
     showdata_window.title("Show Data of Devices")  # GUI title
     showdata_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
-    showdata_window.geometry("400x400")  # GUI size
+    showdata_window.geometry("400x450")  # GUI size
 
     # Create select text
-    select_text = Label(showdata_window, text='Select a group of devices you want to show data from', font=font_style)
+    select_text = customtkinter.CTkLabel(showdata_window, text='Select a group of devices you want to show data from',
+                                         font=font_style)
     select_text.pack()
 
-    select_text_2 = Label(showdata_window, text='or enter device ip address:', font=font_style)
+    select_text_2 = customtkinter.CTkLabel(showdata_window, text='or enter device ip address:', font=font_style)
     select_text_2.pack()
 
     # Create a list of group names
@@ -311,35 +313,37 @@ def create_showdata_window():
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
-        Radiobutton(showdata_window, text=group_name, variable=device_2, value=group_name).pack()
+        customtkinter.CTkRadioButton(showdata_window, text=group_name, variable=device_2, value=group_name).pack()
 
     # Create entry widget to enter ip address to back up
     global entry_ip_showdata
-    entry_ip_showdata = Entry(showdata_window, font=font_style)
+    entry_ip_showdata = customtkinter.CTkEntry(showdata_window, font=font_style)
     entry_ip_showdata.pack()
 
     # Create a button to run the showDataByFilter script with ship parameter
-    button_ship = Button(showdata_window, text="Show running interfaces",
-                         command=lambda: run_script_showdata(entry_ip_showdata.get(), "ship"))
+    button_ship = customtkinter.CTkButton(showdata_window, text="Show running interfaces",
+                                          command=lambda: run_script_showdata(entry_ip_showdata.get(), "ship"))
     button_ship.pack(pady=10)
 
     # Create a button to run the showDataByFilter script with shversion parameter
-    button_shversion = Button(showdata_window, text="Show version",
-                              command=lambda: run_script_showdata(entry_ip_showdata.get(), "shversion"))
+    button_shversion = customtkinter.CTkButton(showdata_window, text="Show version",
+                                               command=lambda: run_script_showdata(entry_ip_showdata.get(),
+                                                                                   "shversion"))
     button_shversion.pack(pady=10)
 
     # Create a button to run the showDataByFilter script with shvlan parameter
-    button_shvlan = Button(showdata_window, text="Show VLANs",
-                           command=lambda: run_script_showdata(entry_ip_showdata.get(), "shvlan"))
+    button_shvlan = customtkinter.CTkButton(showdata_window, text="Show VLANs",
+                                            command=lambda: run_script_showdata(entry_ip_showdata.get(), "shvlan"))
     button_shvlan.pack(pady=10)
 
     # Create a button to run the showDataByFilter script with sharp parameter
-    button_sharp = Button(showdata_window, text="Show ARP table",
-                          command=lambda: run_script_showdata(entry_ip_showdata.get(), "sharp"))
+    button_sharp = customtkinter.CTkButton(showdata_window, text="Show ARP table",
+                                           command=lambda: run_script_showdata(entry_ip_showdata.get(), "sharp"))
     button_sharp.pack(pady=10)
 
     # Create a button to go back to main menu
-    button_goback = Button(showdata_window, text="Go back", command=lambda: goback_main_menu(showdata_window))
+    button_goback = customtkinter.CTkButton(showdata_window, text="Go back",
+                                            command=lambda: goback_main_menu(showdata_window))
     button_goback.pack(pady=10)
 
 
@@ -350,9 +354,10 @@ def run_script_testconnection(device_type, ping_type):
             [os.path.join(base_dir, '.venv/Scripts/python.exe'),
              os.path.join(scripts_dir, 'testConnectionWithPingScript.py'),
              credentials['username'], credentials['password'], device_type, ping_type])
-        messagebox.showinfo("Test connection", result.decode('utf-8'))
+        # CTkMessagebox(title="Test Connection", message=result.decode('utf-8'), font=("Arial", 10), width=50, height=50)
+        messagebox.showinfo("Test Connection", result.decode('utf-8'))
     except subprocess.CalledProcessError as e:
-        messagebox.showerror("Error", f"An error occurred: {e}")
+        CTkMessagebox(title="Error", message=f"An error occurred: {e}", icon="cancel")
         logging.error(f"Error during test connection: {e}")
     finally:
         display_last_log()
@@ -368,16 +373,17 @@ def create_pingtest_window():
     # Create pingtest window
     root.withdraw()  # withdraw the main menu
     global pingtest_window  # make pingtest_window global ( to be used in goback() function )
-    pingtest_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
+    pingtest_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
     pingtest_window.title("Test Connection With Ping")  # GUI title
     pingtest_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
     pingtest_window.geometry("400x350")  # GUI size
 
     # Create select text
-    select_text = Label(pingtest_window, text='Select which group of devices you want to ping from', font=font_style)
+    select_text = customtkinter.CTkLabel(pingtest_window, text='Select which group of devices you want to ping from',
+                                         font=font_style)
     select_text.pack()
 
-    select_text_2 = Label(pingtest_window, text='or enter device ip address:', font=font_style)
+    select_text_2 = customtkinter.CTkLabel(pingtest_window, text='or enter device ip address:', font=font_style)
     select_text_2.pack()
 
     # Create a list of group names
@@ -390,33 +396,36 @@ def create_pingtest_window():
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
-        Radiobutton(pingtest_window, text=group_name, variable=device_3, value=group_name).pack()
+        customtkinter.CTkRadioButton(pingtest_window, text=group_name, variable=device_3, value=group_name).pack()
 
     # Create entry widget to enter ip address to ping from
     global entry_ip_testping
-    entry_ip_testping = Entry(pingtest_window, font=font_style)
+    entry_ip_testping = customtkinter.CTkEntry(pingtest_window, font=font_style)
     entry_ip_testping.pack()
 
     # Create a button to run the testConnectionWithPing script
-    button_ping = Button(pingtest_window, text="Ping all devices",
-                         command=lambda: run_script_testconnection(entry_ip_testping.get(), "pingall"))
+    button_ping = customtkinter.CTkButton(pingtest_window, text="Ping all devices",
+                                          command=lambda: run_script_testconnection(entry_ip_testping.get(), "pingall"))
     button_ping.pack(pady=10)
 
     # Create label "enter ipaddr" widget
-    enter_text = Label(pingtest_window, text='Please enter the IPaddress/Website you want to ping:', font=font_style)
+    enter_text = customtkinter.CTkLabel(pingtest_window, text='Please enter the IPaddress/Website you want to ping:',
+                                        font=font_style)
     enter_text.pack()
 
     # Create entry widget
-    entry_ip = Entry(pingtest_window, font=font_style)
+    entry_ip = customtkinter.CTkEntry(pingtest_window, font=font_style)
     entry_ip.pack()
 
     # Create ping button to ping specific IP address or website
-    button_ping_ip = Button(pingtest_window, text="PING",
-                            command=lambda: run_script_testconnection(entry_ip_testping.get(), entry_ip.get()))
+    button_ping_ip = customtkinter.CTkButton(pingtest_window, text="PING",
+                                             command=lambda: run_script_testconnection(entry_ip_testping.get(),
+                                                                                       entry_ip.get()))
     button_ping_ip.pack(pady=10)
 
     # Create a button to go back to main menu
-    button_goback = Button(pingtest_window, text="Go back", command=lambda: goback_main_menu(pingtest_window))
+    button_goback = customtkinter.CTkButton(pingtest_window, text="Go back",
+                                            command=lambda: goback_main_menu(pingtest_window))
     button_goback.pack(pady=10)
 
 
@@ -427,9 +436,9 @@ def run_script_configure(device_type, configure_type, backup_config):
             [os.path.join(base_dir, '.venv/Scripts/python.exe'),
              os.path.join(scripts_dir, 'addNewConfigScript.py'),
              credentials['username'], credentials['password'], device_type, configure_type, backup_config])
-        messagebox.showinfo("Configure Device", result.decode('utf-8'))
+        CTkMessagebox(title="Configure Device", message=result.decode('utf-8'))
     except subprocess.CalledProcessError as e:
-        messagebox.showerror("Error", f"An error occurred: {e}")
+        CTkMessagebox(title="Error", message=f"An error occurred: {e}", icon="cancel")
         logging.error(f"Error during configure device: {e}")
     finally:
         display_last_log()
@@ -445,16 +454,17 @@ def create_configure_window():
     # Create configure window
     root.withdraw()  # withdraw the main menu
     global configure_window  # make configure_window global ( to be used in goback() function )
-    configure_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
+    configure_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
     configure_window.title("Configure Devices")  # GUI title
     configure_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
     configure_window.geometry("400x450")  # GUI size
 
     # Create select text
-    select_text = Label(configure_window, text='Select which group of devices you want to configure', font=font_style)
+    select_text = customtkinter.CTkLabel(configure_window, text='Select which group of devices you want to configure',
+                                         font=font_style)
     select_text.pack()
 
-    select_text_2 = Label(configure_window, text='or enter device ip address', font=font_style)
+    select_text_2 = customtkinter.CTkLabel(configure_window, text='or enter device ip address', font=font_style)
     select_text_2.pack()
 
     # Create a list of group names
@@ -467,11 +477,11 @@ def create_configure_window():
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
-        Radiobutton(configure_window, text=group_name, variable=device_4, value=group_name).pack()
+        customtkinter.CTkRadioButton(configure_window, text=group_name, variable=device_4, value=group_name).pack()
 
     # Create entry widget to enter ip address to configure
     global entry_ip_configure
-    entry_ip_configure = Entry(configure_window, font=font_style)
+    entry_ip_configure = customtkinter.CTkEntry(configure_window, font=font_style)
     entry_ip_configure.pack()
 
     def get_num_vlans(action):
@@ -480,32 +490,38 @@ def create_configure_window():
         run_script_configure(entry_ip_configure.get(), action, str(num_vlans))
 
     # Create a button to run the addNewConfig script with loopback as sys.argv[4]
-    button_configuration_loopback = Button(configure_window, text="Create Loopback Interface",
-                                           command=lambda: run_script_configure(entry_ip_configure.get(), "loopback",
-                                                                                ""))
+    button_configuration_loopback = customtkinter.CTkButton(configure_window, text="Create Loopback Interface",
+                                                            command=lambda: run_script_configure(
+                                                                entry_ip_configure.get(), "loopback",
+                                                                ""))
     button_configuration_loopback.pack(pady=10)
 
     # Create a button to run the addNewConfig script with noloopback as sys.argv[4]
-    button_configuration_noloopback = Button(configure_window, text="Delete Loopback Interface",
-                                             command=lambda: run_script_configure(entry_ip_configure.get(),
-                                                                                  "noloopback", ""))
+    button_configuration_noloopback = customtkinter.CTkButton(configure_window, text="Delete Loopback Interface",
+                                                              command=lambda: run_script_configure(
+                                                                  entry_ip_configure.get(),
+                                                                  "noloopback", ""))
     button_configuration_noloopback.pack(pady=10)
 
     # Create a button to run the addNewConfig script with vlan as sys.argv[4]
-    button_configuration_vlan = Button(configure_window, text="Create VLANs", command=lambda: get_num_vlans("vlan"))
+    button_configuration_vlan = customtkinter.CTkButton(configure_window, text="Create VLANs",
+                                                        command=lambda: get_num_vlans("vlan"))
     button_configuration_vlan.pack(pady=10)
 
     # Create a button to run the addNewConfig script with novlan as sys.argv[4]
-    button_configuration_novlan = Button(configure_window, text="Delete VLANs", command=lambda: get_num_vlans("novlan"))
+    button_configuration_novlan = customtkinter.CTkButton(configure_window, text="Delete VLANs",
+                                                          command=lambda: get_num_vlans("novlan"))
     button_configuration_novlan.pack(pady=10)
 
     # Create a button to run the addNewConfig script with saveconfig as sys.argv[4]
-    button_configuration_save = Button(configure_window, text="Save configuration of selected device",
-                                       command=lambda: run_script_configure(entry_ip_configure.get(), "saveconfig", ""))
+    button_configuration_save = customtkinter.CTkButton(configure_window, text="Save configuration of selected device",
+                                                        command=lambda: run_script_configure(entry_ip_configure.get(),
+                                                                                             "saveconfig", ""))
     button_configuration_save.pack(padx=10, pady=10)
 
     # Create a button to go back to main menu
-    button_goback = Button(configure_window, text="Go back", command=lambda: goback_main_menu(configure_window))
+    button_goback = customtkinter.CTkButton(configure_window, text="Go back",
+                                            command=lambda: goback_main_menu(configure_window))
     button_goback.pack(pady=10)
 
 
@@ -516,9 +532,9 @@ def run_script_compliance(device_type):
             [os.path.join(base_dir, '.venv/Scripts/python.exe'),
              os.path.join(scripts_dir, 'complianceCheckConfigurationScript.py'),
              credentials['username'], credentials['password'], device_type])
-        messagebox.showinfo("Compliance Check", result.decode('utf-8'))
+        CTkMessagebox(title="Compliance Check", message=result.decode('utf-8'))
     except subprocess.CalledProcessError as e:
-        messagebox.showerror("Error", f"An error occurred: {e}")
+        CTkMessagebox(title="Error", message=f"An error occurred: {e}", icon="cancel")
         logging.error(f"Error during compliance check of device: {e}")
     finally:
         display_last_log()
@@ -534,16 +550,17 @@ def create_compliance_window():
     # Create compliance window
     root.withdraw()  # withdraw the main menu
     global compliance_window  # make compliance_window global ( to be used in goback function )
-    compliance_window = Toplevel()  # need to use Toplevel() for a window that opens on another one
+    compliance_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
     compliance_window.title("Compliance Check")  # GUI title
     compliance_window.iconbitmap('Assets/gui_icon.ico')  # GUI icon
     compliance_window.geometry("400x250")  # GUI size
 
     # Create select text
-    select_text = Label(compliance_window, text='Select which group of devices you want to check', font=font_style)
+    select_text = customtkinter.CTkLabel(compliance_window, text='Select which group of devices you want to check',
+                                         font=font_style)
     select_text.pack()
 
-    select_text_2 = Label(compliance_window, text='or enter device ip address', font=font_style)
+    select_text_2 = customtkinter.CTkLabel(compliance_window, text='or enter device ip address', font=font_style)
     select_text_2.pack()
 
     # Create a list of group names
@@ -556,20 +573,21 @@ def create_compliance_window():
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
-        Radiobutton(compliance_window, text=group_name, variable=device_5, value=group_name).pack()
+        customtkinter.CTkRadioButton(compliance_window, text=group_name, variable=device_5, value=group_name).pack()
 
     # Create entry widget to enter ip address to configure
     global entry_ip_compliance
-    entry_ip_compliance = Entry(compliance_window, font=font_style)
+    entry_ip_compliance = customtkinter.CTkEntry(compliance_window, font=font_style)
     entry_ip_compliance.pack()
 
     # Create a button to run the complianceCheckConfiguration script
-    button_compliance_check = Button(compliance_window, text="Compliance Check",
-                                     command=lambda: run_script_compliance(entry_ip_compliance.get()))
+    button_compliance_check = customtkinter.CTkButton(compliance_window, text="Compliance Check",
+                                                      command=lambda: run_script_compliance(entry_ip_compliance.get()))
     button_compliance_check.pack(padx=10, pady=10)
 
     # Create a button to go back to main menu
-    button_goback = Button(compliance_window, text="Go back", command=lambda: goback_main_menu(compliance_window))
+    button_goback = customtkinter.CTkButton(compliance_window, text="Go back",
+                                            command=lambda: goback_main_menu(compliance_window))
     button_goback.pack(pady=10)
 
 
