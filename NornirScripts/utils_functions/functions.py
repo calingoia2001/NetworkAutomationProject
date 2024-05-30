@@ -30,6 +30,7 @@ def write_hosts_file(hosts):
         yaml.safe_dump(hosts, file)
 
 
+# Function to check if an ip address is valid
 def check_if_is_ip_address(ip):
     try:
         ipaddress.ip_address(ip)

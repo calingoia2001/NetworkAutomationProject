@@ -4,13 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="refactor customTkinter, added icons and themes">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="refactor GUI, complianceCheckConfigurationScript.py">
       <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/ConfigFiles/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/ConfigFiles/hosts.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/complianceCheckConfigurationScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/complianceCheckConfigurationScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -280,14 +277,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00037" summary="delete jinja2Test.py">
-      <option name="closed" value="true" />
-      <created>1715272005349</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1715272005349</updated>
     </task>
     <task id="LOCAL-00038" summary="add feature to send backup configs to AWS S3 bucket">
       <option name="closed" value="true" />
@@ -673,7 +662,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717001353170</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="refactor GUI, complianceCheckConfigurationScript.py">
+      <option name="closed" value="true" />
+      <created>1717092242983</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1717092242984</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -721,7 +718,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="refactor scripts" />
     <MESSAGE value="add a prompt user to login before accessing the main GUI" />
     <MESSAGE value="add docstring to all scripts, moved check_if_is_ip_address to a utils function dir" />
     <MESSAGE value="add docstring to backupConfigScript.py" />
@@ -746,7 +742,8 @@
     <MESSAGE value="add customTkinter to root, login, manage devices, and backup" />
     <MESSAGE value="add customTkinter to showdata, testping, configure and compliance" />
     <MESSAGE value="refactor customTkinter, added icons and themes" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor customTkinter, added icons and themes" />
+    <MESSAGE value="refactor GUI, complianceCheckConfigurationScript.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor GUI, complianceCheckConfigurationScript.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

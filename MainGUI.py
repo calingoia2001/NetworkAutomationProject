@@ -61,11 +61,11 @@ def login():
 
     customtkinter.CTkLabel(login_window, text="Enter login credentials for devices:").pack(pady=5)
 
-    customtkinter.CTkLabel(login_window, text="Username:").pack(pady=5)
+    customtkinter.CTkLabel(login_window, text="Username:").pack()
     entry_username = customtkinter.CTkEntry(login_window)
     entry_username.pack(pady=5)
 
-    customtkinter.CTkLabel(login_window, text="Password:").pack(pady=5)
+    customtkinter.CTkLabel(login_window, text="Password:").pack()
     entry_password = customtkinter.CTkEntry(login_window, show="*")
     entry_password.pack(pady=5)
 
