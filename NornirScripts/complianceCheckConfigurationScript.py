@@ -26,24 +26,21 @@ def initialize_nornir():
 
 
 def compliance_check(task):
-    mylist = []
+    missing_commands = []
     result = task.run(task=napalm_get, getters=["get_config"])  # use get_config getter
     running_config = result[0].result["get_config"]["running"]  # store the running config
 
-    for cmd in filelines:
+    for cmd in standard_config_lines:
         if cmd not in running_config:
-            mylist.append(cmd)
-    if not mylist:
+            missing_commands.append(cmd)
+    if not missing_commands:
         print(f"{task.host} VALIDATED!")
     else:
-        LOCK.acquire()
-        print(f"WARNING: {task.host} is not compliant!")
-        print("The following commands are missing:")
-        try:
-            for items in mylist:
+        with LOCK:
+            print(f"WARNING: {task.host} is not compliant!")
+            print("The following commands are missing:")
+            for items in missing_commands:
                 print(items)
-        finally:
-            LOCK.release()
 
 
 if __name__ == "__main__":
@@ -56,7 +53,7 @@ if __name__ == "__main__":
         host_name.password = sys.argv[2]
 
     with open(READER_PATH, 'r') as f:
-        filelines = f.readlines()
+        standard_config_lines = f.readlines()
 
     target = sys.argv[3]
 
