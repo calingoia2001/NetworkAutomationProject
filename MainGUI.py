@@ -21,6 +21,7 @@ credentials = {}  # Global variable to store credentials
 # Define script paths
 base_dir = os.path.dirname(os.path.abspath(__file__))
 scripts_dir = os.path.join(base_dir, 'NornirScripts')
+scheduler_script = 'D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/NornirScripts/utils_functions/backup_scheduler.py'
 
 # Define the font size and style
 font_style = ("Helvetica", 15)
@@ -201,6 +202,17 @@ def restore_backup(device_type):
         run_script_configure(device_type, "restore", file_path)  # call function to add new config
 
 
+def schedule_backup(device_type):
+    interval = simpledialog.askstring("Input", "Enter the interval (daily, hourly, minutes, seconds):")
+    if interval:
+        try:
+            subprocess.Popen(
+                [os.path.join(base_dir, '.venv/Scripts/python.exe'), scheduler_script, interval, device_type])
+            CTkMessagebox(title="Scheduled", message=f"Backup scheduled every {interval}")
+        except subprocess.CalledProcessError as e:
+            CTkMessagebox(title="Error", message=f"An error occurred: {e}", icon="cancel")
+
+
 def update_entry_backup(*args):
     entry_ip_backup.delete(0, END)  # clear the backup Entry widget
     entry_ip_backup.insert(0, device.get())  # insert the selected device on Entry widget
@@ -214,7 +226,7 @@ def create_backupconfig_window():
     backup_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
     backup_window.title("Backup running configuration of devices")  # GUI title
     backup_window.after(201, lambda: backup_window.iconbitmap('Assets/router.ico'))  # GUI icon
-    backup_window.geometry("400x380")  # GUI size
+    backup_window.geometry("400x410")  # GUI size
 
     # Create select text
     select_text = customtkinter.CTkLabel(backup_window, text='Select which group of devices you want to backup \n or enter device ip address:',
@@ -244,6 +256,11 @@ def create_backupconfig_window():
     button_backup_device = customtkinter.CTkButton(backup_window, text="Backup running configuration",
                                                    command=lambda: run_script_backupconfig(entry_ip_backup.get()))
     button_backup_device.pack(pady=5)
+
+    # Create schedule button to schedule the backup config script
+    button_schedule_backup = customtkinter.CTkButton(backup_window, text="Schedule Backup",
+                                                     command=lambda: schedule_backup(entry_ip_backup.get()))
+    button_schedule_backup.pack(pady=5)
 
     # Create a button to run the backupConfig script and restore most recent backup
     button_config = customtkinter.CTkButton(backup_window, text="Restore most recent backup",

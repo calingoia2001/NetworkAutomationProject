@@ -4,17 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="small refactor">
-      <change afterPath="$PROJECT_DIR$/NornirScripts/utils_functions/backup_scheduler.py" afterDir="false" />
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add feature to automate all devices and add backup_scheduler.py">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/ConfigFiles/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/ConfigFiles/hosts.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/complianceCheckConfigurationScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/complianceCheckConfigurationScript.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/utils_functions/backup_scheduler.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/utils_functions/backup_scheduler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -334,14 +329,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00039" summary="add feature to restore most recent backup">
-      <option name="closed" value="true" />
-      <created>1715339053052</created>
-      <option name="number" value="00039" />
-      <option name="presentableId" value="LOCAL-00039" />
-      <option name="project" value="LOCAL" />
-      <updated>1715339053052</updated>
     </task>
     <task id="LOCAL-00040" summary="add new comments to scripts and .yaml files">
       <option name="closed" value="true" />
@@ -727,7 +714,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717093155267</updated>
     </task>
-    <option name="localTasksCounter" value="88" />
+    <task id="LOCAL-00088" summary="add feature to automate all devices and add backup_scheduler.py">
+      <option name="closed" value="true" />
+      <created>1717429999019</created>
+      <option name="number" value="00088" />
+      <option name="presentableId" value="LOCAL-00088" />
+      <option name="project" value="LOCAL" />
+      <updated>1717429999019</updated>
+    </task>
+    <option name="localTasksCounter" value="89" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -775,7 +770,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add docstring to all scripts, moved check_if_is_ip_address to a utils function dir" />
     <MESSAGE value="add docstring to backupConfigScript.py" />
     <MESSAGE value="add only one back to main menu function in MainGUI.py" />
     <MESSAGE value="create Manage Devices functionality" />
@@ -800,7 +794,8 @@
     <MESSAGE value="refactor customTkinter, added icons and themes" />
     <MESSAGE value="refactor GUI, complianceCheckConfigurationScript.py" />
     <MESSAGE value="small refactor" />
-    <option name="LAST_COMMIT_MESSAGE" value="small refactor" />
+    <MESSAGE value="add feature to automate all devices and add backup_scheduler.py" />
+    <option name="LAST_COMMIT_MESSAGE" value="add feature to automate all devices and add backup_scheduler.py" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

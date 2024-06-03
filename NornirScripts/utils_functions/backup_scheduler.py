@@ -11,7 +11,7 @@ BACKUP_SCRIPT = 'D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAu
 def run_backup():
     try:
         result = subprocess.check_output(
-            [PYTHON_EXEC, BACKUP_SCRIPT, 'calin', 'cisco', 'coresw'])  # Update with actual credentials and device group
+            [PYTHON_EXEC, BACKUP_SCRIPT, 'calin', 'cisco', sys.argv[2]])  # Update with actual credentials and device group
         print(result.decode('utf-8'))
     except subprocess.CalledProcessError as e:
         print(f"Error during backup configuration: {e}")
