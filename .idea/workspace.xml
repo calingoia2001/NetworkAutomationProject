@@ -4,10 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="refactor GUI, complianceCheckConfigurationScript.py">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="small refactor">
+      <change afterPath="$PROJECT_DIR$/NornirScripts/utils_functions/backup_scheduler.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/ConfigFiles/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/ConfigFiles/hosts.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/addNewConfigScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/complianceCheckConfigurationScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/complianceCheckConfigurationScript.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/showDataByFilterScript.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,31 +55,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;Python.Jinja2Demo.executor&quot;: &quot;Run&quot;,
-    &quot;Python.MainGUI.executor&quot;: &quot;Run&quot;,
-    &quot;Python.addNewConfig.executor&quot;: &quot;Run&quot;,
-    &quot;Python.backupConfig.executor&quot;: &quot;Run&quot;,
-    &quot;Python.complianceCheckConfigurationScript.executor&quot;: &quot;Run&quot;,
-    &quot;Python.jinja2Test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.main.executor&quot;: &quot;Run&quot;,
-    &quot;Python.napalmTest.executor&quot;: &quot;Run&quot;,
-    &quot;Python.netmikoScript.executor&quot;: &quot;Run&quot;,
-    &quot;Python.showDataByFilter.executor&quot;: &quot;Run&quot;,
-    &quot;Python.showDataByFilterScript.executor&quot;: &quot;Run&quot;,
-    &quot;Python.testConnectionWithPing.executor&quot;: &quot;Run&quot;,
-    &quot;Python.testFSM.executor&quot;: &quot;Run&quot;,
-    &quot;Python.testnetmiko.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/Archive&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "Python.Jinja2Demo.executor": "Run",
+    "Python.MainGUI.executor": "Run",
+    "Python.addNewConfig.executor": "Run",
+    "Python.backupConfig.executor": "Run",
+    "Python.backup_scheduler.executor": "Run",
+    "Python.complianceCheckConfigurationScript.executor": "Run",
+    "Python.jinja2Test.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.napalmTest.executor": "Run",
+    "Python.netmikoScript.executor": "Run",
+    "Python.scheduleTest.executor": "Run",
+    "Python.showDataByFilter.executor": "Run",
+    "Python.showDataByFilterScript.executor": "Run",
+    "Python.testConnectionWithPing.executor": "Run",
+    "Python.testFSM.executor": "Run",
+    "Python.testnetmiko.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/Archive",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\Archive" />
@@ -146,7 +155,29 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NornirScripts/backupConfigScript.py" />
-      <option name="PARAMETERS" value="calin cisco 192.168.137.100" />
+      <option name="PARAMETERS" value="calin cisco all" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="backup_scheduler" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NetworkAutomationProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/NornirScripts/utils_functions" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NornirScripts/utils_functions/backup_scheduler.py" />
+      <option name="PARAMETERS" value="seconds" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -191,6 +222,28 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/NornirScripts/jinja2Test.py" />
       <option name="PARAMETERS" value="calin cisco router" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="scheduleTest" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="NetworkAutomationProject" />
+      <option name="ENV_FILES" value="" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Archive" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Archive/scheduleTest.py" />
+      <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
@@ -247,6 +300,8 @@
       <item itemvalue="Python.backupConfig" />
       <item itemvalue="Python.showDataByFilter" />
       <item itemvalue="Python.testConnectionWithPing" />
+      <item itemvalue="Python.backup_scheduler" />
+      <item itemvalue="Python.scheduleTest" />
       <item itemvalue="Python.complianceCheckConfigurationScript" />
       <item itemvalue="Python.jinja2Test" />
       <item itemvalue="Python.MainGUI" />
@@ -254,6 +309,8 @@
     <recent_temporary>
       <list>
         <item itemvalue="Python.MainGUI" />
+        <item itemvalue="Python.backup_scheduler" />
+        <item itemvalue="Python.scheduleTest" />
         <item itemvalue="Python.complianceCheckConfigurationScript" />
         <item itemvalue="Python.jinja2Test" />
       </list>
@@ -277,14 +334,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00038" summary="add feature to send backup configs to AWS S3 bucket">
-      <option name="closed" value="true" />
-      <created>1715329368122</created>
-      <option name="number" value="00038" />
-      <option name="presentableId" value="LOCAL-00038" />
-      <option name="project" value="LOCAL" />
-      <updated>1715329368122</updated>
     </task>
     <task id="LOCAL-00039" summary="add feature to restore most recent backup">
       <option name="closed" value="true" />
@@ -670,7 +719,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717092242984</updated>
     </task>
-    <option name="localTasksCounter" value="87" />
+    <task id="LOCAL-00087" summary="small refactor">
+      <option name="closed" value="true" />
+      <created>1717093155267</created>
+      <option name="number" value="00087" />
+      <option name="presentableId" value="LOCAL-00087" />
+      <option name="project" value="LOCAL" />
+      <updated>1717093155267</updated>
+    </task>
+    <option name="localTasksCounter" value="88" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -718,7 +775,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add a prompt user to login before accessing the main GUI" />
     <MESSAGE value="add docstring to all scripts, moved check_if_is_ip_address to a utils function dir" />
     <MESSAGE value="add docstring to backupConfigScript.py" />
     <MESSAGE value="add only one back to main menu function in MainGUI.py" />
@@ -743,7 +799,8 @@
     <MESSAGE value="add customTkinter to showdata, testping, configure and compliance" />
     <MESSAGE value="refactor customTkinter, added icons and themes" />
     <MESSAGE value="refactor GUI, complianceCheckConfigurationScript.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor GUI, complianceCheckConfigurationScript.py" />
+    <MESSAGE value="small refactor" />
+    <option name="LAST_COMMIT_MESSAGE" value="small refactor" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

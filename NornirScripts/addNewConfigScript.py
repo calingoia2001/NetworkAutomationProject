@@ -94,8 +94,10 @@ if __name__ == "__main__":
         nr_filter = nr.filter(filter_func=lambda host: host.hostname == target)     # run sendconfig task on specified ip
         nr_filter.run(task=send_config)                                   # run task
     else:
-        if target in ["switch", "router", "coresw"]:
+        if target in group_names:
             nr_filter = nr.filter(type=target)                     # filter by switch ("switch" or "coresw" or "router")
             nr_filter.run(task=send_config)              # run task
+        elif target == 'all':
+            nr.run(task=send_config)
         else:
             print("Please enter a valid IP address / group name!")

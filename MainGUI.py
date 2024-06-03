@@ -214,7 +214,7 @@ def create_backupconfig_window():
     backup_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
     backup_window.title("Backup running configuration of devices")  # GUI title
     backup_window.after(201, lambda: backup_window.iconbitmap('Assets/router.ico'))  # GUI icon
-    backup_window.geometry("400x350")  # GUI size
+    backup_window.geometry("400x380")  # GUI size
 
     # Create select text
     select_text = customtkinter.CTkLabel(backup_window, text='Select which group of devices you want to backup \n or enter device ip address:',
@@ -228,6 +228,8 @@ def create_backupconfig_window():
     device = StringVar()
     device.set(group_names[0])  # default value for device type
     device.trace('w', update_entry_backup)  # add trace to update Entry widget when value changes
+
+    customtkinter.CTkRadioButton(backup_window, text='All Devices', variable=device, value='all').pack(pady=5)
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
@@ -295,7 +297,7 @@ def create_showdata_window():
     showdata_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
     showdata_window.title("Show Data of Devices")  # GUI title
     showdata_window.after(201, lambda: showdata_window.iconbitmap('Assets/router.ico'))  # GUI icon
-    showdata_window.geometry("400x440")  # GUI size
+    showdata_window.geometry("400x470")  # GUI size
 
     # Create select text
     select_text = customtkinter.CTkLabel(showdata_window, text='Select a group of devices you want to show data from \n '
@@ -310,6 +312,8 @@ def create_showdata_window():
     device_2 = StringVar()
     device_2.set(group_names[0])  # default value for device type
     device_2.trace('w', update_entry_showdata)  # add trace to update Entry widget when value changes
+
+    customtkinter.CTkRadioButton(showdata_window, text='All Devices', variable=device_2, value='all').pack(pady=5)
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
@@ -455,7 +459,7 @@ def create_configure_window():
     configure_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
     configure_window.title("Configure Devices")  # GUI title
     configure_window.after(201, lambda: configure_window.iconbitmap('Assets/router.ico'))  # GUI icon
-    configure_window.geometry("400x440")  # GUI size
+    configure_window.geometry("400x470")  # GUI size
 
     # Create select text
     select_text = customtkinter.CTkLabel(configure_window, text='Select which group of devices you want to configure \n '
@@ -470,6 +474,8 @@ def create_configure_window():
     device_4 = StringVar()
     device_4.set(group_names[0])  # default value for device type
     device_4.trace('w', update_entry_configure)  # add trace to update Entry widget when value changes
+
+    customtkinter.CTkRadioButton(configure_window, text='All Devices', variable=device_4, value='all').pack(pady=5)
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
@@ -549,7 +555,7 @@ def create_compliance_window():
     compliance_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
     compliance_window.title("Compliance Check")  # GUI title
     compliance_window.after(201, lambda: compliance_window.iconbitmap('Assets/router.ico'))  # GUI icon
-    compliance_window.geometry("400x320")  # GUI size
+    compliance_window.geometry("400x350")  # GUI size
 
     # Create select text
     select_text = customtkinter.CTkLabel(compliance_window, text='Select which group of devices you want to check \n '
@@ -564,6 +570,8 @@ def create_compliance_window():
     device_5 = StringVar()
     device_5.set(group_names[0])  # default value for device type
     device_5.trace('w', update_entry_compliance)  # add trace to update Entry widget when value changes
+
+    customtkinter.CTkRadioButton(compliance_window, text='All Devices', variable=device_5, value='all').pack(pady=5)
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:

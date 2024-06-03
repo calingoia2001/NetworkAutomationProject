@@ -91,5 +91,7 @@ if __name__ == "__main__":
         if target in group_names:
             nr_filter = nr.filter(type=target)                     # filter by switch ("switch" or "coresw" or "router")
             nr_filter.run(task=backup_configs)  # run task
+        elif target == 'all':
+            nr.run(task=backup_configs)
         else:
             print("Please enter a valid IP address / group name!")
