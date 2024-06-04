@@ -4,11 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add feature to automate all devices and add backup_scheduler.py">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add button for GUI to schedule backup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW2_running_config_09_05_2024_183210.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/NornirScripts/ConfigFiles/hosts.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/ConfigFiles/hosts.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/utils_functions/backup_scheduler.py" beforeDir="false" afterPath="$PROJECT_DIR$/NornirScripts/utils_functions/backup_scheduler.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -50,33 +51,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "Python.Jinja2Demo.executor": "Run",
-    "Python.MainGUI.executor": "Run",
-    "Python.addNewConfig.executor": "Run",
-    "Python.backupConfig.executor": "Run",
-    "Python.backup_scheduler.executor": "Run",
-    "Python.complianceCheckConfigurationScript.executor": "Run",
-    "Python.jinja2Test.executor": "Run",
-    "Python.main.executor": "Run",
-    "Python.napalmTest.executor": "Run",
-    "Python.netmikoScript.executor": "Run",
-    "Python.scheduleTest.executor": "Run",
-    "Python.showDataByFilter.executor": "Run",
-    "Python.showDataByFilterScript.executor": "Run",
-    "Python.testConnectionWithPing.executor": "Run",
-    "Python.testFSM.executor": "Run",
-    "Python.testnetmiko.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/Archive",
-    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;Python.Jinja2Demo.executor&quot;: &quot;Run&quot;,
+    &quot;Python.MainGUI.executor&quot;: &quot;Run&quot;,
+    &quot;Python.addNewConfig.executor&quot;: &quot;Run&quot;,
+    &quot;Python.backupConfig.executor&quot;: &quot;Run&quot;,
+    &quot;Python.backup_scheduler.executor&quot;: &quot;Run&quot;,
+    &quot;Python.complianceCheckConfigurationScript.executor&quot;: &quot;Run&quot;,
+    &quot;Python.jinja2Test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.main.executor&quot;: &quot;Run&quot;,
+    &quot;Python.napalmTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python.netmikoScript.executor&quot;: &quot;Run&quot;,
+    &quot;Python.scheduleTest.executor&quot;: &quot;Run&quot;,
+    &quot;Python.showDataByFilter.executor&quot;: &quot;Run&quot;,
+    &quot;Python.showDataByFilterScript.executor&quot;: &quot;Run&quot;,
+    &quot;Python.testConnectionWithPing.executor&quot;: &quot;Run&quot;,
+    &quot;Python.testFSM.executor&quot;: &quot;Run&quot;,
+    &quot;Python.testnetmiko.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Programs/PyCharm Community/Python PyCharm Projects/NetworkAutomationProject/Archive&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Programs\PyCharm Community\Python PyCharm Projects\NetworkAutomationProject\Archive" />
@@ -329,14 +330,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00040" summary="add new comments to scripts and .yaml files">
-      <option name="closed" value="true" />
-      <created>1715591231250</created>
-      <option name="number" value="00040" />
-      <option name="presentableId" value="LOCAL-00040" />
-      <option name="project" value="LOCAL" />
-      <updated>1715591231250</updated>
     </task>
     <task id="LOCAL-00041" summary="add show vlans and show arp table buttons and fuctionality">
       <option name="closed" value="true" />
@@ -722,7 +715,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717429999019</updated>
     </task>
-    <option name="localTasksCounter" value="89" />
+    <task id="LOCAL-00089" summary="add button for GUI to schedule backup">
+      <option name="closed" value="true" />
+      <created>1717431410509</created>
+      <option name="number" value="00089" />
+      <option name="presentableId" value="LOCAL-00089" />
+      <option name="project" value="LOCAL" />
+      <updated>1717431410509</updated>
+    </task>
+    <option name="localTasksCounter" value="90" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -770,7 +771,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add docstring to backupConfigScript.py" />
     <MESSAGE value="add only one back to main menu function in MainGUI.py" />
     <MESSAGE value="create Manage Devices functionality" />
     <MESSAGE value="add feature to dynamically take the groups names from hosts.yaml" />
@@ -795,7 +795,8 @@
     <MESSAGE value="refactor GUI, complianceCheckConfigurationScript.py" />
     <MESSAGE value="small refactor" />
     <MESSAGE value="add feature to automate all devices and add backup_scheduler.py" />
-    <option name="LAST_COMMIT_MESSAGE" value="add feature to automate all devices and add backup_scheduler.py" />
+    <MESSAGE value="add button for GUI to schedule backup" />
+    <option name="LAST_COMMIT_MESSAGE" value="add button for GUI to schedule backup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

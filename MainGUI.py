@@ -7,6 +7,7 @@ from CTkMessagebox import CTkMessagebox
 from CTkListbox import *
 from NornirScripts.utils_functions.functions import get_last_log_entry
 from NornirScripts.utils_functions.functions import get_device_group_names, read_hosts_file, write_hosts_file
+# from NornirScripts.utils_functions.backup_scheduler import scheduled_jobs
 import customtkinter
 import os
 import subprocess
@@ -16,7 +17,9 @@ import logging
 global device, device_2, device_3, device_4, device_5
 global manage_devices_window, backup_window, showdata_window, pingtest_window, configure_window, compliance_window
 global entry_ip_showdata, entry_ip_backup, entry_ip_testping, entry_ip_configure, entry_ip_compliance
+time_intervals = ['daily', 'hourly', 'minutes', 'seconds']
 credentials = {}  # Global variable to store credentials
+scheduled_jobs = {}
 
 # Define script paths
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -37,6 +40,7 @@ def display_last_log():
     messagebox.showinfo("Last Log Entry", message=log_output)
 
 
+# Function to exit de application
 def exit_app():
     msg = CTkMessagebox(title="Exit", message="Are you sure you want to close the program?",
                         icon="question", option_1="Cancel", option_2="Yes")
@@ -93,6 +97,7 @@ def login():
     root.wait_window(login_window)
 
 
+# Create a window from where the user can manage devices
 def create_manage_devices_window():
     # Create manage devices window
     root.withdraw()  # withdraw the main menu
@@ -202,15 +207,40 @@ def restore_backup(device_type):
         run_script_configure(device_type, "restore", file_path)  # call function to add new config
 
 
+# Function to handle scheduling running configuration of devices
 def schedule_backup(device_type):
-    interval = simpledialog.askstring("Input", "Enter the interval (daily, hourly, minutes, seconds):")
-    if interval:
+    interval = customtkinter.CTkInputDialog(text="Enter the interval (daily, hourly, 10 minutes, 10 seconds):",
+                                            title="Input")
+    interval_value = str(interval.get_input())
+    if interval_value in time_intervals:
+        job_id = f"backup_{interval_value}_{len(scheduled_jobs)}"
         try:
             subprocess.Popen(
-                [os.path.join(base_dir, '.venv/Scripts/python.exe'), scheduler_script, interval, device_type])
-            CTkMessagebox(title="Scheduled", message=f"Backup scheduled every {interval}")
+                [os.path.join(base_dir, '.venv/Scripts/python.exe'), scheduler_script,
+                 interval_value, device_type, credentials['username'], credentials['password'], 'schedule'])
+            scheduled_jobs[job_id] = interval_value
+            CTkMessagebox(title="Scheduled", message=f"Backup scheduled every {interval_value} with job ID {job_id}")
         except subprocess.CalledProcessError as e:
             CTkMessagebox(title="Error", message=f"An error occurred: {e}", icon="cancel")
+    else:
+        CTkMessagebox(title="Error", message="Please enter a valid interval!", icon="cancel")
+
+
+def cancel_backup(device_type):
+    job_id = customtkinter.CTkInputDialog(text="Enter the job ID to cancel:", title="Input")
+    job_id_value = str(job_id.get_input())
+    if job_id_value in scheduled_jobs:
+        try:
+            subprocess.Popen(
+                [os.path.join(base_dir, '.venv/Scripts/python.exe'), scheduler_script,
+                 job_id_value, device_type, credentials['username'], credentials['password'], 'cancel'])
+            del scheduled_jobs[job_id_value]
+            CTkMessagebox(title="Cancelled",
+                          message=f"Backup scheduled with job ID  value {job_id_value} has been cancelled")
+        except subprocess.CalledProcessError as e:
+            CTkMessagebox(title="Error", message=f"An error occurred: {e}", icon="cancel")
+    else:
+        CTkMessagebox(title="Error", message="Please enter a valid job ID!", icon="cancel")
 
 
 def update_entry_backup(*args):
@@ -226,10 +256,11 @@ def create_backupconfig_window():
     backup_window = customtkinter.CTkToplevel()  # need to use Toplevel() for a window that opens on another one
     backup_window.title("Backup running configuration of devices")  # GUI title
     backup_window.after(201, lambda: backup_window.iconbitmap('Assets/router.ico'))  # GUI icon
-    backup_window.geometry("400x410")  # GUI size
+    backup_window.geometry("400x450")  # GUI size
 
     # Create select text
-    select_text = customtkinter.CTkLabel(backup_window, text='Select which group of devices you want to backup \n or enter device ip address:',
+    select_text = customtkinter.CTkLabel(backup_window,
+                                         text='Select which group of devices you want to backup \n or enter device ip address:',
                                          font=font_style)
     select_text.pack(pady=10)
 
@@ -238,7 +269,6 @@ def create_backupconfig_window():
 
     global device
     device = StringVar()
-    device.set(group_names[0])  # default value for device type
     device.trace('w', update_entry_backup)  # add trace to update Entry widget when value changes
 
     customtkinter.CTkRadioButton(backup_window, text='All Devices', variable=device, value='all').pack(pady=5)
@@ -261,6 +291,11 @@ def create_backupconfig_window():
     button_schedule_backup = customtkinter.CTkButton(backup_window, text="Schedule Backup",
                                                      command=lambda: schedule_backup(entry_ip_backup.get()))
     button_schedule_backup.pack(pady=5)
+
+    # Create cancel schedule button to cancel schedule the backup config script
+    button_cancel_schedule_backup = customtkinter.CTkButton(backup_window, text="Cancel Scheduled Backup",
+                                                            command=lambda: cancel_backup(entry_ip_backup.get()))
+    button_cancel_schedule_backup.pack(pady=5)
 
     # Create a button to run the backupConfig script and restore most recent backup
     button_config = customtkinter.CTkButton(backup_window, text="Restore most recent backup",
@@ -289,10 +324,12 @@ def run_script_showdata(device_type, show_command):
         show_result_window.after(201, lambda: show_result_window.iconbitmap('Assets/router.ico'))  # GUI icon
 
         # Create a Text widget to display the result
-        text = customtkinter.CTkTextbox(show_result_window, width=800, wrap='none', font=('Courier', 12))  # no text wrapping
+        text = customtkinter.CTkTextbox(show_result_window, width=800, wrap='none',
+                                        font=('Courier', 12))  # no text wrapping
         text.insert("0.0", result_str)
         text.configure(state="disabled")  # configure textbox to be read-only
-        text.pack(expand=True, fill="both")  # allow to expand both horizontally and vertically to fill any available space
+        text.pack(expand=True,
+                  fill="both")  # allow to expand both horizontally and vertically to fill any available space
 
     except subprocess.CalledProcessError as e:
         messagebox.showerror("Error", f"An error occurred: {e}")
@@ -317,8 +354,9 @@ def create_showdata_window():
     showdata_window.geometry("400x470")  # GUI size
 
     # Create select text
-    select_text = customtkinter.CTkLabel(showdata_window, text='Select a group of devices you want to show data from \n '
-                                                               'or enter device ip address:',
+    select_text = customtkinter.CTkLabel(showdata_window,
+                                         text='Select a group of devices you want to show data from \n '
+                                              'or enter device ip address:',
                                          font=font_style)
     select_text.pack(pady=10)
 
@@ -327,7 +365,6 @@ def create_showdata_window():
 
     global device_2
     device_2 = StringVar()
-    device_2.set(group_names[0])  # default value for device type
     device_2.trace('w', update_entry_showdata)  # add trace to update Entry widget when value changes
 
     customtkinter.CTkRadioButton(showdata_window, text='All Devices', variable=device_2, value='all').pack(pady=5)
@@ -410,7 +447,6 @@ def create_pingtest_window():
 
     global device_3
     device_3 = StringVar()
-    device_3.set(group_names[0])  # default value for device type
     device_3.trace('w', update_entry_pingtest)  # add trace to update Entry widget when value changes
 
     # Loop trough list to create radio buttons based on the list
@@ -479,8 +515,9 @@ def create_configure_window():
     configure_window.geometry("400x470")  # GUI size
 
     # Create select text
-    select_text = customtkinter.CTkLabel(configure_window, text='Select which group of devices you want to configure \n '
-                                                                'or enter device ip address',
+    select_text = customtkinter.CTkLabel(configure_window,
+                                         text='Select which group of devices you want to configure \n '
+                                              'or enter device ip address',
                                          font=font_style)
     select_text.pack(pady=10)
 
@@ -489,14 +526,14 @@ def create_configure_window():
 
     global device_4
     device_4 = StringVar()
-    device_4.set(group_names[0])  # default value for device type
     device_4.trace('w', update_entry_configure)  # add trace to update Entry widget when value changes
 
     customtkinter.CTkRadioButton(configure_window, text='All Devices', variable=device_4, value='all').pack(pady=5)
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
-        customtkinter.CTkRadioButton(configure_window, text=group_name, variable=device_4, value=group_name).pack(pady=5)
+        customtkinter.CTkRadioButton(configure_window, text=group_name, variable=device_4, value=group_name).pack(
+            pady=5)
 
     # Create entry widget to enter ip address to configure
     global entry_ip_configure
@@ -585,14 +622,14 @@ def create_compliance_window():
 
     global device_5
     device_5 = StringVar()
-    device_5.set(group_names[0])  # default value for device type
     device_5.trace('w', update_entry_compliance)  # add trace to update Entry widget when value changes
 
     customtkinter.CTkRadioButton(compliance_window, text='All Devices', variable=device_5, value='all').pack(pady=5)
 
     # Loop trough list to create radio buttons based on the list
     for group_name in group_names:
-        customtkinter.CTkRadioButton(compliance_window, text=group_name, variable=device_5, value=group_name).pack(pady=5)
+        customtkinter.CTkRadioButton(compliance_window, text=group_name, variable=device_5, value=group_name).pack(
+            pady=5)
 
     # Create entry widget to enter ip address to configure
     global entry_ip_compliance
@@ -628,7 +665,8 @@ if __name__ == "__main__":
     button_manage_devices.pack(pady=10)
 
     # Create select button text
-    select_button_text = customtkinter.CTkLabel(root, text='Please select a task you want to automate:', font=font_style)
+    select_button_text = customtkinter.CTkLabel(root, text='Please select a task you want to automate:',
+                                                font=font_style)
     select_button_text.pack(pady=10)
 
     # Create a button to display backupConfig window
