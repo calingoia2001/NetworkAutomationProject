@@ -44,5 +44,5 @@ def start_scheduler(inte, dev):
 
 if __name__ == "__main__":
     interval = sys.argv[1]
-    dev = sys.argv[2]
-    start_scheduler(interval, dev)
+    device_name = sys.argv[2]
+    start_scheduler(interval, device_name)
