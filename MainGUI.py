@@ -7,7 +7,6 @@ from CTkMessagebox import CTkMessagebox
 from CTkListbox import *
 from NornirScripts.utils_functions.functions import get_last_log_entry
 from NornirScripts.utils_functions.functions import get_device_group_names, read_hosts_file, write_hosts_file
-# from NornirScripts.utils_functions.backup_scheduler import scheduled_jobs
 import customtkinter
 import os
 import subprocess
@@ -19,7 +18,7 @@ global manage_devices_window, backup_window, showdata_window, pingtest_window, c
 global entry_ip_showdata, entry_ip_backup, entry_ip_testping, entry_ip_configure, entry_ip_compliance
 time_intervals = ['daily', 'hourly', 'minutes', 'seconds']
 credentials = {}  # Global variable to store credentials
-scheduled_jobs = {}
+
 
 # Define script paths
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -213,35 +212,15 @@ def schedule_backup(device_type):
                                             title="Input")
     interval_value = str(interval.get_input())
     if interval_value in time_intervals:
-        job_id = f"backup_{interval_value}_{len(scheduled_jobs)}"
         try:
             subprocess.Popen(
                 [os.path.join(base_dir, '.venv/Scripts/python.exe'), scheduler_script,
-                 interval_value, device_type, credentials['username'], credentials['password'], 'schedule'])
-            scheduled_jobs[job_id] = interval_value
-            CTkMessagebox(title="Scheduled", message=f"Backup scheduled every {interval_value} with job ID {job_id}")
+                 interval_value, device_type, credentials['username'], credentials['password']])
+            CTkMessagebox(title="Scheduled", message=f"Backup scheduled for {device_type} for time interval: {interval_value}")
         except subprocess.CalledProcessError as e:
             CTkMessagebox(title="Error", message=f"An error occurred: {e}", icon="cancel")
     else:
-        CTkMessagebox(title="Error", message="Please enter a valid interval!", icon="cancel")
-
-
-def cancel_backup(device_type):
-    job_id = customtkinter.CTkInputDialog(text="Enter the job ID to cancel:", title="Input")
-    job_id_value = str(job_id.get_input())
-    if job_id_value in scheduled_jobs:
-        try:
-            subprocess.Popen(
-                [os.path.join(base_dir, '.venv/Scripts/python.exe'), scheduler_script,
-                 job_id_value, device_type, credentials['username'], credentials['password'], 'cancel'])
-            del scheduled_jobs[job_id_value]
-            CTkMessagebox(title="Cancelled",
-                          message=f"Backup scheduled with job ID  value {job_id_value} has been cancelled")
-        except subprocess.CalledProcessError as e:
-            CTkMessagebox(title="Error", message=f"An error occurred: {e}", icon="cancel")
-    else:
-        CTkMessagebox(title="Error", message="Please enter a valid job ID!", icon="cancel")
-
+        CTkMessagebox(title="Error", message="Please enter a valid time interval!", icon="cancel")
 
 def update_entry_backup(*args):
     entry_ip_backup.delete(0, END)  # clear the backup Entry widget
@@ -291,11 +270,6 @@ def create_backupconfig_window():
     button_schedule_backup = customtkinter.CTkButton(backup_window, text="Schedule Backup",
                                                      command=lambda: schedule_backup(entry_ip_backup.get()))
     button_schedule_backup.pack(pady=5)
-
-    # Create cancel schedule button to cancel schedule the backup config script
-    button_cancel_schedule_backup = customtkinter.CTkButton(backup_window, text="Cancel Scheduled Backup",
-                                                            command=lambda: cancel_backup(entry_ip_backup.get()))
-    button_cancel_schedule_backup.pack(pady=5)
 
     # Create a button to run the backupConfig script and restore most recent backup
     button_config = customtkinter.CTkButton(backup_window, text="Restore most recent backup",

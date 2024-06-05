@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add button for GUI to schedule backup">
+    <list default="true" id="60c057cd-e4b8-4452-9c7c-17ccefbd0079" name="Changes" comment="add feature to cancel scheduled backup">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/MainGUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/MainGUI.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/NornirScripts/BackupConfigs/AccessSW1_running_config_09_05_2024_183210.txt" beforeDir="false" />
@@ -330,14 +330,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1713176981169</updated>
-    </task>
-    <task id="LOCAL-00041" summary="add show vlans and show arp table buttons and fuctionality">
-      <option name="closed" value="true" />
-      <created>1715595146450</created>
-      <option name="number" value="00041" />
-      <option name="presentableId" value="LOCAL-00041" />
-      <option name="project" value="LOCAL" />
-      <updated>1715595146450</updated>
     </task>
     <task id="LOCAL-00042" summary="add tabulate() to showDataByFilterScript.py and text widget in MainGUI.py to display the tables">
       <option name="closed" value="true" />
@@ -723,7 +715,15 @@
       <option name="project" value="LOCAL" />
       <updated>1717431410509</updated>
     </task>
-    <option name="localTasksCounter" value="90" />
+    <task id="LOCAL-00090" summary="add feature to cancel scheduled backup">
+      <option name="closed" value="true" />
+      <created>1717525653357</created>
+      <option name="number" value="00090" />
+      <option name="presentableId" value="LOCAL-00090" />
+      <option name="project" value="LOCAL" />
+      <updated>1717525653357</updated>
+    </task>
+    <option name="localTasksCounter" value="91" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -771,7 +771,6 @@
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="add only one back to main menu function in MainGUI.py" />
     <MESSAGE value="create Manage Devices functionality" />
     <MESSAGE value="add feature to dynamically take the groups names from hosts.yaml" />
     <MESSAGE value="fix bug on login window(close app when clicking X button)" />
@@ -796,7 +795,8 @@
     <MESSAGE value="small refactor" />
     <MESSAGE value="add feature to automate all devices and add backup_scheduler.py" />
     <MESSAGE value="add button for GUI to schedule backup" />
-    <option name="LAST_COMMIT_MESSAGE" value="add button for GUI to schedule backup" />
+    <MESSAGE value="add feature to cancel scheduled backup" />
+    <option name="LAST_COMMIT_MESSAGE" value="add feature to cancel scheduled backup" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
